@@ -1,29 +1,35 @@
 #include "pieza.h"
 #include <stdlib.h>
 
-FICHA* init_ficha(int id, FORMA tipo)
+PIEZA* init_pieza(int id, FORMA tipo)
 {
-  FICHA *ficha = malloc(sizeof(FICHA));
-  ficha->id = id;
-  ficha->tipo = tipo;
-  ficha-> orientacion = 0;
-  ficha->x = 0;
-  ficha->y = 0;
-  ficha->fija = false;
-  return ficha;
+  PIEZA *pieza = malloc(sizeof(PIEZA));
+  pieza->id = id;
+  pieza->tipo = tipo;
+  pieza-> orientacion = 0;
+  pieza->x = 0;
+  pieza->y = 0;
+  pieza->fija = false;
+  return pieza;
 }
 
-void free_ficha(FICHA *ficha)
+void free_pieza(PIEZA *pieza)
 {
-  free(ficha);
+  free(pieza);
 }
 
-void rotar_ficha(FICHA *ficha)
+void rotar_pieza(PIEZA *pieza)
 {
-  ficha->orientacion = (ficha->orientacion+90) % 360;
+  pieza->orientacion = ((pieza->orientacion+90) % 360);
 }
 
-void rota_ficha(FICHA *ficha,int grado)
+void rota_pieza(PIEZA *pieza,int grado)
 {
-  ficha->orientacion = grado;
+  pieza->orientacion = grado;
+}
+
+void actualiza_posicion_pieza(PIEZA *pieza, int x, int y)
+{
+  pieza->x = x;
+  pieza->y = y;
 }

@@ -61,25 +61,27 @@ typedef enum FORMA {
   T } FORMA; // T
 
 /**
- * @brief La estructura FICHA contiene datos basicos de ella.
+ * @brief La estructura PIEZA contiene datos basicos de ella.
  *
  * Usamos esta estructura para mantener unidos los datos que contiene
- * una ficha como tipo, orientacion, ..., y le asignamos un id para
+ * una pieza como tipo, orientacion, ..., y le asignamos un id para
  * identificarla de manera univocua.
  *
  */
-typedef struct ficha {
+typedef struct pieza {
   int id;
   FORMA tipo;
   int orientacion;
   int x;
   int y;
   bool fija;
-} FICHA;
+  bool estado[4];
+} PIEZA;
 
-FICHA* init_ficha(int id, FORMA tipo);
-void free_ficha(FICHA *ficha);
-void rotar_ficha(FICHA *ficha);
-void rota_ficha(FICHA *ficha,int grado);
+PIEZA* init_pieza(int id, FORMA tipo);
+void free_pieza(PIEZA *pieza);
+void rotar_pieza(PIEZA *pieza);
+void rota_pieza(PIEZA *pieza,int grado);
+void actualiza_posicion_pieza(PIEZA *pieza, int x, int y);
 
 #endif //Fin de ciudad.h
