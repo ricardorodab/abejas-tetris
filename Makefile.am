@@ -9,6 +9,12 @@ lib_libutils_a_SOURCES =    \
 	lib/pieza.h	    \
 	lib/tablero.c	    \
 	lib/tablero.h	    \
+	lib/abejas.c	    \
+	lib/abejas.h	    \
+	lib/funcion.c	    \
+	lib/funcion.h	    \
+	lib/abc.c	    \
+	lib/abc.h	    \
 	$(END_LIST)
 
 lib_libutils_a_CPPFLAGS = $(GLIB_CFLAGS)

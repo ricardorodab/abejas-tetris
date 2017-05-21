@@ -8,6 +8,8 @@ TABLERO* init_tablero(int ancho, int alto)
   tablero->alto = alto;
   tablero->ancho = ancho;  
   tablero->size = 0;
+  tablero->num_piezas_totales = 0;
+  tablero->piezas_actuales = 0;
   tablero->actual = malloc(sizeof(PIEZA*));
   tablero->actual = NULL;
   tablero->max_size = (alto*ancho)/4;
@@ -18,7 +20,28 @@ TABLERO* init_tablero(int ancho, int alto)
   for(i = 0; i < ancho+1; i++)
     for(j = 0; j < alto+1; j++)
       tablero->piezas[i][j] = NULL;
-  return tablero;
+  return tablero; 
+}
+
+TABLERO* copy_tablero(TABLERO *tablero)
+{
+  TABLERO *tablero_nuevo = malloc(sizeof(TABLERO));
+  tablero_nuevo->alto = tablero->alto;
+  tablero_nuevo->num_piezas_totales = tablero->num_piezas_totales;
+  tablero_nuevo->ancho = tablero->ancho;
+  tablero_nuevo->piezas_actuales = tablero->piezas_actuales;
+  tablero_nuevo->size = tablero->size;
+  tablero_nuevo->actual = malloc(sizeof(PIEZA*));
+  tablero_nuevo->actual = tablero->actual;
+  tablero_nuevo->max_size = tablero->max_size;
+  tablero_nuevo->piezas = malloc((tablero->ancho+1)*sizeof(PIEZA***));
+  int i, j;
+  for(i = 0; i < tablero->ancho+1; i++)
+    tablero_nuevo->piezas[i] = malloc((tablero->alto+1)*sizeof(PIEZA**));
+  for(i = 0; i < tablero->ancho+1; i++)
+    for(j = 0; j < tablero->alto+1; j++)
+      tablero_nuevo->piezas[i][j] = tablero->piezas[i][j];
+  return tablero_nuevo;
 }
 
 void free_tablero(TABLERO *tablero)
@@ -31,9 +54,18 @@ void free_tablero(TABLERO *tablero)
   free(tablero);
 }
 
+void crear_pieza_tablero(TABLERO *tablero)
+{
+  PIEZA *nueva = init_pieza(tablero->size,rand()%7);
+  set_punto_pieza(nueva,tablero->alto/2-2,tablero->ancho-3);
+  agrega_pieza_tablero(tablero,nueva);
+}
+
 void agrega_pieza_tablero(TABLERO *tablero, PIEZA *pieza)
 {
   tablero->size++;
+  tablero->num_piezas_totales++;
+  tablero->piezas_actuales += 4;
   if(tablero->size == tablero->max_size)
     {
       printf("Tamanio maximo alcanzado\n");
@@ -219,6 +251,23 @@ bool mover_derecha_tablero(TABLERO *tablero, PIEZA *pieza)
   return true;
 }
 
+void busca_solucion_actual(TABLERO *tablero)
+{
+  bool fija = false;
+  mover_pieza_tablero(tablero,tablero->actual);
+  while(!fija){
+    if(rand()%2 == 0)
+      rotar_pieza_tablero(tablero,tablero->actual);
+    int r = rand()%2;
+    if(r == 0)
+      mover_izquierda_tablero(tablero,tablero->actual);
+    else if(r == 1)
+      mover_derecha_tablero(tablero,tablero->actual);
+    if(rand()%2 == 0)
+      fija = !(mover_pieza_tablero(tablero,tablero->actual));
+  }
+}
+
 /**
  *
  */
@@ -231,8 +280,10 @@ void tetris_nivel(TABLERO *tablero,int l)
       tablero->piezas[j][i] = NULL;
       tablero->piezas[j][i] = tablero->piezas[j][i+1];      
       if(antes != NULL)
-	if(borra_bloque_pieza(antes,j,i))
+	if(borra_bloque_pieza(antes,j,i)){
+	  tablero->piezas_actuales--;
 	  borra_pieza_tablero(tablero,antes);
+	}
       if(tablero->piezas[j][i] != NULL)
 	bajar_bloque_pieza(tablero->piezas[j][i],j,i);
     }

@@ -53,6 +53,7 @@
 #include <unistd.h>
 #include <pthread.h>
 #include "tablero.h"
+#include "funcion.h"
 #include "interfaz-grafica.h"
 
 
@@ -118,12 +119,28 @@ void* heuristica_abejas(void *thread_param)
     if(!st){
       FORMA r = rand()%7;
       PIEZA *a = init_pieza(0,r);
+      printf("F=%f\n",funcion_costo(param->tablero));
       set_punto_pieza(a,size_y/2-1,size_x-2);
       agrega_pieza_tablero(param->tablero,a);
       nueva = a;
     }
   }
   pthread_exit(NULL);
+  /*PARAM *param = (PARAM*)thread_param;
+  bool st = true;
+  while(1){
+    usleep(500000);
+    busca_solucion_actual(param->tablero);
+    st = false; //mover_pieza_tablero(param->tablero,nueva);
+    if(!st){
+      FORMA r = rand()%7;
+      PIEZA *a = init_pieza(0,r);
+      set_punto_pieza(a,size_y/2-1,size_x-2);
+      agrega_pieza_tablero(param->tablero,a);
+      nueva = a;
+    }
+  }
+  pthread_exit(NULL);*/
 }
 
 /**
@@ -142,6 +159,8 @@ int main(int argc, char** argv)
   pthread_t threads[2];
   size_x = 26;
   size_y = 16;
+  //size_x = 20;
+  //size_y = 10;
   TABLERO *tablero = init_tablero(size_y,size_x);
   PARAM *param = malloc(sizeof(PARAM));
   param->argc = argc;

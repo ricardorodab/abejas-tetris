@@ -1,0 +1,17 @@
+#ifndef ABEJAS_H
+#define ABEJAS_H
+
+typedef enum tipo_abeja {
+  EMPLEADA,
+  DESCANSA,
+  EXPLORA } BEE_TYPE;
+
+typedef struct abeja {
+  FORMA tipo;
+  double funcion;
+  TABLERO *solucion;
+} ABEJA;
+
+ABEJA* init_abeja(BEE_TYPE tipo);
+  
+#endif
