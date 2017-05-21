@@ -64,6 +64,9 @@
  */
 #define LINEA __LINE__
 
+int size_x;
+int size_y;
+
 /**
  * @brief Variable de marcardo de error.
  *
@@ -100,14 +103,25 @@ typedef struct param{
   double zoom;
 } PARAM;
 
-void* interfaz_grafica(void *thread_param)
+void* heuristica_abejas(void *thread_param)
 {
   PARAM *param = (PARAM*)thread_param;
-  PIEZA *nueva = init_pieza(1,T);
+  PIEZA *nueva = init_pieza(1,rand()%7);
+  //set_punto_pieza(nueva,param->tablero->ancho-1,
+  //		  param->tablero->alto-1);
+  set_punto_pieza(nueva,size_y/2-1,size_x-2);
+  agrega_pieza_tablero(param->tablero,nueva);
+  bool st = true;
   while(1){
-    sleep(1);    
-    rotar_pieza(nueva);
-    agrega_pieza_tablero(param->tablero,nueva);
+    usleep(500000);    
+    st = mover_pieza_tablero(param->tablero,nueva);
+    if(!st){
+      FORMA r = rand()%7;
+      PIEZA *a = init_pieza(0,r);
+      set_punto_pieza(a,size_y/2-1,size_x-2);
+      agrega_pieza_tablero(param->tablero,a);
+      nueva = a;
+    }
   }
   pthread_exit(NULL);
 }
@@ -126,14 +140,16 @@ int main(int argc, char** argv)
   //Inicializamos una variable para medir el tiempo de ejecucion:
   clock_t tic = clock();
   pthread_t threads[2];
-  TABLERO *tablero = init_tablero(20,10);
+  size_x = 26;
+  size_y = 16;
+  TABLERO *tablero = init_tablero(size_y,size_x);
   PARAM *param = malloc(sizeof(PARAM));
   param->argc = argc;
   param->argv = argv;
   param->tablero = tablero;
   double zoom_param = 5;
   
-  pthread_create(&threads[0],NULL,interfaz_grafica,(void*)param);
+  pthread_create(&threads[0],NULL,heuristica_abejas,(void*)param);
   visual_main(argc,argv,tablero,zoom_param);
   //Contamos el tiempo:
   clock_t toc = clock();

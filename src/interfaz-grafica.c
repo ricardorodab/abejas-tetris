@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <stdbool.h>
 #include "tablero.h"
 #include "interfaz-grafica.h"
 #include "tetromino.h"
@@ -42,13 +43,12 @@ void print(double x, double y,double z, char *string)
 }
 
 
-void dibuja_cuadro(double w, double h)
+void dibuja_cuadro(double h, double w)
 {
   glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   glBegin(GL_LINES);
   glColor3f(1.0f,1.0f,1.0f); // White (RGB)
-
   for(float x = -1*(tablero_principal->ancho/2); x <= (tablero_principal->ancho/2); x += 1 )
     {      
       glVertex3f(x, -1*(tablero_principal->alto/2), 0.0f);
@@ -58,7 +58,7 @@ void dibuja_cuadro(double w, double h)
     {
       glVertex3f(-1*(tablero_principal->ancho/2), y, 0.0f);
       glVertex3f((float)(tablero_principal->ancho/2), y, 0.0f);
-    }
+    }  
   /*for(float x = w*-1; x < glutGet(GLUT_WINDOW_WIDTH); x += 0.5 )
     {glVertex3f(x, -1*h, 0.0f);
     glVertex3f(x, (float)(glutGet(GLUT_WINDOW_WIDTH)), 0.0f);
@@ -71,25 +71,39 @@ void dibuja_cuadro(double w, double h)
 void dibuja_pieza(PIEZA *pieza){
   switch(pieza->tipo){
   case Sq:
-    dibuja_cuadrado(pieza);
+    dibuja_cuadrado(pieza,
+		    tablero_principal->ancho/2,
+		    tablero_principal->alto/2);
     break;
   case LG:
-    dibuja_left_gun(pieza);
+    dibuja_left_gun(pieza,
+		    tablero_principal->ancho/2,
+		    tablero_principal->alto/2);
     break;
   case RG:
-    dibuja_right_gun(pieza);
+    dibuja_right_gun(pieza,
+		     tablero_principal->ancho/2,
+		     tablero_principal->alto/2);
     break;
   case LS:
-    dibuja_left_snake(pieza);
+    dibuja_left_snake(pieza,
+		      tablero_principal->ancho/2,
+		      tablero_principal->alto/2);
     break;
   case RS:
-    dibuja_right_snake(pieza);
+    dibuja_right_snake(pieza,
+		       tablero_principal->ancho/2,
+		       tablero_principal->alto/2);
     break;
   case I:
-    dibuja_i(pieza);
+    dibuja_i(pieza,
+	     tablero_principal->ancho/2,
+	     tablero_principal->alto/2);
     break;
   case T:
-    dibuja_t(pieza);
+    dibuja_t(pieza,
+	     tablero_principal->ancho/2,
+	     tablero_principal->alto/2);
     break;
   default:
     break;
@@ -106,7 +120,6 @@ void dibuja_figuras(void)
       }
     }
   }
-  //glutPostRedisplay();
 }
 
 /* Función para poder volver a dibujar con algún cambio. */
@@ -127,36 +140,53 @@ void display(void)
   int size = tablero_principal->max_size;
   double por = zoom*log2(size); 
   gluLookAt(0.0f, 0.0f, (float)por, 0.0f, 0.0f,0.0f,0.0f, 5.f, 0.5f);
+  tetris(tablero_principal);
   dibuja_cuadro(glutGet(GLUT_WINDOW_WIDTH),glutGet(GLUT_WINDOW_HEIGHT));
   dibuja_figuras();
   glutSwapBuffers();
-  glutPostRedisplay ();
+  glutPostRedisplay(); 
+}
+
+void deja_caer(void)
+{
+  bool valor = true;
+  while(valor)
+     valor = mover_pieza_tablero(tablero_principal,tablero_principal->actual);
 }
 
 void myKeyboard (unsigned char key, int x, int y)
-{
+{  
   switch (key) {
   case 27:
     exit(0);
     break;
-  default:
+  case 32:    
+    deja_caer();
+    break;
+  default:    
     break;
   }
 }
+
 void specialKeyInput(int key, int x, int y)
 {
    if (key == GLUT_KEY_RIGHT)
      {
+       mover_derecha_tablero(tablero_principal,
+			     tablero_principal->actual);
      }
    if (key == GLUT_KEY_LEFT)
      {
+       mover_izquierda_tablero(tablero_principal,
+			     tablero_principal->actual);
      }
    if (key == GLUT_KEY_UP)
      {
+       rotar_pieza_tablero(tablero_principal,tablero_principal->actual);
      }
    if (key == GLUT_KEY_DOWN)
      {
-       glutPostRedisplay ();
+       rotar_pieza_tablero(tablero_principal,tablero_principal->actual);
      }
 }
 
@@ -169,7 +199,6 @@ void visual_main(int argc, char** argv, TABLERO *tablero, double zoom_p)
   myInit("Tetris & Abejas");
   glutKeyboardFunc(myKeyboard);
   glutSpecialFunc(specialKeyInput);
-  //glutSpecialFunc(specialKeyInput);
   glutReshapeFunc(reshape);
   glutDisplayFunc(display);
   glutMainLoop();

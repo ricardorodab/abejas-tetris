@@ -60,6 +60,12 @@ typedef enum FORMA {
   I,  // |
   T } FORMA; // T
 
+typedef struct punto {
+  int x;
+  int y;
+  bool activo;
+} PUNTO;
+
 /**
  * @brief La estructura PIEZA contiene datos basicos de ella.
  *
@@ -75,13 +81,28 @@ typedef struct pieza {
   int x;
   int y;
   bool fija;
-  bool estado[4];
+  bool activo_centro;
+  PUNTO **bloques;
 } PIEZA;
 
 PIEZA* init_pieza(int id, FORMA tipo);
 void free_pieza(PIEZA *pieza);
+void set_x_pieza(PIEZA *pieza, int x);
+void set_y_pieza(PIEZA *pieza, int y);
+void actualiza_cuadrado(PIEZA *pieza);
+void actualiza_left_gun(PIEZA *pieza);
+void actualiza_right_gun(PIEZA *pieza);
+void actualiza_left_snake(PIEZA *pieza);
+void actualiza_right_snake(PIEZA *pieza);
+void actualiza_i(PIEZA *pieza);
+void actualiza_t(PIEZA *pieza);
+void actualiza_bloques(PIEZA *pieza);
+void set_punto_pieza(PIEZA *pieza, int x, int y);
 void rotar_pieza(PIEZA *pieza);
 void rota_pieza(PIEZA *pieza,int grado);
 void actualiza_posicion_pieza(PIEZA *pieza, int x, int y);
-
-#endif //Fin de ciudad.h
+void deja_caer_pieza(PIEZA *pieza);
+void levanta_pieza(PIEZA *pieza);
+bool borra_bloque_pieza(PIEZA *pieza, int x, int y);
+void bajar_bloque_pieza(PIEZA *pieza, int x, int y);
+#endif //Fin de pieza.h

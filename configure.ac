@@ -8,6 +8,8 @@ AC_CONFIG_SRCDIR([lib/pieza.c])
 # Checks for programs.
 #LT_INIT
 AC_PROG_CC
+AC_PROG_LN_S
+AC_PROG_MKDIR_P
 AC_PROG_RANLIB
 # Checks for libraries.
 AC_PROG_INSTALL

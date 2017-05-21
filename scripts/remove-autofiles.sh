@@ -24,4 +24,5 @@ rm depcomp ;
 rm install-sh ;
 rm missing ; 
 rm -r ./*~ ;
+rm ./runnable ;
 rm test-driver ;
