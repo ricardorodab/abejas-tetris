@@ -119,7 +119,7 @@ void* heuristica_abejas(void *thread_param)
     if(!st){
       FORMA r = rand()%7;
       PIEZA *a = init_pieza(0,r);
-      printf("F=%f\n",funcion_costo(param->tablero));
+      //printf("F=%.100f\n",funcion_costo(param->tablero));
       set_punto_pieza(a,size_y/2-1,size_x-2);
       agrega_pieza_tablero(param->tablero,a);
       nueva = a;
@@ -157,10 +157,10 @@ int main(int argc, char** argv)
   //Inicializamos una variable para medir el tiempo de ejecucion:
   clock_t tic = clock();
   pthread_t threads[2];
-  size_x = 26;
-  size_y = 16;
-  //size_x = 20;
-  //size_y = 10;
+  //size_x = 26;
+  //size_y = 16;
+  size_x = 20;
+  size_y = 10;
   TABLERO *tablero = init_tablero(size_y,size_x);
   PARAM *param = malloc(sizeof(PARAM));
   param->argc = argc;

@@ -12,6 +12,7 @@ typedef struct tablero {
   int max_size;
   int num_piezas_totales;
   int piezas_actuales;
+  bool game_over;
   PIEZA ***piezas;
   PIEZA *actual;
 } TABLERO;

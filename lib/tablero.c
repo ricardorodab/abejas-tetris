@@ -10,6 +10,7 @@ TABLERO* init_tablero(int ancho, int alto)
   tablero->size = 0;
   tablero->num_piezas_totales = 0;
   tablero->piezas_actuales = 0;
+  tablero->game_over = false;
   tablero->actual = malloc(sizeof(PIEZA*));
   tablero->actual = NULL;
   tablero->max_size = (alto*ancho)/4;
@@ -31,6 +32,7 @@ TABLERO* copy_tablero(TABLERO *tablero)
   tablero_nuevo->ancho = tablero->ancho;
   tablero_nuevo->piezas_actuales = tablero->piezas_actuales;
   tablero_nuevo->size = tablero->size;
+  tablero_nuevo->game_over = tablero->game_over;
   tablero_nuevo->actual = malloc(sizeof(PIEZA*));
   tablero_nuevo->actual = tablero->actual;
   tablero_nuevo->max_size = tablero->max_size;
@@ -63,6 +65,7 @@ void crear_pieza_tablero(TABLERO *tablero)
 
 void agrega_pieza_tablero(TABLERO *tablero, PIEZA *pieza)
 {
+  tetris(tablero);
   tablero->size++;
   tablero->num_piezas_totales++;
   tablero->piezas_actuales += 4;
@@ -279,11 +282,11 @@ void tetris_nivel(TABLERO *tablero,int l)
       PIEZA *antes = tablero->piezas[j][i];
       tablero->piezas[j][i] = NULL;
       tablero->piezas[j][i] = tablero->piezas[j][i+1];      
-      if(antes != NULL)
+      if(antes != NULL){
 	if(borra_bloque_pieza(antes,j,i)){
-	  tablero->piezas_actuales--;
 	  borra_pieza_tablero(tablero,antes);
 	}
+      }
       if(tablero->piezas[j][i] != NULL)
 	bajar_bloque_pieza(tablero->piezas[j][i],j,i);
     }
@@ -293,9 +296,11 @@ void tetris_nivel(TABLERO *tablero,int l)
 void tetris(TABLERO *tablero)
 {
   int i,j;
-  j = tablero->alto-1;
+  //j = tablero->alto-1;
+  j = 0;
   bool bandera = true;
-  while(j >= 0){
+  //while(j >= 0){
+  while(j < tablero->alto-1){
     bandera = true;
     for(i = 0; i < tablero->ancho; i++){
       if(tablero->piezas[i][j] == NULL){
@@ -303,9 +308,13 @@ void tetris(TABLERO *tablero)
 	break;
       }
     }
-    if(bandera)
+    if(bandera){
+      tablero->piezas_actuales -= i-1;
       tetris_nivel(tablero,j);
-    j--;
+      j--;
+    }
+    //j--;
+    j++;
   }
 }
 

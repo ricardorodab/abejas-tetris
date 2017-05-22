@@ -140,7 +140,7 @@ void display(void)
   int size = tablero_principal->max_size;
   double por = zoom*log2(size); 
   gluLookAt(0.0f, 0.0f, (float)por, 0.0f, 0.0f,0.0f,0.0f, 5.f, 0.5f);
-  tetris(tablero_principal);
+  //tetris(tablero_principal);
   dibuja_cuadro(glutGet(GLUT_WINDOW_WIDTH),glutGet(GLUT_WINDOW_HEIGHT));
   dibuja_figuras();
   glutSwapBuffers();
