@@ -2,6 +2,7 @@
 #define INTERFAZ_GRAFICA_H
 
 TABLERO *tablero_principal;
+TABLERO **tablero_principal_pointer;
 double ancho;
 double alto;
 //Valor entre 
@@ -12,5 +13,5 @@ void print(double x, double y,double z, char *string);
 void myReshape (int width, int height);
 void myDisplay(void);
 void myKeyboard (unsigned char key, int x, int y);
-void visual_main(int argc, char** argv, TABLERO *tablero, double zoom_p);
+void visual_main(int argc, char** argv, TABLERO **tablero, double zoom_p);
 #endif

@@ -8,6 +8,7 @@ typedef struct abeja {
   TABLERO *solucion;
 } ABEJA;
 
-ABEJA* init_abeja(BEE_TYPE tipo,TABLERO *tablero);
+ABEJA* init_abeja(TABLERO *tablero);
 double busca_fuente_alimento(ABEJA *abeja);
+void set_tablero_abeja(TABLERO* tablero, ABEJA *abeja);
 #endif

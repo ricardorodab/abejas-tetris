@@ -24,6 +24,30 @@ PIEZA* init_pieza(int id, FORMA tipo)
   return pieza;
 }
 
+#include <stdio.h>
+PIEZA* copy_pieza(PIEZA *pieza)
+{
+  if(pieza == NULL)
+    return NULL;
+  PIEZA *pieza_nueva = malloc(sizeof(PIEZA)); 
+  pieza_nueva->id = pieza->id;
+  pieza_nueva->tipo = pieza->tipo;
+  pieza_nueva-> orientacion = pieza->orientacion;
+  pieza_nueva->x = pieza->x;
+  pieza_nueva->y = pieza->y;
+  pieza_nueva->activo_centro = pieza->activo_centro;
+  pieza_nueva->fija = pieza->fija;
+  int i;
+  pieza_nueva->bloques = malloc(sizeof(PUNTO*)*3);
+  for(i = 0; i < 3; i++){
+    pieza_nueva->bloques[i] = malloc(sizeof(PUNTO));
+    pieza_nueva->bloques[i]->x = pieza->bloques[i]->x;
+    pieza_nueva->bloques[i]->y = pieza->bloques[i]->y;
+    pieza_nueva->bloques[i]->activo = pieza->bloques[i]->activo;
+  }
+  return pieza_nueva;
+}
+
 void free_pieza(PIEZA *pieza)
 {
   int i;

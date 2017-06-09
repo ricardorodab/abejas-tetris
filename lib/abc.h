@@ -4,6 +4,6 @@
 #include "abejas.h"
 #include "tablero.h"
 
-void ABC(TABLERO *tablero, int empleadas);
+void ABC(TABLERO **tablero_pointer, int empleadas);
 
 #endif

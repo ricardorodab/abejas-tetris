@@ -13,6 +13,7 @@ TABLERO* init_tablero(int ancho, int alto)
   tablero->game_over = false;
   tablero->actual = malloc(sizeof(PIEZA*));
   tablero->actual = NULL;
+  tablero->num_tetris = 0; 
   tablero->max_size = (alto*ancho)/4;
   tablero->piezas = malloc((ancho+1)*sizeof(PIEZA***));
   int i, j;
@@ -32,17 +33,36 @@ TABLERO* copy_tablero(TABLERO *tablero)
   tablero_nuevo->ancho = tablero->ancho;
   tablero_nuevo->piezas_actuales = tablero->piezas_actuales;
   tablero_nuevo->size = tablero->size;
+  tablero_nuevo->num_tetris = tablero->num_tetris;
   tablero_nuevo->game_over = tablero->game_over;
   tablero_nuevo->actual = malloc(sizeof(PIEZA*));
-  tablero_nuevo->actual = tablero->actual;
+  int actual_x = tablero->actual->x;
+  int actual_y = tablero->actual->y;
   tablero_nuevo->max_size = tablero->max_size;
   tablero_nuevo->piezas = malloc((tablero->ancho+1)*sizeof(PIEZA***));
-  int i, j;
+  int i, j, k;
   for(i = 0; i < tablero->ancho+1; i++)
     tablero_nuevo->piezas[i] = malloc((tablero->alto+1)*sizeof(PIEZA**));
-  for(i = 0; i < tablero->ancho+1; i++)
+  
+  for(i = 0; i < tablero->ancho+1; i++) 
     for(j = 0; j < tablero->alto+1; j++)
-      tablero_nuevo->piezas[i][j] = tablero->piezas[i][j];
+      tablero_nuevo->piezas[i][j] = NULL;
+  
+  for(i = 0; i < tablero->ancho+1; i++) {
+    for(j = 0; j < tablero->alto+1; j++) {
+      if(tablero_nuevo->piezas[i][j] == NULL) {
+	PIEZA *copiada = copy_pieza(tablero->piezas[i][j]);
+	tablero_nuevo->piezas[i][j] = copiada;
+	if(copiada != NULL)
+	for(k = 0; k < 3; k++)
+	    if(copiada->bloques[k]->activo)
+	      tablero_nuevo->piezas
+		[copiada->bloques[k]->x]
+		[copiada->bloques[k]->y] = copiada;	
+      }
+    }
+  }
+  tablero_nuevo->actual = tablero_nuevo->piezas[actual_x][actual_y];
   return tablero_nuevo;
 }
 
@@ -257,17 +277,23 @@ bool mover_derecha_tablero(TABLERO *tablero, PIEZA *pieza)
 void busca_solucion_actual(TABLERO *tablero)
 {
   bool fija = false;
-  mover_pieza_tablero(tablero,tablero->actual);
-  while(!fija){
+  //mover_pieza_tablero(tablero,tablero->actual);
+  int lugares = rand()%tablero->ancho;
+  int i = 0;
+  if(rand()%2 == 0) {
+    while(i++ < lugares)
+      mover_izquierda_tablero(tablero,tablero->actual);
+  }
+  else {
+    while(i++ < lugares)
+      mover_derecha_tablero(tablero,tablero->actual);
+  }
+  while(!fija) {
     if(rand()%2 == 0)
       rotar_pieza_tablero(tablero,tablero->actual);
-    int r = rand()%2;
-    if(r == 0)
-      mover_izquierda_tablero(tablero,tablero->actual);
-    else if(r == 1)
-      mover_derecha_tablero(tablero,tablero->actual);
-    if(rand()%2 == 0)
+    if(rand()%2 == 0) {
       fija = !(mover_pieza_tablero(tablero,tablero->actual));
+    }
   }
 }
 
@@ -277,6 +303,7 @@ void busca_solucion_actual(TABLERO *tablero)
 void tetris_nivel(TABLERO *tablero,int l)
 {
   int i,j;
+  tablero->num_tetris++;
   for(i = l; i < tablero->alto; i++){
     for(j = 0; j < tablero->ancho; j++){
       PIEZA *antes = tablero->piezas[j][i];
@@ -295,11 +322,10 @@ void tetris_nivel(TABLERO *tablero,int l)
 
 void tetris(TABLERO *tablero)
 {
+  //
   int i,j;
-  //j = tablero->alto-1;
   j = 0;
   bool bandera = true;
-  //while(j >= 0){
   while(j < tablero->alto-1){
     bandera = true;
     for(i = 0; i < tablero->ancho; i++){
@@ -313,12 +339,45 @@ void tetris(TABLERO *tablero)
       tetris_nivel(tablero,j);
       j--;
     }
-    //j--;
     j++;
+  }
+}
+
+void set_pieza_nueva(TABLERO *tablero, PIEZA *pieza)
+{
+  if(pieza->tipo == I) {
+    set_punto_pieza(pieza,(tablero->ancho/2)-1,tablero->alto-3);
+  }
+  else {
+    set_punto_pieza(pieza,(tablero->ancho/2)-1,tablero->alto-2);
   }
 }
 
 PIEZA* get_pieza(TABLERO *tablero, int x, int y)
 {
   return tablero->piezas[x][y];
+}
+
+void siguiente_turno_tablero(TABLERO *tablero)
+{
+  FORMA forma_random = rand() % 7;
+  PIEZA *temp = init_pieza(tablero->num_piezas_totales+1,
+			   forma_random);
+  set_pieza_nueva(tablero,temp);
+  agrega_pieza_tablero(tablero,temp);
+}
+
+void imprime_tablero(TABLERO *tablero)
+{
+  int i,j;
+  for(i = tablero->alto; i >= 0; i--) {
+    for(j = 0; j < tablero->ancho; j++) {
+      if(tablero->piezas[j][i] == NULL)
+	printf("□");
+      else
+	printf("■");
+    }
+    printf("\n");
+  }
+  printf("\n\n");
 }

@@ -12,9 +12,10 @@ typedef struct tablero {
   int max_size;
   int num_piezas_totales;
   int piezas_actuales;
+  int num_tetris;
   bool game_over;
   PIEZA ***piezas;
-  PIEZA *actual;
+  PIEZA *actual;  
 } TABLERO;
 
 TABLERO* init_tablero(int alto, int ancho);
@@ -30,6 +31,9 @@ bool mover_derecha_tablero(TABLERO *tablero, PIEZA *pieza);
 void busca_solucion_actual(TABLERO *tablero);
 void tetris_nivel(TABLERO *tablero, int l);
 void tetris(TABLERO *tablero);
+void set_pieza_nueva(TABLERO *tablero, PIEZA *pieza);
 PIEZA* get_pieza(TABLERO *tablero, int x, int y);
+void siguiente_turno_tablero(TABLERO *tablero);
+void imprime_tablero(TABLERO *tablero);
 
 #endif

@@ -141,6 +141,7 @@ void display(void)
   double por = zoom*log2(size); 
   gluLookAt(0.0f, 0.0f, (float)por, 0.0f, 0.0f,0.0f,0.0f, 5.f, 0.5f);
   //tetris(tablero_principal);
+  tablero_principal = *tablero_principal_pointer;
   dibuja_cuadro(glutGet(GLUT_WINDOW_WIDTH),glutGet(GLUT_WINDOW_HEIGHT));
   dibuja_figuras();
   glutSwapBuffers();
@@ -191,9 +192,10 @@ void specialKeyInput(int key, int x, int y)
 }
 
 
-void visual_main(int argc, char** argv, TABLERO *tablero, double zoom_p)
-{  
-  tablero_principal = tablero;
+void visual_main(int argc, char** argv, TABLERO **tablero, double zoom_p)
+{
+  tablero_principal_pointer = tablero;
+  tablero_principal = *tablero;
   zoom = zoom_p;
   glutInit(&argc, argv); 
   myInit("Tetris & Abejas");

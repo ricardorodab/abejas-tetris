@@ -86,6 +86,7 @@ typedef struct pieza {
 } PIEZA;
 
 PIEZA* init_pieza(int id, FORMA tipo);
+PIEZA* copy_pieza(PIEZA *pieza);
 void free_pieza(PIEZA *pieza);
 void set_x_pieza(PIEZA *pieza, int x);
 void set_y_pieza(PIEZA *pieza, int y);

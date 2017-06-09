@@ -1,27 +1,45 @@
 #include "abc.h"
 #include <math.h>
 #include <stdbool.h>
+#include <unistd.h>
+#include <stdio.h>
 
-void ABC(TABLERO *tablero,int empleadas)
+#define FUTURO_COTA 100
+
+void ABC(TABLERO **tablero_pointer,int empleadas)
 {
-  int i;
+  int i,futuro;;
+  TABLERO *tablero = *tablero_pointer;
+  double funcion = -1*INFINITY;
   //Inicializacion de la colmena.
   ABEJA *abejas_empleadas[empleadas];
   for(i = 0; i < empleadas; i++)
-    abejas_empleadas[i] = init_abeja(EMPLEADA,copy_tablero(tablero));
+    abejas_empleadas[i] = init_abeja(copy_tablero(tablero));
   //Hasta que ganemos o perdamos.
   bool game_over = false;
   while(!game_over) {
-    double funcion = INFINITY;
     double fun_temp;
     ABEJA *waggle_dance;
     for(i = 0; i < empleadas; i++) {
-      fun_temp = busca_fuente_alimento(abejas_empleadas[i]);
-      if(fun_temp < funcion){
-	funcion = fun_temp;
-	waggle_dance = abeja_empleada[i];
+      for(futuro = 0; futuro < 1000; futuro++) {
+	fun_temp = busca_fuente_alimento(abejas_empleadas[i]);      
+	if(fun_temp > funcion){
+	  funcion = fun_temp;
+	  waggle_dance = abejas_empleadas[i];
+	}
       }
     }
-    
+    //Para cada abeja empleada ahora buscan sobre este tablero
+    //la manera de acomodar esta pieza en distintas locaciones
+    //dentro de un rango definido.
+    *(tablero_pointer) = waggle_dance->solucion;
+    //imprime_tablero(waggle_dance->solucion);
+    tablero = waggle_dance->solucion;
+    siguiente_turno_tablero(tablero);
+    for(i = 0; i < empleadas; i++)
+      set_tablero_abeja(copy_tablero(tablero),abejas_empleadas[i]);
+    //imprime_tablero(tablero);
+    printf("Fun=%f\n",waggle_dance->funcion);
+    usleep(500000);
   }
 }
