@@ -196,17 +196,19 @@ void* heuristica_abejas(void *thread_param)
   int i = 100;
   int tetris = 1;
   int semilla = 1;
-  ABC(tablero, size_colonia,distancia);    
-  /*while(i-- > 0) {
+  //ABC(tablero, size_colonia,distancia);    
+  while(i-- > 0) {
     TABLERO *mejor = copy_tablero(*tablero);
     int seed = get_semilla("./etc/semillas.cfg",i);
     srand(seed);
     ABC(tablero, size_colonia,distancia);    
-    if(tetris < (*tablero)->num_tetris)
+    if(tetris < (*tablero)->num_tetris) {
       semilla = seed;
+      printf("SEMILLA NUMERO = %d (%d)\n",i,seed);
+      free_tablero(*tablero);
+    }
     *tablero = mejor;
   }
-  printf("SEMILLA= %d",semilla);*/
   end_visual_main();
   pthread_exit(NULL);
 }
@@ -277,7 +279,7 @@ int main(int argc, char** argv)
   int seed = get_semilla(UBICACION_SEMILLA,SEMILLA);
   //Inicializamos la semilla "aleatoria".
   //srand(seed);
-  srand(time(NULL));
+  //srand(time(NULL));
   
   pthread_t threads[2];
   size_x = ANCHO;

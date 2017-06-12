@@ -105,10 +105,10 @@ PIEZA* copy_pieza(PIEZA *pieza)
 void free_pieza(PIEZA *pieza)
 {
   int i;
-  //for(i = 0; i < 3; i++)
-    //free(pieza->bloques[i]);
-  //free(pieza->bloques);
-  //free(pieza);
+  for(i = 0; i < 3; i++)
+    free(pieza->bloques[i]);
+  free(pieza->bloques);
+  free(pieza);
 }
 
 /**

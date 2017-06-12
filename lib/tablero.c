@@ -168,7 +168,7 @@ void agrega_pieza_tablero(TABLERO *tablero, PIEZA *pieza)
   tablero->piezas_actuales += 4;
   if(tablero->size == tablero->max_size)
     {
-      printf("Tamanio maximo alcanzado\n");
+      //printf("Tamanio maximo alcanzado\n");
       //exit(1);
       //tablero->game_over = true;
       //return;
