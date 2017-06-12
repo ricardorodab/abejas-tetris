@@ -111,6 +111,6 @@ int futuro_cota = distancia;
       set_tablero_abeja(copy_tablero(tablero),abejas_empleadas[i]);
     //printf("Fun=%f\n",waggle_bee->funcion);
     game_over = tablero->game_over;
-    usleep(50000);
+    //usleep(50000);
   }
 } //Fin de abc.c

@@ -116,6 +116,54 @@ void main_imprime_error(char *msg,int linea)
 }
 
 /**
+ * @brief Buscador de un numero del archivo donde viene las semillas.
+ *
+ * Como nuestro programa funciona con alta probabilidad y queremos que
+ * los resultados sean repetibles, usamos un semillero para reproducir
+ * el procedimiento de experimentacion.
+ * @param ubicacion_semilla -Es el nombre del archivo donde viene la semilla.
+ * @param num_semilla -Es la posicion de nuestra semilla en el archivo.
+ * @return La semilla final que se usara.
+ *
+ */
+int get_semilla(char *ubicacion_semilla,int num_semilla)
+{
+  int temp_seed = 1;
+  FILE *file;
+  int int_file;
+  char char_file[1];
+  GList *l;
+  char numero[128];
+  if(num_semilla < 0)
+    return temp_seed;
+  file = fopen(ubicacion_semilla,"r+");
+    //Revisamos si el archivo abrio bien.
+  if(file == NULL){
+    main_imprime_error("El archivo no existe o existe un problema al abrirlo.\n",__LINE__);
+  }
+  int_file = 0;
+  while(num_semilla && ((int_file = fscanf(file,"%c",char_file)) != -1))
+    {
+      if(char_file[0] == ',')
+	num_semilla--;
+    }  
+  if(int_file == -1)
+    return temp_seed;
+  int i = 0;
+  while((int_file=fscanf(file,"%c",char_file) != -1) && char_file[0] != ',')
+    {
+      if(!isdigit(char_file[0]))
+	break;
+      numero[i++] = char_file[0];
+    }
+  numero[i] = '\0';
+  temp_seed = atoi(numero);
+  fclose(file);
+  return temp_seed;
+}
+
+
+/**
  * @brief Parametros de threads.
  *
  * Usamos esta estructura para mantener unidos los datos que contiene
@@ -126,6 +174,8 @@ typedef struct param{
   int argc; /**< Es el id que representa el # de argumentos. */
   char **argv; /**< Son los argumentos del programa original. */
   TABLERO **tablero; /**< Es el apuntador al apuntador del tablero.*/
+  int size_colonia; /**< Es el tamanio de la colonia que correremos.*/
+  int distancia; /**< Es la distancia que recorrera una abeja.*/
 } PARAM;
 
 /**
@@ -139,9 +189,24 @@ void* heuristica_abejas(void *thread_param)
 {
   PARAM *param = (PARAM*)thread_param;
   TABLERO **tablero = param->tablero;
+  int size_colonia = param->size_colonia;
+  int distancia = param->distancia;
   siguiente_turno_tablero(*tablero);
   bool stop_condition = true;
-  ABC(tablero, 100,50);
+  int i = 100;
+  int tetris = 1;
+  int semilla = 1;
+  ABC(tablero, size_colonia,distancia);    
+  /*while(i-- > 0) {
+    TABLERO *mejor = copy_tablero(*tablero);
+    int seed = get_semilla("./etc/semillas.cfg",i);
+    srand(seed);
+    ABC(tablero, size_colonia,distancia);    
+    if(tetris < (*tablero)->num_tetris)
+      semilla = seed;
+    *tablero = mejor;
+  }
+  printf("SEMILLA= %d",semilla);*/
   end_visual_main();
   pthread_exit(NULL);
 }
@@ -154,26 +219,84 @@ void* heuristica_abejas(void *thread_param)
  * En este caso se espera argc > 2.
  * @param argv - Son los parametros NULL.
  * @return Un entero 0 si todo sale bien 1 en caso contrario.
+ * @TODO Revisar parametros y si es mayor a uno e igual a 
+ * RANDOM inicializar semilla con time(NULL).
  *
  */
 int main(int argc, char** argv)
 {
-  srand(time(NULL));
   //Inicializamos una variable para medir el tiempo de ejecucion:
   clock_t tic = clock();
+  // Constantes de la GUI.
+  int ALTO;
+  int ANCHO;
+  double ZOOM;
+  // Constantes de experimentacion.
+  int SIZE_COLONIA;
+  int DISTANCIA;
+  // Constantes de semillas.
+  int SEMILLA;
+  char *UBICACION_SEMILLA;
+
+  // Variables para obtener las variables de configuracion.
+  GKeyFile *keyfile;
+  GKeyFileFlags flags;
+  GError *error;
+  //Leemos el archivo de configuracion:
+  keyfile = g_key_file_new();
+  flags = G_KEY_FILE_NONE;
+  if (!g_key_file_load_from_file (keyfile,
+				  "./etc/config.cfg",
+				  flags, &error))
+    {
+      printf("Error al cargar archivo de configuracion. LINEA= %d",__LINE__);
+      return 1;
+    }
+  // 1. Los parametros de la GUI.
+  ANCHO               = g_key_file_get_integer(keyfile,"GUI",
+					       "ANCHO",NULL);
+  ALTO                = g_key_file_get_integer(keyfile,"GUI",
+					       "ALTO",NULL);
+  ZOOM                = g_key_file_get_double(keyfile,"GUI",
+					      "ZOOM",NULL);    
+  // 2. Variables de experimentacion:
+  SIZE_COLONIA        = g_key_file_get_integer(keyfile,"COLONIA",
+					       "SIZE",NULL);
+  DISTANCIA           = g_key_file_get_integer(keyfile,"COLONIA",
+					       "DISTANCIA",NULL);  
+
+  //Ahora asignamos a cada una de las variables sus valores del .cfg:
+  // 3. Las semillas, numero elegida y la ubicacion del semillero:
+  SEMILLA           = g_key_file_get_integer(keyfile,"SEMILLA",
+					       "SEMILLA",NULL);    
+  UBICACION_SEMILLA = g_key_file_get_string(keyfile,"SEMILLA",
+					    "UBICACION",NULL);
+
+  // Lo primero que hacemos es inicializamos
+  // el generador de num aleatorios:
+  int seed = get_semilla(UBICACION_SEMILLA,SEMILLA);
+  //Inicializamos la semilla "aleatoria".
+  //srand(seed);
+  srand(time(NULL));
+  
   pthread_t threads[2];
-  size_x = 26;size_y = 36;
-  //size_x = 20;size_y = 10;
+  size_x = ANCHO;
+  size_y = ALTO;
+  double zoom_param = ZOOM;
+  
   TABLERO *temp = init_tablero(size_y,size_x);
   TABLERO **tablero = &temp;
   PARAM *param = malloc(sizeof(PARAM));
+  
   param->argc = argc;
   param->argv = argv;
   param->tablero = tablero;
-  double zoom_param = 5;
-  
+  param->size_colonia = SIZE_COLONIA;
+  param->distancia = DISTANCIA; 
+
   pthread_create(&threads[0],NULL,heuristica_abejas,(void*)param);
   visual_main(argc,argv,tablero,zoom_param);
+
   //Contamos el tiempo:
   clock_t toc = clock();
   double segundos = (double)(toc - tic) / CLOCKS_PER_SEC;
