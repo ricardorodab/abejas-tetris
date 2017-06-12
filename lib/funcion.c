@@ -1,6 +1,7 @@
 #include "funcion.h"
 #include "math.h"
 #include <stdio.h>
+
 // Converts degrees to radians.
 #define degreesToRadians(angleDegrees) (angleDegrees * M_PI / 180.0)
 
@@ -9,12 +10,46 @@
 
 #define hipotenusa(x,y) (sqrt(pow(x,2)+pow(y,2)))
 #define hipotenusa_tres(x,y,z) (sqrt(pow(x,2)+pow(y,2)+por(z,2)))
+#define valor_abs(x,y) (x > y ? (x-y) : (y-x))
 
-double carga(TABLERO *tablero)
+
+/**
+ *
+ * Revisa para cada columna cuanta distancia hay de entre 
+ * el ultimo nivel vertical hasta el primer bloque
+ * o tetrominoide que encuentre.
+ *
+ */
+double revisa_vertical(TABLERO *tablero, int columna)
 {
-  double max_piezas = tablero->ancho*tablero->alto;
-  double piezas_actuales = tablero->piezas_actuales;
-  return (piezas_actuales/max_piezas); //Es la carga
+  double altura = 0;
+  int i = tablero->alto;
+  while(i > 0 && (tablero->piezas[columna][i] == NULL ||
+		  !tablero->piezas[columna][i]->fija))
+    i--;
+  return (double)i;
+}
+
+/**
+ *
+ * Regresa un entero mayor igual a cero para representar
+ * todos los posibles caminos que puede tomar la linea skyline.
+ *
+ */
+double verticalidad(TABLERO *tablero)
+{
+  double valor_final = 0;
+  double verticalidad = revisa_vertical(tablero,0);
+  double columna_tmp;
+  double diff;
+  int i;
+  for(i = 0; i < tablero->ancho; i++) {
+    columna_tmp = revisa_vertical(tablero,i);    
+    diff = valor_abs(verticalidad,columna_tmp);
+    verticalidad = columna_tmp;
+    valor_final += diff;      
+  }
+  return valor_final;
 }
 
 double atrapado(TABLERO *tablero, int x, int y) {
@@ -100,9 +135,16 @@ double probabilidad_tetris(TABLERO *tablero, int j)
 
 double funcion_costo(TABLERO *tablero)
 {
+  //Entre menor, mejor.
   double atrapados = cuenta_atrapados(tablero);
-  double fun = (tablero->ancho*tablero->alto)-atrapados+(10*tablero->num_tetris)+probabilidad_tetris(tablero,0);
-  //printf("atrapados=%f\n",fun);
+  //Entre menor, mejor.
+  double vertical = verticalidad(tablero);
+  //Entre mayor, mejor.
+  double num_tetris = tablero->num_tetris;
+  //Entre mayor, mejor.
+  double probabilidad = probabilidad_tetris(tablero,0);
+  //La funcion, entre mayor, mejor.
+  double fun = (-10*atrapados)+(100*num_tetris)+probabilidad;
   return fun;
 }
 

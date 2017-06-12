@@ -3,14 +3,16 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include <stdio.h>
+#include "funcion.h"
 
-#define FUTURO_COTA 100
+#define FUTURO_COTA 50
+#define INFINITO -1*INFINITY
 
 void ABC(TABLERO **tablero_pointer,int empleadas)
 {
-  int i,futuro;;
+  int i,futuro;
   TABLERO *tablero = *tablero_pointer;
-  double funcion = -1*INFINITY;
+  double funcion = INFINITO;
   //Inicializacion de la colmena.
   ABEJA *abejas_empleadas[empleadas];
   for(i = 0; i < empleadas; i++)
@@ -21,14 +23,16 @@ void ABC(TABLERO **tablero_pointer,int empleadas)
     double fun_temp;
     ABEJA *waggle_dance;
     for(i = 0; i < empleadas; i++) {
-      for(futuro = 0; futuro < 1000; futuro++) {
+      for(futuro = 0; futuro < FUTURO_COTA; futuro++) {
 	fun_temp = busca_fuente_alimento(abejas_empleadas[i]);      
 	if(fun_temp > funcion){
 	  funcion = fun_temp;
 	  waggle_dance = abejas_empleadas[i];
 	}
       }
+      funcion = waggle_dance->funcion;
     }
+    //funcion = INFINITO;
     //Para cada abeja empleada ahora buscan sobre este tablero
     //la manera de acomodar esta pieza en distintas locaciones
     //dentro de un rango definido.
@@ -40,6 +44,7 @@ void ABC(TABLERO **tablero_pointer,int empleadas)
       set_tablero_abeja(copy_tablero(tablero),abejas_empleadas[i]);
     //imprime_tablero(tablero);
     printf("Fun=%f\n",waggle_dance->funcion);
-    usleep(500000);
+    //printf("atrapados=%f\n",cuenta_atrapados(waggle_dance->solucion));
+    usleep(50000);
   }
 }
