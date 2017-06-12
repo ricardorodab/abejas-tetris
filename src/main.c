@@ -1,4 +1,4 @@
-/* -------------------------------------------------------------------
+/* -----------------------------------------------------------------
  * main.c
  * version 1.0
  * Copyright (C) 2017  Jose Ricardo Rodriguez Abreu.
@@ -23,7 +23,7 @@
  * http://www.gnu.org/licenses/gpl.html
  * o escriba a la Free Software Foundation Inc.,
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- * -------------------------------------------------------------------
+ * -----------------------------------------------------------------
  */
 
 /**
@@ -41,7 +41,7 @@
  * doxygen.
  *
  * @see http://www.stack.nl/~dimitri/doxygen/manual/index.html
- * @see https://github.com/ricardorodab/AceptacionUmbral
+ * @see https://github.com/ricardorodab/abejas-tetris
  *
  */
 #include <stdio.h>
@@ -59,20 +59,38 @@
 
 
 /**
- * @brief Linea del codigo actual.
+ * @def LINEA
  *
  * Re-definimos la constante de linea que viene por default en C.
  *
  */
 #define LINEA __LINE__
 
+/**
+ * @var int size_x
+ * @brief Anchura.
+ *
+ * Variable global para marcar el tamanio de la anchura
+ * del pg.
+ *
+ */
 int size_x;
+/**
+ * @var int size_y
+ * @brief Altura.
+ *
+ * Variable global para marcar el tamanio de la altura
+ * del pg.
+ *
+ */
 int size_y;
 
 /**
+ * @var int ERROR
  * @brief Variable de marcardo de error.
  *
- * Si en algun momento de la ejecucion esta variable es != 0 terminamos. 
+ * Si en algun momento de la ejecucion esta variable es != 0
+ * terminamos. 
  *
  */
 int ERROR = 0;
@@ -87,7 +105,7 @@ int ERROR = 0;
  * @param linea -Es la linea del codigo donde ocurrio este error. 
  * @see ERROR
  * @note Esta funcion termina la ejecucion del programa.
- * @waring
+ * @waring Termina el programa.
  *
  */
 void main_imprime_error(char *msg,int linea)
@@ -97,30 +115,44 @@ void main_imprime_error(char *msg,int linea)
   exit(1);
 }
 
-
+/**
+ * @brief Parametros de threads.
+ *
+ * Usamos esta estructura para mantener unidos los datos que contiene
+ * el programa y necesitamos para correr la heuristica.
+ *
+ */
 typedef struct param{
-  int argc;
-  char **argv;
-  TABLERO **tablero;
-  double zoom;
+  int argc; /**< Es el id que representa el # de argumentos. */
+  char **argv; /**< Son los argumentos del programa original. */
+  TABLERO **tablero; /**< Es el apuntador al apuntador del tablero.*/
 } PARAM;
 
+/**
+ * @brief Ejecuta el solucionador del tetris.
+ *
+ * Ejecuta al thread que se va a encargar correr las abejas.
+ * @param thread_param - Son los argumentos como apuntador <T>.
+ *
+ */
 void* heuristica_abejas(void *thread_param)
 {
   PARAM *param = (PARAM*)thread_param;
   TABLERO **tablero = param->tablero;
   siguiente_turno_tablero(*tablero);
   bool stop_condition = true;
-  ABC(tablero, 100);
+  ABC(tablero, 100,50);
+  end_visual_main();
   pthread_exit(NULL);
 }
 
 /**
  * @brief Metodo principal del programa.
  *
- * Tratamos de encontrar soluciones factibles al problema del viajero.
- * @param argc - Es el numero de parametros. En este caso se espera argc > 2.
- * @param argv - Son los parametros que nos daran la base de datos y banderas.
+ * Tratamos de encontrar soluciones factibles al problema tetris..
+ * @param argc - Es el numero de parametros. 
+ * En este caso se espera argc > 2.
+ * @param argv - Son los parametros NULL.
  * @return Un entero 0 si todo sale bien 1 en caso contrario.
  *
  */
@@ -146,7 +178,7 @@ int main(int argc, char** argv)
   clock_t toc = clock();
   double segundos = (double)(toc - tic) / CLOCKS_PER_SEC;
   printf("Transcurrieron: %f segundos o %f minutos.\n",segundos,segundos/60);
-  pthread_exit(NULL);
+  pthread_exit(NULL);  
   return 0; 
 } //Fin de main.c
 

@@ -1,4 +1,4 @@
-/* -------------------------------------------------------------------
+/*-------------------------------------------------------------------
  * pieza.h
  * version 1.0
  * Copyright (C) 2017  Jose Ricardo Rodriguez Abreu.
@@ -26,6 +26,10 @@
  * -------------------------------------------------------------------
  */
 
+#ifndef PIEZA_H
+#define PIEZA_H
+#include <stdbool.h>
+
 /**
  * @file pieza.h
  * @author Jose Ricardo Rodriguez Abreu
@@ -46,24 +50,33 @@
  *
  */
 
-#ifndef PIEZA_H
-#define PIEZA_H
-#include <stdbool.h>
-
-
+/**
+ * @brief La estructura pieza.
+ * 
+ * Su funcion es mantener una pieza unida y con la informacion
+ * que necesitemos en su vida util dentro de un tablero.
+ *
+ */
 typedef enum FORMA {
-  Sq, //Cuadrado ▢
-  LG, // Left Gun: ⅃
-  RG, // Right Gun: L         _
-  LS, // Left snake ----_--->  |_
-  RS, // Right snake->_|
-  I,  // |
-  T } FORMA; // T
+Sq, /**< Cuadrado ▢. */
+  LG, /**< Left Gun: ⅃ . */
+  RG, /**< Right Gun: L . */         
+  LS, /**< Left snake. */
+  RS, /**< Right snake. */
+  I,  /**< Forma de |. */
+  T   /**< Forma de T. */ } FORMA;
 
+/**
+ * @brief La estructura punto.
+ * 
+ * Su funcion es mantener una pieza ubicada por cada uno de
+ * sus bloques que contienen una posicion.
+ *
+ */
 typedef struct punto {
-  int x;
-  int y;
-  bool activo;
+  int x; /**< Es el punto x. */
+  int y; /**< Es el punto y. */
+  bool activo; /**< Nos dice si un bloque se encuentra actvo. */
 } PUNTO;
 
 /**
@@ -75,35 +88,198 @@ typedef struct punto {
  *
  */
 typedef struct pieza {
-  int id;
-  FORMA tipo;
-  int orientacion;
-  int x;
-  int y;
-  bool fija;
-  bool activo_centro;
-  PUNTO **bloques;
+  int id; /**< Un id que la identifica de forma unica. */
+  FORMA tipo; /**< Cada pieza debe tener una de 7 formas. */
+  int orientacion; /**< La orientacion de la pieza. Existen 4. */
+  int x; /**< La posicion x del centro. */
+  int y; /**< La posicion y del centro. */
+  bool fija; /**< Nos dice si la pieza se encuentra en juego ahora. */
+  bool activo_centro; /**< Nos dice si el centro ya hizo tetris. */
+  PUNTO **bloques; /**< Un arreglo de puntos para los bloques. */
 } PIEZA;
 
+/**
+ * @brief 
+ *
+ *
+ * @param id -
+ * @param tipo -
+ *
+ */
 PIEZA* init_pieza(int id, FORMA tipo);
 PIEZA* copy_pieza(PIEZA *pieza);
 void free_pieza(PIEZA *pieza);
+
+/**
+ * @brief 
+ *
+ *
+ * @param pieza -
+ * @param x -
+ *
+ */
 void set_x_pieza(PIEZA *pieza, int x);
+
+/**
+ * @brief 
+ *
+ *
+ * @param pieza -
+ * @param y -
+ *
+ */
 void set_y_pieza(PIEZA *pieza, int y);
+
+/**
+ * @brief 
+ *
+ *
+ * @param pieza - Es la pieza que deseamos modificar.
+ *
+ */
 void actualiza_cuadrado(PIEZA *pieza);
+
+/**
+ * @brief 
+ *
+ *
+ * @param pieza - Es la pieza que deseamos modificar.
+ *
+ */
 void actualiza_left_gun(PIEZA *pieza);
+
+/**
+ * @brief 
+ *
+ *
+ * @param pieza - Es la pieza que deseamos modificar.
+ *
+ */
 void actualiza_right_gun(PIEZA *pieza);
+
+/**
+ * @brief 
+ *
+ *
+ * @param pieza - Es la pieza que deseamos modificar.
+ *
+ */
 void actualiza_left_snake(PIEZA *pieza);
+
+/**
+ * @brief 
+ *
+ *
+ * @param pieza - Es la pieza que deseamos modificar.
+ *
+ */
 void actualiza_right_snake(PIEZA *pieza);
+
+/**
+ * @brief 
+ *
+ *
+ * @param pieza - Es la pieza que deseamos modificar.
+ *
+ */
 void actualiza_i(PIEZA *pieza);
+
+/**
+ * @brief 
+ *
+ *
+ * @param pieza - Es la pieza que deseamos modificar.
+ *
+ */
 void actualiza_t(PIEZA *pieza);
+
+/**
+ * @brief 
+ *
+ *
+ * @param pieza - Es la pieza que deseamos modificar.
+ *
+ */
 void actualiza_bloques(PIEZA *pieza);
+
+/**
+ * @brief 
+ *
+ *
+ * @param pieza -
+ * @param x -
+ * @param y - 
+ *
+ */
 void set_punto_pieza(PIEZA *pieza, int x, int y);
+
+/**
+ * @brief 
+ *
+ *
+ * @param pieza - Es la pieza que deseamos modificar.
+ *
+ */
 void rotar_pieza(PIEZA *pieza);
+
+/**
+ * @brief 
+ *
+ *
+ * @param pieza -
+ * @param grado -
+ *
+ */
 void rota_pieza(PIEZA *pieza,int grado);
+
+/**
+ * @brief 
+ *
+ *
+ * @param pieza -
+ * @param x -
+ * @param y -
+ *
+ */
 void actualiza_posicion_pieza(PIEZA *pieza, int x, int y);
+
+/**
+ * @brief 
+ *
+ *
+ * @param pieza - Es la pieza que deseamos modificar.
+ *
+ */
 void deja_caer_pieza(PIEZA *pieza);
+
+/**
+ * @brief 
+ *
+ *
+ * @param pieza - Es la pieza que deseamos modificar.
+ *
+ */
 void levanta_pieza(PIEZA *pieza);
+
+/**
+ * @brief 
+ *
+ *
+ * @param pieza -
+ * @param x -
+ * @param y -
+ *
+ */
 bool borra_bloque_pieza(PIEZA *pieza, int x, int y);
+
+/**
+ * @brief 
+ *
+ *
+ * @param pieza -
+ * @param x -
+ * @param y -
+ *
+ */
 void bajar_bloque_pieza(PIEZA *pieza, int x, int y);
 #endif //Fin de pieza.h

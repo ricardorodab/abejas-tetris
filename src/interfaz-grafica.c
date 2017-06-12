@@ -1,10 +1,39 @@
+/* ------------------------------------------------------------------
+ * interfaz-grafica.c
+ * version 1.0
+ * Copyright (C) 2017  Jose Ricardo Rodriguez Abreu.
+ * Facultad de Ciencias,
+ * Universidad Nacional Autonoma de Mexico, Mexico.
+ *
+ * Este programa es software libre; se puede redistribuir
+ * y/o modificar en los terminos establecidos por la
+ * Licencia Publica General de GNU tal como fue publicada
+ * por la Free Software Foundation en la version 2 o
+ * superior.
+ *
+ * Este programa es distribuido con la esperanza de que
+ * resulte de utilidad, pero SIN GARANTIA ALGUNA; de hecho
+ * sin la garantia implicita de COMERCIALIZACION o
+ * ADECUACION PARA PROPOSITOS PARTICULARES. Vease la
+ * Licencia Publica General de GNU para mayores detalles.
+ *
+ * Con este programa se debe haber recibido una copia de la
+ * Licencia Publica General de GNU, de no ser asi, visite el
+ * siguiente URL:
+ * http://www.gnu.org/licenses/gpl.html
+ * o escriba a la Free Software Foundation Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ * ------------------------------------------------------------------
+ */
 #include <stdio.h>
 #include <GL/glew.h>
 #ifdef __APPLE__
 # define __gl_h_
 # define GL_DO_NOT_WARN_IF_MULTI_GL_VERSION_HEADERS_INCLUDED
-#endif
 #include <OpenGL/gl3.h>
+#else
+#include <GL/gl.h>
+#endif
 #define __gl_h_
 #include <GL/freeglut.h>
 #include <GL/glut.h>
@@ -16,7 +45,31 @@
 #include "interfaz-grafica.h"
 #include "tetromino.h"
 
-/* Función para las configuraciones iniciales. */
+/**
+ * @file interfaz-grafica.c
+ * @author Jose Ricardo Rodriguez Abreu
+ * @date 14 May 2017
+ * @brief File containing the body for openGL GUI functions
+ * for a final project for the
+ * "Combinatorial Optimization Heuristics" class.
+ *
+ * Este archivo implementa las funciones que necesitamos para observar
+ * las el juego de tetris que la heuristica de abejas juegs.
+ *
+ * El programa usa el estandar de documentacion que define el uso de 
+ * doxygen.
+ *
+ * @see http://www.stack.nl/~dimitri/doxygen/manual/index.html
+ * @see https://github.com/ricardorodab/abejas-tetris
+ *
+ */
+
+/**
+ *
+ * Inicializa el modo de diplay mientras que le da tamanio a la
+ * ventana y su posicion en la pantalla. 
+ *
+ */
 void myInit(char *progname)
 {
   glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
@@ -28,7 +81,11 @@ void myInit(char *progname)
   glClearColor(0.0, 0.0, 0.2, 0.0);
 }
 
-/* Codigo de para imprimir texto: https://www.opengl.org/discussion_boards/showthread.php/169189-Printing-Text */
+/**
+ * Codigo de para imprimir texto: 
+ * @see https://www.opengl.org/discussion_boards/showthread.php/169189-Printing-Text
+ * 
+ */
 void print(double x, double y,double z, char *string)
 {
   //set the position of the text in the window using the x and y coordinates                                                                                   
@@ -42,7 +99,12 @@ void print(double x, double y,double z, char *string)
     }
 }
 
-
+/**
+ *
+ * Esta funcion horrible dibuja la cuadricula como Turing nos
+ * da a entender.
+ *
+ */
 void dibuja_cuadro(double h, double w)
 {
   glEnable(GL_BLEND);
@@ -58,16 +120,18 @@ void dibuja_cuadro(double h, double w)
     {
       glVertex3f(-1*(tablero_principal->ancho/2), y, 0.0f);
       glVertex3f((float)(tablero_principal->ancho/2), y, 0.0f);
-    }  
-  /*for(float x = w*-1; x < glutGet(GLUT_WINDOW_WIDTH); x += 0.5 )
-    {glVertex3f(x, -1*h, 0.0f);
-    glVertex3f(x, (float)(glutGet(GLUT_WINDOW_WIDTH)), 0.0f);
-    }for( float y = h*-1; y < glutGet(GLUT_WINDOW_HEIGHT); y += 0.5 )
-    {glVertex3f(-1*w, y, 0.0f);
-    glVertex3f((float)(glutGet(GLUT_WINDOW_HEIGHT)), y, 0.0f);}*/ 
+    }
   glEnd();
 }
 
+/**
+ * @brief Funcion que dibuja cada pieza de tetris.
+ * 
+ * Depediendo del tipo de cada pieza de tetris dibuja cada pieza
+ * con sus coordenadas en el tablero actual global.
+ * @param pieza - Es la pieza actual que se desea dibujar.
+ *
+ */
 void dibuja_pieza(PIEZA *pieza){
   switch(pieza->tipo){
   case Sq:
@@ -110,6 +174,13 @@ void dibuja_pieza(PIEZA *pieza){
   }
 }
 
+/**
+ * @brief Funcion que dibuja todas las piezas de tetris.
+ * 
+ * Dado el tablero actual global, dibujara todas las piezas
+ * que el tablero posee.
+ *
+ */
 void dibuja_figuras(void)
 {
   int i, j;
@@ -122,7 +193,9 @@ void dibuja_figuras(void)
   }
 }
 
-/* Función para poder volver a dibujar con algún cambio. */
+/**
+ * Solo debe cambiar la perspectiva dependiendo del tamanio.
+ */
 void reshape (int width, int height)
 {
   //glutReshapeWindow(ancho,alto);
@@ -132,6 +205,12 @@ void reshape (int width, int height)
   glViewport(0, 0, width, height);
 }
 
+/**
+ * Limpiamos el buffer y cargamos la matriz identidad.
+ * Modificamos el zoom de la vista de la cuadricula.
+ * Dibujamos las figuras y cambiamos los buffers antes de repintar.
+ *
+ */
 void display(void)
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -140,14 +219,20 @@ void display(void)
   int size = tablero_principal->max_size;
   double por = zoom*log2(size); 
   gluLookAt(0.0f, 0.0f, (float)por, 0.0f, 0.0f,0.0f,0.0f, 5.f, 0.5f);
-  //tetris(tablero_principal);
   tablero_principal = *tablero_principal_pointer;
   dibuja_cuadro(glutGet(GLUT_WINDOW_WIDTH),glutGet(GLUT_WINDOW_HEIGHT));
   dibuja_figuras();
   glutSwapBuffers();
-  glutPostRedisplay(); 
+  if(!game_over)
+    glutPostRedisplay();
 }
 
+/**
+ * @brief Dejamos caer a la pieza
+ *
+ * Para acelerar el juego dejamos caer la pieza donde queramos.
+ *
+ */
 void deja_caer(void)
 {
   bool valor = true;
@@ -155,6 +240,11 @@ void deja_caer(void)
      valor = mover_pieza_tablero(tablero_principal,tablero_principal->actual);
 }
 
+/**
+ * Revisamos los casos Exit - salimos.
+ * Espacio - Dejar caer la pieza.
+ *
+ */
 void myKeyboard (unsigned char key, int x, int y)
 {  
   switch (key) {
@@ -169,6 +259,15 @@ void myKeyboard (unsigned char key, int x, int y)
   }
 }
 
+/**
+ * @brief Le da comportamiento a la entrada (flechas).
+ *
+ * Cada que se presiona una flecha ocurre un evento.
+ * @param key - Es la flecha que es presionada.
+ * @param x - Es la tecla x que corresponde a la posicion del evento.
+ * @param y - Es la tecla y que corresponde a la posicion del evento.
+ *
+ */
 void specialKeyInput(int key, int x, int y)
 {
    if (key == GLUT_KEY_RIGHT)
@@ -191,9 +290,23 @@ void specialKeyInput(int key, int x, int y)
      }
 }
 
+/**
+ * Modifica la variable de @game_over.
+ */
+void end_visual_main(void)
+{
+  game_over = true;
+}
 
+/**
+ * Instanciamos a las variablesp principales como
+ * @game_over o @tablero_principal para despues entrar en un ciclo
+ * potencialmente infinito para seguir dibujando el tablero.
+ *
+ */
 void visual_main(int argc, char** argv, TABLERO **tablero, double zoom_p)
 {
+  game_over = false;
   tablero_principal_pointer = tablero;
   tablero_principal = *tablero;
   zoom = zoom_p;
@@ -204,11 +317,4 @@ void visual_main(int argc, char** argv, TABLERO **tablero, double zoom_p)
   glutReshapeFunc(reshape);
   glutDisplayFunc(display);
   glutMainLoop();
-
-
-
-
-
-
-  
-}
+} //Fin de interfaz-grafica.c

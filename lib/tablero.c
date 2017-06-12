@@ -1,7 +1,59 @@
+/*-------------------------------------------------------------------
+ * tablero.c
+ * version 1.0
+ * Copyright (C) 2017  Jose Ricardo Rodriguez Abreu.
+ * Facultad de Ciencias,
+ * Universidad Nacional Autonoma de Mexico, Mexico.
+ *
+ * Este programa es software libre; se puede redistribuir
+ * y/o modificar en los terminos establecidos por la
+ * Licencia Publica General de GNU tal como fue publicada
+ * por la Free Software Foundation en la version 2 o
+ * superior.
+ *
+ * Este programa es distribuido con la esperanza de que
+ * resulte de utilidad, pero SIN GARANTIA ALGUNA; de hecho
+ * sin la garantia implicita de COMERCIALIZACION o
+ * ADECUACION PARA PROPOSITOS PARTICULARES. Vease la
+ * Licencia Publica General de GNU para mayores detalles.
+ *
+ * Con este programa se debe haber recibido una copia de la
+ * Licencia Publica General de GNU, de no ser asi, visite el
+ * siguiente URL:
+ * http://www.gnu.org/licenses/gpl.html
+ * o escriba a la Free Software Foundation Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ * -------------------------------------------------------------------
+ */
+
 #include "tablero.h"
 #include <stdio.h>
 #include <stdlib.h>
 
+
+/**
+ * @file tablero.c
+ * @author Jose Ricardo Rodriguez Abreu
+ * @date 14 May 2017
+ * @brief File containing the struct and funtions to simulate Tetris
+ * board for the "Combinatorial Optimization Heuristics" class. 
+ *
+ * En este archivo implementamos la estructura tablero y junto a 
+ * las funciones que se hacen uso de las estructuras y
+ * manejo de las estructuras definidas como TABLERO, su manejo en 
+ * memoria y la de los atributos que constituye su estructura.
+ *
+ * El programa usa el estandar de documentacion que define el uso de 
+ * doxygen.
+ *
+ * @see http://www.stack.nl/~dimitri/doxygen/manual/index.html
+ * @see https://github.com/ricardorodab/AceptacionUmbral
+ *
+ */
+
+/**
+ *
+ */
 TABLERO* init_tablero(int ancho, int alto)
 {
   TABLERO *tablero = malloc(sizeof(TABLERO));
@@ -25,6 +77,9 @@ TABLERO* init_tablero(int ancho, int alto)
   return tablero; 
 }
 
+/**
+ *
+ */
 TABLERO* copy_tablero(TABLERO *tablero)
 {
   TABLERO *tablero_nuevo = malloc(sizeof(TABLERO));
@@ -42,8 +97,9 @@ TABLERO* copy_tablero(TABLERO *tablero)
   tablero_nuevo->piezas = malloc((tablero->ancho+1)*sizeof(PIEZA***));
   int i, j, k;
   for(i = 0; i < tablero->ancho+1; i++)
-    tablero_nuevo->piezas[i] = malloc((tablero->alto+1)*sizeof(PIEZA**));
-  
+    tablero_nuevo->piezas[i] =
+      malloc((tablero->alto+1)*sizeof(PIEZA**));
+
   for(i = 0; i < tablero->ancho+1; i++) 
     for(j = 0; j < tablero->alto+1; j++)
       tablero_nuevo->piezas[i][j] = NULL;
@@ -66,6 +122,9 @@ TABLERO* copy_tablero(TABLERO *tablero)
   return tablero_nuevo;
 }
 
+/**
+ *
+ */
 void free_tablero(TABLERO *tablero)
 {
   int i;
@@ -76,6 +135,9 @@ void free_tablero(TABLERO *tablero)
   free(tablero);
 }
 
+/**
+ *
+ */
 void crear_pieza_tablero(TABLERO *tablero)
 {
   PIEZA *nueva = init_pieza(tablero->size,rand()%7);
@@ -83,8 +145,23 @@ void crear_pieza_tablero(TABLERO *tablero)
   agrega_pieza_tablero(tablero,nueva);
 }
 
+/**
+ *
+ */
 void agrega_pieza_tablero(TABLERO *tablero, PIEZA *pieza)
 {
+  int i;
+  if(tablero->piezas[pieza->x][pieza->y] != NULL) {
+    tablero->game_over = true;
+    return;
+  }
+  for(i = 0; i < 3; i++) {
+    if(tablero->piezas[pieza->bloques[i]->x]
+       [pieza->bloques[i]->y] != NULL) {
+      tablero->game_over = true;
+      return;
+    }
+  }
   tetris(tablero);
   tablero->size++;
   tablero->num_piezas_totales++;
@@ -92,31 +169,41 @@ void agrega_pieza_tablero(TABLERO *tablero, PIEZA *pieza)
   if(tablero->size == tablero->max_size)
     {
       printf("Tamanio maximo alcanzado\n");
-      exit(1);
+      //exit(1);
+      tablero->game_over = true;
+      return;
     }
   tablero->piezas[pieza->x][pieza->y] = pieza;  
-  int i;
   for(i = 0; i < 3; i++){
-    tablero->piezas[pieza->bloques[i]->x][pieza->bloques[i]->y] = pieza;
+    tablero->piezas[pieza->bloques[i]->x]
+      [pieza->bloques[i]->y] = pieza;
   }
   if(tablero->actual != NULL)
     tablero->actual->fija = true;
   tablero->actual = pieza;
 }
 
+/**
+ *
+ */
 void borra_pieza_tablero(TABLERO *tablero, PIEZA *pieza)
 {
   tablero->size--;
   int i;
   for(i = 0; i < 3; i++){
-    if(tablero->piezas[pieza->bloques[i]->x][pieza->bloques[i]->y] == pieza)
-      tablero->piezas[pieza->bloques[i]->x][pieza->bloques[i]->y] = NULL;    
+    if(tablero->piezas[pieza->bloques[i]->x]
+       [pieza->bloques[i]->y] == pieza)
+      tablero->piezas[pieza->bloques[i]->x]
+	[pieza->bloques[i]->y] = NULL;    
   }
   if(tablero->piezas[pieza->x][pieza->y] == pieza)
     tablero->piezas[pieza->x][pieza->y] = NULL;
   free_pieza(pieza);
 }
 
+/**
+ *
+ */
 bool mover_pieza_tablero(TABLERO *tablero, PIEZA *pieza)
 {
   int i;
@@ -134,8 +221,10 @@ bool mover_pieza_tablero(TABLERO *tablero, PIEZA *pieza)
   }
   deja_caer_pieza(pieza);
   for(i = 0; i < 3; i++)
-    if(tablero->piezas[pieza->bloques[i]->x][pieza->bloques[i]->y] != NULL)
-      if(tablero->piezas[pieza->bloques[i]->x][pieza->bloques[i]->y] != pieza)
+    if(tablero->piezas[pieza->bloques[i]->x]
+       [pieza->bloques[i]->y] != NULL)
+      if(tablero->piezas[pieza->bloques[i]->x]
+	 [pieza->bloques[i]->y] != pieza)
 	{
 	  levanta_pieza(pieza);
 	  return false;
@@ -148,15 +237,20 @@ bool mover_pieza_tablero(TABLERO *tablero, PIEZA *pieza)
       }
   levanta_pieza(pieza);
   for(i = 0; i < 3; i++)
-    tablero->piezas[pieza->bloques[i]->x][pieza->bloques[i]->y] = NULL;
+    tablero->piezas[pieza->bloques[i]->x]
+      [pieza->bloques[i]->y] = NULL;
   tablero->piezas[pieza->x][pieza->y] = NULL;
   deja_caer_pieza(pieza);
   for(i = 0; i < 3; i++)
-    tablero->piezas[pieza->bloques[i]->x][pieza->bloques[i]->y] = pieza;
+    tablero->piezas[pieza->bloques[i]->x]
+      [pieza->bloques[i]->y] = pieza;
     tablero->piezas[pieza->x][pieza->y] = pieza;
   return true;
 }
 
+/**
+ *
+ */
 bool rotar_pieza_tablero(TABLERO *tablero, PIEZA *pieza)
 {
   int i;
@@ -175,8 +269,10 @@ bool rotar_pieza_tablero(TABLERO *tablero, PIEZA *pieza)
     return false;
   }
   for(i = 0; i < 3; i++)
-    if(tablero->piezas[pieza->bloques[i]->x][pieza->bloques[i]->y] != NULL)
-      if(tablero->piezas[pieza->bloques[i]->x][pieza->bloques[i]->y] != pieza)
+    if(tablero->piezas[pieza->bloques[i]->x]
+       [pieza->bloques[i]->y] != NULL)
+      if(tablero->piezas[pieza->bloques[i]->x]
+	 [pieza->bloques[i]->y] != pieza)
 	{
 	  rota_pieza(pieza,(pieza->orientacion-90)%360);
 	  return false;
@@ -189,15 +285,20 @@ bool rotar_pieza_tablero(TABLERO *tablero, PIEZA *pieza)
       }
   rota_pieza(pieza,(pieza->orientacion-90)%360);
   for(i = 0; i < 3; i++)
-    tablero->piezas[pieza->bloques[i]->x][pieza->bloques[i]->y] = NULL;
+    tablero->piezas[pieza->bloques[i]->x]
+      [pieza->bloques[i]->y] = NULL;
   tablero->piezas[pieza->x][pieza->y] = NULL;
   rotar_pieza(pieza);
   for(i = 0; i < 3; i++)
-    tablero->piezas[pieza->bloques[i]->x][pieza->bloques[i]->y] = pieza;
+    tablero->piezas[pieza->bloques[i]->x]
+      [pieza->bloques[i]->y] = pieza;
   tablero->piezas[pieza->x][pieza->y] = pieza;
   return true;
 }
 
+/**
+ *
+ */
 bool mover_izquierda_tablero(TABLERO *tablero, PIEZA *pieza)
 {
   int i;
@@ -213,8 +314,10 @@ bool mover_izquierda_tablero(TABLERO *tablero, PIEZA *pieza)
   }
   actualiza_posicion_pieza(pieza,pieza->x-1,pieza->y);
   for(i = 0; i < 3; i++)
-    if(tablero->piezas[pieza->bloques[i]->x][pieza->bloques[i]->y] != NULL)
-      if(tablero->piezas[pieza->bloques[i]->x][pieza->bloques[i]->y] != pieza)
+    if(tablero->piezas[pieza->bloques[i]->x]
+       [pieza->bloques[i]->y] != NULL)
+      if(tablero->piezas[pieza->bloques[i]->x]
+	 [pieza->bloques[i]->y] != pieza)
 	{
 	  actualiza_posicion_pieza(pieza,pieza->x+1,pieza->y);
 	  return false;
@@ -227,15 +330,20 @@ bool mover_izquierda_tablero(TABLERO *tablero, PIEZA *pieza)
       }
   actualiza_posicion_pieza(pieza,pieza->x+1,pieza->y);
   for(i = 0; i < 3; i++)
-    tablero->piezas[pieza->bloques[i]->x][pieza->bloques[i]->y] = NULL;
+    tablero->piezas[pieza->bloques[i]->x]
+      [pieza->bloques[i]->y] = NULL;
   tablero->piezas[pieza->x][pieza->y] = NULL;
   actualiza_posicion_pieza(pieza,pieza->x-1,pieza->y);
   for(i = 0; i < 3; i++)
-    tablero->piezas[pieza->bloques[i]->x][pieza->bloques[i]->y] = pieza;
+    tablero->piezas[pieza->bloques[i]->x]
+      [pieza->bloques[i]->y] = pieza;
     tablero->piezas[pieza->x][pieza->y] = pieza;
   return true;
 }
 
+/**
+ *
+ */
 bool mover_derecha_tablero(TABLERO *tablero, PIEZA *pieza)
 {
   int i;
@@ -251,8 +359,10 @@ bool mover_derecha_tablero(TABLERO *tablero, PIEZA *pieza)
   }
   actualiza_posicion_pieza(pieza,pieza->x+1,pieza->y);
   for(i = 0; i < 3; i++)
-    if(tablero->piezas[pieza->bloques[i]->x][pieza->bloques[i]->y] != NULL)
-      if(tablero->piezas[pieza->bloques[i]->x][pieza->bloques[i]->y] != pieza)
+    if(tablero->piezas[pieza->bloques[i]->x]
+       [pieza->bloques[i]->y] != NULL)
+      if(tablero->piezas[pieza->bloques[i]->x]
+	 [pieza->bloques[i]->y] != pieza)
 	{
 	  actualiza_posicion_pieza(pieza,pieza->x-1,pieza->y);
 	  return false;
@@ -265,19 +375,23 @@ bool mover_derecha_tablero(TABLERO *tablero, PIEZA *pieza)
       }
   actualiza_posicion_pieza(pieza,pieza->x-1,pieza->y);
   for(i = 0; i < 3; i++)
-    tablero->piezas[pieza->bloques[i]->x][pieza->bloques[i]->y] = NULL;
+    tablero->piezas[pieza->bloques[i]->x]
+      [pieza->bloques[i]->y] = NULL;
   tablero->piezas[pieza->x][pieza->y] = NULL;
   actualiza_posicion_pieza(pieza,pieza->x+1,pieza->y);
   for(i = 0; i < 3; i++)
-    tablero->piezas[pieza->bloques[i]->x][pieza->bloques[i]->y] = pieza;
+    tablero->piezas[pieza->bloques[i]->x]
+      [pieza->bloques[i]->y] = pieza;
   tablero->piezas[pieza->x][pieza->y] = pieza;
   return true;
 }
 
+/**
+ *
+ */
 void busca_solucion_actual(TABLERO *tablero)
 {
   bool fija = false;
-  //mover_pieza_tablero(tablero,tablero->actual);
   int lugares = rand()%tablero->ancho;
   int i = 0;
   if(rand()%2 == 0) {
@@ -320,6 +434,9 @@ void tetris_nivel(TABLERO *tablero,int l)
   }
 }
 
+/**
+ *
+ */
 void tetris(TABLERO *tablero)
 {
   //
@@ -343,6 +460,9 @@ void tetris(TABLERO *tablero)
   }
 }
 
+/**
+ *
+ */
 void set_pieza_nueva(TABLERO *tablero, PIEZA *pieza)
 {
   if(pieza->tipo == I) {
@@ -353,11 +473,17 @@ void set_pieza_nueva(TABLERO *tablero, PIEZA *pieza)
   }
 }
 
+/**
+ *
+ */
 PIEZA* get_pieza(TABLERO *tablero, int x, int y)
 {
   return tablero->piezas[x][y];
 }
 
+/**
+ *
+ */
 void siguiente_turno_tablero(TABLERO *tablero)
 {
   FORMA forma_random = rand() % 7;
@@ -367,6 +493,9 @@ void siguiente_turno_tablero(TABLERO *tablero)
   agrega_pieza_tablero(tablero,temp);
 }
 
+/**
+ *
+ */
 void imprime_tablero(TABLERO *tablero)
 {
   int i,j;
@@ -380,4 +509,4 @@ void imprime_tablero(TABLERO *tablero)
     printf("\n");
   }
   printf("\n\n");
-}
+} //Fin de tablero.c

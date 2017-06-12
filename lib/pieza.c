@@ -1,8 +1,57 @@
+/*-------------------------------------------------------------------
+ * pieza.c
+ * version 1.0
+ * Copyright (C) 2017  Jose Ricardo Rodriguez Abreu.
+ * Facultad de Ciencias,
+ * Universidad Nacional Autonoma de Mexico, Mexico.
+ *
+ * Este programa es software libre; se puede redistribuir
+ * y/o modificar en los terminos establecidos por la
+ * Licencia Publica General de GNU tal como fue publicada
+ * por la Free Software Foundation en la version 2 o
+ * superior.
+ *
+ * Este programa es distribuido con la esperanza de que
+ * resulte de utilidad, pero SIN GARANTIA ALGUNA; de hecho
+ * sin la garantia implicita de COMERCIALIZACION o
+ * ADECUACION PARA PROPOSITOS PARTICULARES. Vease la
+ * Licencia Publica General de GNU para mayores detalles.
+ *
+ * Con este programa se debe haber recibido una copia de la
+ * Licencia Publica General de GNU, de no ser asi, visite el
+ * siguiente URL:
+ * http://www.gnu.org/licenses/gpl.html
+ * o escriba a la Free Software Foundation Inc.,
+ * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ * -------------------------------------------------------------------
+ */
+
 #include "pieza.h"
 #include <stdlib.h>
 
-#define ELIMINADA 0
+/**
+ * @file pieza.c
+ * @author Jose Ricardo Rodriguez Abreu
+ * @date 14 May 2017
+ * @brief File containing the struct and funtions to simulate Tetris
+ * pieces for the "Combinatorial Optimization Heuristics" class. 
+ *
+ * En este archivo implementamos las funciones pieza y junto a 
+ * la firma de funciones que se hacen uso de las estructuras y
+ * manejo de las estructuras definidas como PIEZA, su manejo en 
+ * memoria y la de los atributos que constituye su estructura.
+ *
+ * El programa usa el estandar de documentacion que define el uso de 
+ * doxygen.
+ *
+ * @see http://www.stack.nl/~dimitri/doxygen/manual/index.html
+ * @see https://github.com/ricardorodab/AceptacionUmbral
+ *
+ */
 
+/**
+ *
+ */
 PIEZA* init_pieza(int id, FORMA tipo)
 {
   PIEZA *pieza = malloc(sizeof(PIEZA)); 
@@ -15,8 +64,8 @@ PIEZA* init_pieza(int id, FORMA tipo)
   pieza->fija = false;
   int i;
   pieza->bloques = malloc(sizeof(PUNTO*)*3);
-  for(i = 0; i < 3; i++){
-    pieza->bloques[i] = malloc(sizeof(PUNTO));;
+  for(i = 0; i < 3; i++) {
+    pieza->bloques[i] = malloc(sizeof(PUNTO));
     pieza->bloques[i]->x = 0;
     pieza->bloques[i]->y = 0;
     pieza->bloques[i]->activo = true;
@@ -24,7 +73,9 @@ PIEZA* init_pieza(int id, FORMA tipo)
   return pieza;
 }
 
-#include <stdio.h>
+/**
+ *
+ */
 PIEZA* copy_pieza(PIEZA *pieza)
 {
   if(pieza == NULL)
@@ -48,6 +99,9 @@ PIEZA* copy_pieza(PIEZA *pieza)
   return pieza_nueva;
 }
 
+/**
+ * @TODO Implementarlo
+ */
 void free_pieza(PIEZA *pieza)
 {
   int i;
@@ -57,17 +111,26 @@ void free_pieza(PIEZA *pieza)
   //free(pieza);
 }
 
+/**
+ *
+ */
 void set_x_pieza(PIEZA *pieza, int x)
 {
   pieza->x = x;
 }
 
+/**
+ *
+ */
 void set_y_pieza(PIEZA *pieza, int y)
 {
   pieza->y = y;
 }
 
 
+/**
+ *
+ */
 void actualiza_cuadrado(PIEZA *pieza)
 {
   pieza->bloques[0]->x = pieza->x+1;
@@ -79,6 +142,9 @@ void actualiza_cuadrado(PIEZA *pieza)
   
 }
 
+/**
+ *
+ */
 void actualiza_left_gun(PIEZA *pieza)
 {
  if(pieza->orientacion == 0){
@@ -112,6 +178,9 @@ void actualiza_left_gun(PIEZA *pieza)
   }
 }
 
+/**
+ *
+ */
 void actualiza_right_gun(PIEZA *pieza)
 {
   if(pieza->orientacion == 0){
@@ -145,6 +214,9 @@ void actualiza_right_gun(PIEZA *pieza)
   }
 }
 
+/**
+ *
+ */
 void actualiza_left_snake(PIEZA *pieza)
 {
   if(pieza->orientacion == 0 || pieza->orientacion == 180){
@@ -164,6 +236,9 @@ void actualiza_left_snake(PIEZA *pieza)
   }
 }
 
+/**
+ *
+ */
 void actualiza_right_snake(PIEZA *pieza)
 {
   if(pieza->orientacion == 0 || pieza->orientacion == 180){
@@ -183,6 +258,9 @@ void actualiza_right_snake(PIEZA *pieza)
   }
 }
 
+/**
+ *
+ */
 void actualiza_i(PIEZA *pieza)
 {
   if(pieza->orientacion == 0 || pieza->orientacion == 180){
@@ -202,6 +280,9 @@ void actualiza_i(PIEZA *pieza)
   }
 }
 
+/**
+ *
+ */
 void actualiza_t(PIEZA *pieza)
 {
   if(pieza->orientacion == 0){
@@ -235,6 +316,9 @@ void actualiza_t(PIEZA *pieza)
   }
 }
 
+/**
+ *
+ */
 void actualiza_bloques(PIEZA *pieza)
 {
     switch(pieza->tipo){
@@ -264,7 +348,9 @@ void actualiza_bloques(PIEZA *pieza)
   }
 }
 
-
+/**
+ *
+ */
 void set_punto_pieza(PIEZA *pieza, int x, int y)
 {
   set_x_pieza(pieza,x);
@@ -272,18 +358,27 @@ void set_punto_pieza(PIEZA *pieza, int x, int y)
   actualiza_bloques(pieza);
 }
 
+/**
+ *
+ */
 void rotar_pieza(PIEZA *pieza)
 {
   pieza->orientacion = ((pieza->orientacion+90) % 360);
   actualiza_bloques(pieza);
 }
 
+/**
+ *
+ */
 void rota_pieza(PIEZA *pieza,int grado)
 {
   pieza->orientacion = grado;
   actualiza_bloques(pieza);
 }
 
+/**
+ *
+ */
 void actualiza_posicion_pieza(PIEZA *pieza, int x, int y)
 {
   pieza->x = x;
@@ -291,14 +386,25 @@ void actualiza_posicion_pieza(PIEZA *pieza, int x, int y)
   actualiza_bloques(pieza);
 }
 
+/**
+ *
+ */
 void deja_caer_pieza(PIEZA *pieza)
 {
   actualiza_posicion_pieza(pieza,pieza->x,pieza->y-1);
 }
+
+/**
+ *
+ */
 void levanta_pieza(PIEZA *pieza)
 {
   actualiza_posicion_pieza(pieza,pieza->x,pieza->y+1);
 }
+
+/**
+ *
+ */
 bool borra_bloque_pieza(PIEZA *pieza, int x, int y)
 {
   if(pieza->x == x && pieza->y == y){
@@ -318,6 +424,9 @@ bool borra_bloque_pieza(PIEZA *pieza, int x, int y)
   return false;     
 }
 
+/**
+ *
+ */
 void bajar_bloque_pieza(PIEZA *pieza, int x, int y)
 {
   if(pieza->x == x && pieza->y == y+1){
@@ -335,4 +444,4 @@ void bajar_bloque_pieza(PIEZA *pieza, int x, int y)
 	   pieza->bloques[2]->activo){
     pieza->bloques[2]->y = y;
   }
-}
+} //Fin de pieza.c
