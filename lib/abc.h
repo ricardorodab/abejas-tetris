@@ -61,7 +61,9 @@
  * @param tablero_pointer - Es la posicion se encuentra el tablero.
  * @param empleadas - Es el numero de abejas que viviran.
  * @param distancia - Es la "distancia" en tiempo que recorreran.
+ * @param lag - Para ver si lo ejecuta lento o no.
+ *
  */
-void ABC(TABLERO **tablero_pointer, int empleadas, int distancia);
+void ABC(TABLERO **tablero_pointer, int empleadas, int distancia, bool lag);
 
 #endif //Fin de abc.h

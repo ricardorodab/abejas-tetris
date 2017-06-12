@@ -76,7 +76,7 @@
  * 10. Terminamos.
  *
  */
-void ABC(TABLERO **tablero_pointer,int empleadas, int distancia)
+void ABC(TABLERO **tablero_pointer,int empleadas, int distancia, bool lag)
 {
 int futuro_cota = distancia;
   int i,futuro;
@@ -111,6 +111,7 @@ int futuro_cota = distancia;
       set_tablero_abeja(copy_tablero(tablero),abejas_empleadas[i]);
     //printf("Fun=%f\n",waggle_bee->funcion);
     game_over = tablero->game_over;
-    //usleep(50000);
+    if(lag)
+      usleep(500000);
   }
 } //Fin de abc.c
