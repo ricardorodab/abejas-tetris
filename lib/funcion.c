@@ -273,7 +273,7 @@ double waggle_dance(TABLERO *tablero)
   //Factor de perder.
   double perder = tablero->game_over ? INFINITO : 0;
   //La funcion, entre mayor, mejor.
-  double fun = (-50*atrapados)+(1000*num_tetris)+probabilidad+(-10*horizontal)+perder;
+  double fun = (-5*atrapados)+(1000*num_tetris)+(10*probabilidad)+(-0*horizontal)+perder;
   return fun;
 }
 //Fin de funcion.c

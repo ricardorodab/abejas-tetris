@@ -170,8 +170,8 @@ void agrega_pieza_tablero(TABLERO *tablero, PIEZA *pieza)
     {
       printf("Tamanio maximo alcanzado\n");
       //exit(1);
-      tablero->game_over = true;
-      return;
+      //tablero->game_over = true;
+      //return;
     }
   tablero->piezas[pieza->x][pieza->y] = pieza;  
   for(i = 0; i < 3; i++){
