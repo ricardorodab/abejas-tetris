@@ -28,7 +28,10 @@
 
 #ifndef PIEZA_H
 #define PIEZA_H
+
 #include <stdbool.h>
+#include <stdlib.h>
+#include "lock.h"
 
 /**
  * @file pieza.h
@@ -107,7 +110,24 @@ typedef struct pieza {
  *
  */
 PIEZA* init_pieza(int id, FORMA tipo);
+
+/**
+ * @brief 
+ *
+ *
+ * @param pieza -
+ * @return 
+ *
+ */
 PIEZA* copy_pieza(PIEZA *pieza);
+
+/**
+ * @brief 
+ *
+ *
+ * @param pieza -
+ *
+ */
 void free_pieza(PIEZA *pieza);
 
 /**

@@ -59,8 +59,19 @@ ABEJA* init_abeja(TABLERO* tablero)
 {
   ABEJA *abeja = malloc(sizeof(ABEJA));
   abeja->solucion = tablero;
+  abeja->waggle_bee = false;
   abeja->funcion = waggle_dance(tablero);
   return abeja;
+}
+
+/**
+ * Liberamos primero al tablero que contiene a la abeja.
+ * despues ya liberamos a la abeja de la memoria.
+ *
+ */
+void free_abeja(ABEJA *abeja)
+{
+  free(abeja);
 }
 
 /**
@@ -69,9 +80,18 @@ ABEJA* init_abeja(TABLERO* tablero)
  * @see busca_solucion_actual
  *
  */
-double busca_fuente_alimento(ABEJA *abeja)
+void busca_fuente_alimento(ABEJA *abeja)
 {
   busca_solucion_actual(abeja->solucion);
+}
+
+/**
+ * Manda a llamar a @waggle_dance dentro de
+ * el archivo @funcion para ajustar sus datos.
+ *
+ */
+double do_waggle_dance(ABEJA *abeja)
+{
   abeja->funcion = waggle_dance(abeja->solucion);
   return abeja->funcion;
 }
@@ -84,6 +104,6 @@ double busca_fuente_alimento(ABEJA *abeja)
  */
 void set_tablero_abeja(TABLERO* tablero, ABEJA *abeja)
 {
+  agrega_basura(abeja->solucion);
   abeja->solucion = tablero;
-  abeja->funcion = waggle_dance(tablero);
 } //Fin de abejas.c

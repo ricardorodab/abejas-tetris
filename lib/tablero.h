@@ -30,6 +30,9 @@
 #define TABLERO_H
 
 #include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "lock.h"
 #include "pieza.h"
 
 /**
@@ -98,7 +101,7 @@ TABLERO* copy_tablero(TABLERO *tablero);
  *
  *
  * @param tablero -
- * @TODO - revisarlo.
+ *
  */
 void free_tablero(TABLERO *tablero);
 

@@ -26,3 +26,4 @@ rm missing ;
 rm -r ./*~ ;
 rm ./runnable ;
 rm test-driver ;
+rm ./lib/.dirstamp ;

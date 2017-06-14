@@ -27,7 +27,6 @@
  */
 
 #include "pieza.h"
-#include <stdlib.h>
 
 /**
  * @file pieza.c
@@ -100,15 +99,19 @@ PIEZA* copy_pieza(PIEZA *pieza)
 }
 
 /**
- * @TODO Implementarlo
+ *
  */
 void free_pieza(PIEZA *pieza)
 {
+  if(pieza == NULL)
+    return;
+  pthread_mutex_lock(&lock_pieza);
   int i;
   for(i = 0; i < 3; i++)
     free(pieza->bloques[i]);
   free(pieza->bloques);
   free(pieza);
+  pthread_mutex_unlock(&lock_pieza);
 }
 
 /**

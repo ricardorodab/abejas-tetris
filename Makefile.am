@@ -15,6 +15,9 @@ lib_libutils_a_SOURCES =    \
 	lib/funcion.h	    \
 	lib/abc.c	    \
 	lib/abc.h	    \
+	lib/lock.h	    \
+	lib/dump.h	    \
+	lib/dump.c	    \
 	$(END_LIST)
 
 lib_libutils_a_CPPFLAGS = $(GLIB_CFLAGS)

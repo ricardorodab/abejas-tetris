@@ -27,9 +27,6 @@
  */
 
 #include "tablero.h"
-#include <stdio.h>
-#include <stdlib.h>
-
 
 /**
  * @file tablero.c
@@ -127,12 +124,22 @@ TABLERO* copy_tablero(TABLERO *tablero)
  */
 void free_tablero(TABLERO *tablero)
 {
-  int i;
+  if(tablero == NULL)
+    return;
+  pthread_mutex_lock(&lock);
+  int i,j;
+  for(i = 0; i < tablero->ancho+1; i++) {
+    for(j = 0; j < tablero->alto+1; j++) {
+      borra_pieza_tablero(tablero,tablero->piezas[i][j]);      
+    }
+  }
   for(i = 0; i < tablero->ancho+1; i++)
     free(tablero->piezas[i]);
-  free(tablero->actual);
   free(tablero->piezas);
+  if(tablero->actual != NULL)
+    free(tablero->actual);
   free(tablero);
+  pthread_mutex_unlock(&lock);
 }
 
 /**
@@ -188,16 +195,24 @@ void agrega_pieza_tablero(TABLERO *tablero, PIEZA *pieza)
  */
 void borra_pieza_tablero(TABLERO *tablero, PIEZA *pieza)
 {
+  if(pieza == NULL)
+    return;
+  if(tablero->actual == pieza)
+    tablero->actual = NULL;
   tablero->size--;
+  // Por alguna razon puse esto y despues lo comente
+  // pero ya a estas alturas me da miedo borrarlo
+  // a lo mejor me ayuda en un futuro bug:
+  // ¡Maldita memoria!
   int i;
   for(i = 0; i < 3; i++){
-    if(tablero->piezas[pieza->bloques[i]->x]
-       [pieza->bloques[i]->y] == pieza)
-      tablero->piezas[pieza->bloques[i]->x]
-	[pieza->bloques[i]->y] = NULL;    
+    /*if(tablero->piezas[pieza->bloques[i]->x]
+      [pieza->bloques[i]->y] == pieza)*/
+    tablero->piezas[pieza->bloques[i]->x]
+      [pieza->bloques[i]->y] = NULL;    
   }
-  if(tablero->piezas[pieza->x][pieza->y] == pieza)
-    tablero->piezas[pieza->x][pieza->y] = NULL;
+  //if(tablero->piezas[pieza->x][pieza->y] == pieza)
+  tablero->piezas[pieza->x][pieza->y] = NULL;
   free_pieza(pieza);
 }
 
@@ -257,6 +272,14 @@ bool rotar_pieza_tablero(TABLERO *tablero, PIEZA *pieza)
   if(pieza->fija == true)
     return false;
   rotar_pieza(pieza);
+
+  if(pieza->tipo == I) {
+    if(pieza->bloques[2]->x > tablero->ancho) {
+      rota_pieza(pieza,(pieza->orientacion-90)%360);
+      return false;
+    }
+  }
+  
   if(pieza->bloques[i]->y <= 0 || pieza->bloques[i]->x <= 0 ||
        pieza->bloques[i]->y >= tablero->alto ||
        pieza->bloques[i]->x >= tablero->ancho-1){
@@ -422,12 +445,13 @@ void tetris_nivel(TABLERO *tablero,int l)
     for(j = 0; j < tablero->ancho; j++){
       PIEZA *antes = tablero->piezas[j][i];
       tablero->piezas[j][i] = NULL;
-      tablero->piezas[j][i] = tablero->piezas[j][i+1];      
+      tablero->piezas[j][i] = tablero->piezas[j][i+1];
       if(antes != NULL){
 	if(borra_bloque_pieza(antes,j,i)){
 	  borra_pieza_tablero(tablero,antes);
 	}
       }
+      
       if(tablero->piezas[j][i] != NULL)
 	bajar_bloque_pieza(tablero->piezas[j][i],j,i);
     }

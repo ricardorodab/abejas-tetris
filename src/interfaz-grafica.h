@@ -28,6 +28,26 @@
 #ifndef INTERFAZ_GRAFICA_H
 #define INTERFAZ_GRAFICA_H
 
+#include <stdio.h>
+#include <GL/glew.h>
+#ifdef __APPLE__
+# define __gl_h_
+# define GL_DO_NOT_WARN_IF_MULTI_GL_VERSION_HEADERS_INCLUDED
+#include <OpenGL/gl3.h>
+#else
+#include <GL/gl.h>
+#endif
+#define __gl_h_
+#include <GL/freeglut.h>
+#include <GL/glut.h>
+#include <stdlib.h>
+#include <math.h>
+#include <string.h>
+#include <stdbool.h>
+#include "lock.h"
+#include "tablero.h"
+#include "tetromino.h" 
+
 /**
  * @file interfaz-grafica.h
  * @author Jose Ricardo Rodriguez Abreu

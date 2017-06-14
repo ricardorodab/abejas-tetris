@@ -27,11 +27,6 @@
  */
 
 #include "abc.h"
-#include <math.h>
-#include <stdbool.h>
-#include <unistd.h>
-#include <stdio.h>
-#include "funcion.h"
 
 /**
  * @file abc.c
@@ -58,7 +53,9 @@
  * Redefine el infinito para usarlo negativo.
  *
  */
-#define INFINITO -1*INFINITY
+#define INFINITO 1*INFINITY
+
+#define COMPARADOR(x,y) (x < y)
 
 /**
  * El algoritmo funciona de la siguiente manera:
@@ -76,42 +73,78 @@
  * 10. Terminamos.
  *
  */
-void ABC(TABLERO **tablero_pointer,int empleadas, int distancia, bool lag)
+void ABC(TABLERO **tablero_pointer,
+	 int empleadas,
+	 int distancia,
+	 bool lag)
 {
-int futuro_cota = distancia;
-  int i,futuro;
+  double fun_temp, inf_tmp;
+  int i,distancia_it;
   TABLERO *tablero = *tablero_pointer;
   double funcion = INFINITO;
   //Inicializacion de la colmena.
   ABEJA *abejas_empleadas[empleadas];
   for(i = 0; i < empleadas; i++)
     abejas_empleadas[i] = init_abeja(copy_tablero(tablero));
+  //Inicializamos en particular la abeja waggle.
+  ABEJA *waggle_bee = init_abeja(copy_tablero(tablero));
+  waggle_bee->waggle_bee = true;
   //Hasta que ganemos o perdamos.
   bool game_over = false;
   while(!game_over) {
-    double fun_temp;
-    ABEJA *waggle_bee;
+    //Nuestro maximo local:
+    inf_tmp = INFINITO;
+    //Almacenamos nuestra mejor abeja local.
+    ABEJA *waggle_bee_tmp;
+    //Para preguntar si la abeja global cambia:
+    bool cambio = false;
+    
     for(i = 0; i < empleadas; i++) {
-      for(futuro = 0; futuro < futuro_cota; futuro++) {
-	fun_temp = busca_fuente_alimento(abejas_empleadas[i]);      
-	if(fun_temp > funcion){
-	  funcion = fun_temp;
-	  waggle_bee = abejas_empleadas[i];
+      // Hacemos que recorra cierta "distancia"
+      // que en realidad es las posibilidades de la pieza.
+      for(distancia_it = 0; distancia_it < distancia; distancia_it++) {
+	busca_fuente_alimento(abejas_empleadas[i]);
+	if(abejas_empleadas[i]->solucion->game_over)
+	  break;      
+	} //
+	fun_temp = do_waggle_dance(abejas_empleadas[i]);
+	
+	if(COMPARADOR(fun_temp,inf_tmp)) {
+	  inf_tmp = fun_temp;
+	  waggle_bee_tmp = abejas_empleadas[i];
 	}
-      }
-      funcion = waggle_bee->funcion;
+	
+	if(COMPARADOR(fun_temp,funcion)) {
+	  funcion = fun_temp;
+	  cambio = true;
+	  waggle_bee->funcion = funcion;
+	  set_tablero_abeja(copy_tablero(abejas_empleadas[i]->solucion),
+			    waggle_bee);
+	}
+	//} //
     }
+    if(!cambio) {
+      set_tablero_abeja(copy_tablero(waggle_bee_tmp->solucion),
+			waggle_bee);
+      waggle_bee->funcion = inf_tmp;
+    }
+    funcion = waggle_bee->funcion;
     //Para cada abeja empleada ahora buscan sobre este tablero
     //la manera de acomodar esta pieza en distintas locaciones
     //dentro de un rango definido.
-    *(tablero_pointer) = waggle_bee->solucion;
-    tablero = waggle_bee->solucion;
+    *(tablero_pointer) = (copy_tablero(waggle_bee->solucion));
+    agrega_basura(tablero); 
+    tablero = (copy_tablero(waggle_bee->solucion));
     siguiente_turno_tablero(tablero);
-    for(i = 0; i < empleadas; i++)
-      set_tablero_abeja(copy_tablero(tablero),abejas_empleadas[i]);
-    //printf("Fun=%f\n",waggle_bee->funcion);
     game_over = tablero->game_over;
-    if(lag)
-      usleep(500000);
+    if(!game_over) {
+      for(i = 0; i < empleadas; i++) 
+	set_tablero_abeja(copy_tablero(tablero),abejas_empleadas[i]);
+    }
+    if(lag) 
+      usleep(50000);
   }
+  for(i = 0; i < empleadas; i++)
+    free_abeja(abejas_empleadas[i]);
+  free(waggle_bee);
 } //Fin de abc.c

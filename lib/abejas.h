@@ -29,6 +29,7 @@
 #define ABEJAS_H
 
 #include "tablero.h"
+#include "dump.h"
 
 /**
  * @file abejas.h
@@ -59,6 +60,7 @@
  */
 typedef struct abeja {
   double funcion; /**< Representa al polen, lo bueno de su ruta. */
+  bool waggle_bee; /**< Nos dice si es la abeja principal. */
   TABLERO *solucion; /**< Es la ruta que tomo la abeja. */
 } ABEJA;
 
@@ -73,15 +75,34 @@ typedef struct abeja {
 ABEJA* init_abeja(TABLERO *tablero);
 
 /**
+ * @brief Libera de memoria una abeja.
+ *
+ * Realiza la liberacion de memoria de la estructura abeja.
+ * @param abeja - La abeja a liberar.
+ */
+void free_abeja(ABEJA *abeja);
+
+/**
  * @brief Busca nuevos origenes de "polen".
  *
  * Juega una partida dentro del tablero solucion que contiene,
  * lo que puede hacerse la analogia de que "viaja por polen".
  * @param abeja - La abeja que queremos "viaje".
+ *
+ */
+void busca_fuente_alimento(ABEJA *abeja);
+
+/**
+ * @brief Realiza el "waggle dance".
+ *
+ * Esta funcion hace que la abeja realice el waggle
+ * dance para si misma, lo que implica que modifique
+ * su funcion de costo. 
+ * @param abeja - Es la abeja que va a "bailar"
  * @return El valor de la funcion que contiene el destino.
  *
  */
-double busca_fuente_alimento(ABEJA *abeja);
+double do_waggle_dance(ABEJA *abeja);
 
 /**
  * @brief Cambia el origen de la solucion de la abeja.

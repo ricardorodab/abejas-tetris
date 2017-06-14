@@ -25,25 +25,8 @@
  * 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  * ------------------------------------------------------------------
  */
-#include <stdio.h>
-#include <GL/glew.h>
-#ifdef __APPLE__
-# define __gl_h_
-# define GL_DO_NOT_WARN_IF_MULTI_GL_VERSION_HEADERS_INCLUDED
-#include <OpenGL/gl3.h>
-#else
-#include <GL/gl.h>
-#endif
-#define __gl_h_
-#include <GL/freeglut.h>
-#include <GL/glut.h>
-#include <stdlib.h>
-#include <math.h>
-#include <string.h>
-#include <stdbool.h>
-#include "tablero.h"
+
 #include "interfaz-grafica.h"
-#include "tetromino.h"
 
 /**
  * @file interfaz-grafica.c
@@ -133,6 +116,8 @@ void dibuja_cuadro(double h, double w)
  *
  */
 void dibuja_pieza(PIEZA *pieza){
+  if(pieza == NULL)
+    return;
   switch(pieza->tipo){
   case Sq:
     dibuja_cuadrado(pieza,
@@ -219,11 +204,17 @@ void display(void)
   int size = tablero_principal->max_size;
   double por = zoom*log2(size); 
   gluLookAt(0.0f, 0.0f, (float)por, 0.0f, 0.0f,0.0f,0.0f, 5.f, 0.5f);
+  pthread_mutex_lock(&lock);
   tablero_principal = *tablero_principal_pointer;
   dibuja_cuadro(glutGet(GLUT_WINDOW_WIDTH),glutGet(GLUT_WINDOW_HEIGHT));
+  pthread_mutex_unlock(&lock);
+  pthread_mutex_lock(&lock);
+  pthread_mutex_lock(&lock_pieza);
   dibuja_figuras();
+  pthread_mutex_unlock(&lock_pieza);
+  pthread_mutex_unlock(&lock);
   glutSwapBuffers();
-  if(!game_over)
+  if(!game_over)    
     glutPostRedisplay();
 }
 

@@ -1,4 +1,4 @@
-/* ------------------------------------------------------------------
+/* -A-----------------------------------------------------------------
  * funcion.c
  * version 1.0
  * Copyright (C) 2017  Jose Ricardo Rodriguez Abreu.
@@ -90,6 +90,13 @@
  */
 #define valor_abs(x,y) (x > y ? (x-y) : (y-x))
 
+/**
+ * @def mi_max(x,y)
+ *
+ * Nos regresa el maximo de dos numeros.
+ *
+ */
+#define mi_max(x,y) (x > y ? x : y)
 
 /**
  * @brief Entrega un numero que representa la horizontalidad.
@@ -104,10 +111,9 @@
  */
 double revisa_horizontal(TABLERO *tablero, int columna)
 {
-  double altura = 0;
-  int i = tablero->alto;
-  while(i > 0 && (tablero->piezas[columna][i] == NULL ||
-		  !tablero->piezas[columna][i]->fija))
+  int i = tablero->ancho;
+  while(i > 0 && (tablero->piezas[i][columna] == NULL ||
+		  !tablero->piezas[i][columna]->fija))
     i--;
   return (double)i;
 }
@@ -123,15 +129,19 @@ double revisa_horizontal(TABLERO *tablero, int columna)
  */
 double horizontalidad(TABLERO *tablero)
 {
-  double valor_final = 0;
-  double horizontalidad = revisa_horizontal(tablero,0);
+  if(tablero->piezas_actuales == 1)
+    return 0; 
+  int i;
+  double horizontalidad = 0;
+  for(i = 0; i < tablero->ancho; i++) 
+    horizontalidad += revisa_horizontal(tablero,i);  
+  horizontalidad = (horizontalidad/tablero->ancho); 
+  double valor_final = 0;  
   double columna_tmp;
   double diff;
-  int i;
   for(i = 0; i < tablero->ancho; i++) {
     columna_tmp = revisa_horizontal(tablero,i);    
     diff = valor_abs(horizontalidad,columna_tmp);
-    horizontalidad = columna_tmp;
     valor_final += diff;      
   }
   return valor_final;
@@ -208,7 +218,6 @@ double atrapado(TABLERO *tablero, int x, int y) {
  * ocupados de bloques pero el no esta ocupado.
  * @param tablero - Es el tablero que queremos evaluar.
  * @return El numero de cuadritos de 1x1 atrapados.
- * @TODO Extender a mas de 1x1
  *
  */
 double cuenta_atrapados(TABLERO *tablero)
@@ -224,6 +233,54 @@ double cuenta_atrapados(TABLERO *tablero)
 }
 
 /**
+ * @brief Nos dice si existe un bloque ocupado encima.
+ *
+ * Con el proposito de conocer si es posible acceder a 
+ * bloque, revisamos todos los bloques a partir de @y.
+ * @param tablero - Es el tablero en que trabajamos.
+ * @param x - Es la posicion del ancho del bloque.
+ * @param y - Es la altura del bloque.
+ * @return 0 si esta libre y 1 en caso contrario.
+ *
+ */
+int cuenta_cubierta(TABLERO *tablero, int x, int y)
+{
+  if(tablero->piezas[x][y] != NULL)
+    return 0;
+  int i,j;
+  for(i = tablero->alto; i >= 0; i--) {
+    if(i == y)
+      return 0;
+    else
+      if(tablero->piezas[x][i] != NULL &&
+	 tablero->piezas[x][i] != tablero->actual &&
+	 tablero->piezas[x][i] != tablero->piezas[x][y])
+	return 1;
+  }
+  return 0;
+}
+
+/**
+ * @brief Cuenta los bloques tapados.
+ *
+ * Cuenta cuantos bloques es imposible
+ * acceder ya que tienen algo encima.
+ * @param tablero - Es el tablero que observamos.
+ * @return El numero de bloques tapados o cubiertos.
+ *
+ */
+double cuenta_cubiertas_total(TABLERO *tablero)
+{
+  int i,j;
+  int total = 0;  
+  for(i = 0; i < tablero->alto; i++) 
+    for(j = 0; j < tablero->ancho; j++)
+      if(cuenta_cubierta(tablero,j,i))
+	total++;
+  return (double)total;
+}
+
+/**
  * @brief Un estimado de que pronto se haga un tetris.
  *
  * Revisa cuantos cuadrados hay ocupados por bloques en este
@@ -232,15 +289,15 @@ double cuenta_atrapados(TABLERO *tablero)
  * @param tablero - Es el tablero que queremos evaluar.
  * @param j - Es el nivel actual que estamos analizando.
  * @return Un numero mayor igual a cero. Entre mas grande mejor.
- * @TODO - Revisar que el nivel actual es el indicado.
+ *
  */
 double probabilidad_tetris(TABLERO *tablero, int j)
 {
-  double ancho = tablero->alto;
   int i;
   double proba = 0;
   for(i = 0; i < tablero->ancho; i++) {
-    if(atrapado(tablero,i,j))
+    //if(atrapado(tablero,i,j))
+    if(cuenta_cubierta(tablero,i,j))
       return probabilidad_tetris(tablero,++j);
     if(tablero->piezas[i][j] != NULL) 
       proba++;
@@ -270,10 +327,18 @@ double waggle_dance(TABLERO *tablero)
   double num_tetris = tablero->num_tetris;
   //Entre mayor, mejor.
   double probabilidad = probabilidad_tetris(tablero,0);
+  //Entre menor, mejor.
+  double cubiertos = cuenta_cubiertas_total(tablero);
   //Factor de perder.
   double perder = tablero->game_over ? INFINITO : 0;
   //La funcion, entre mayor, mejor.
-  double fun = (-5*atrapados)+(1000*num_tetris)+(10*probabilidad)+(-0*horizontal)+perder;
+  double fun = 0;
+  fun += 2.8*horizontal;
+  fun += 500*atrapados;
+  fun += 100*cubiertos;
+
+  fun -= 110*probabilidad;
+  fun -= 2000*num_tetris;
   return fun;
 }
 //Fin de funcion.c

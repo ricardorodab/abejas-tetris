@@ -28,7 +28,14 @@
 #ifndef ABC_H
 #define ABC_H
 
+#include <math.h>
+#include <stdbool.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <unistd.h>
 #include "abejas.h"
+#include "dump.h"
+#include "funcion.h"
 #include "tablero.h"
 
 /**

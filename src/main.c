@@ -56,6 +56,7 @@
 #include "funcion.h"
 #include "abc.h"
 #include "interfaz-grafica.h"
+#include "lock.h"
 
 
 /**
@@ -94,7 +95,37 @@ int size_y;
  *
  */
 int ERROR = 0;
+
+/**
+ * @var char *UBICACION_SEMILLAS
+ * @brief ES la ubicacion en el directorio donde se encuentra nuestro semillero.
+ *
+ * Con esta direccion buscamos las mejores opciones que existan 
+ * el desarollo de un juego de tetris.
+ *
+ */ 
+char *UBICACION_SEMILLA;
+
+/**
+ * @var int SEMILLA
+ * @brief Es la semilla que el usuario desea usar.
+ * 
+ * Esto es para inicializar la funcion srand que le dice
+ * cual es el origen de la funcion pseudoaleatorio.
+ *
+ */
 int SEMILLA;
+
+/**
+ * @var int SEMILLA_ITERA
+ * @brief Es el numero de busquedas de semillas.
+ *
+ * Si deseamos buscar una buena semilla definimos la cota
+ * de iteraciones que deseamos hacer.
+ *
+ */
+int SEMILLA_ITERA;
+
 /**
  * @brief Una funcion simple para imprimir que hubo un error y en que linea.
  *
@@ -113,6 +144,36 @@ void main_imprime_error(char *msg,int linea)
   char *err = "-Linea:";
   printf("%s%s%d\n",msg,err,linea);
   exit(1);
+}
+
+/**
+ * @brief Regresa el numero de semillas disponible.
+ *
+ * Busca dentro del semillero el numero de ',' que
+ * encuentre lo que se traduce a un numero x de semillas.
+ * @param num_semilla -Es la posicion de nuestra semilla en el archivo.
+ * @return El numero de semillas que podemos tomar del semillero.
+ */
+int get_tamanio_semillero(char *ubicacion_semillas)
+{
+  int tamanio = 0;
+  FILE *file;
+  int int_file;
+  char char_file[1];
+  GList *l;
+  file = fopen(ubicacion_semillas,"r+");
+  //Revisamos si el archivo abrio bien.
+  if(file == NULL){
+    main_imprime_error("El archivo no existe o existe un problema al abrirlo.\n",__LINE__);
+  }
+  int_file = 0;
+  while((int_file = fscanf(file,"%c",char_file)) != -1)
+    {
+      if(char_file[0] == ',')
+	tamanio++;
+    }
+  fclose(file);
+  return tamanio;
 }
 
 /**
@@ -179,6 +240,23 @@ typedef struct param{
 } PARAM;
 
 /**
+ * @brief Ejecuta un pequenio recolector de basura.
+ *
+ * Para quitarle carga a el algoritmo, ejecutamos
+ * un hilo que se encargue de liberar memoria.
+ * @param thread_param - Son los argumentos como apuntador <T>.
+ *
+ */
+void* basura(void *thread_param)
+{
+  PARAM *param = (PARAM*)thread_param;
+  TABLERO **tablero = param->tablero;
+  while(1)
+    limpia();
+  pthread_exit(NULL);
+}
+
+/**
  * @brief Ejecuta el solucionador del tetris.
  *
  * Ejecuta al thread que se va a encargar correr las abejas.
@@ -187,31 +265,45 @@ typedef struct param{
  */
 void* heuristica_abejas(void *thread_param)
 {
+  //Obtenemos los parametros del programa.
   PARAM *param = (PARAM*)thread_param;
   TABLERO **tablero = param->tablero;
   int size_colonia = param->size_colonia;
   int distancia = param->distancia;
+  // Inicializamos el tablero en la primera ficha.
   siguiente_turno_tablero(*tablero);
-  bool stop_condition = true;
-  int i = 100;
-  int tetris = 1;
-  int semilla_l = 1;
+  // Si el usuario especifica una semilla:
   if(SEMILLA > 0) {
-    srand(get_semilla("./etc/semillas.cfg",SEMILLA));
+    srand(get_semilla(UBICACION_SEMILLA,SEMILLA));
     ABC(tablero, size_colonia,distancia,true);
-  }else {
+  }
+  // Si el usuario no espeficia nada:  
+  else {
+    // Arreglar esto:
+    int semillero = get_tamanio_semillero(UBICACION_SEMILLA);
+    int i = SEMILLA_ITERA;
+    int tetris = -1;
+    int semilla_l = 1;
     while(--i > 0) {
       TABLERO *mejor = copy_tablero(*tablero);
-      int seed = get_semilla("./etc/semillas.cfg",i);
+      srand(time(NULL));
+      int random_semilla = rand()%semillero;
+      int seed = get_semilla(UBICACION_SEMILLA,random_semilla);
       srand(seed);
-      ABC(tablero, size_colonia,distancia,false);    
+      ABC(tablero, size_colonia,distancia,false);
       if(tetris < (*tablero)->num_tetris) {
 	tetris = (*tablero)->num_tetris;
 	semilla_l = seed;
-	printf("SEMILLA NUMERO = %d (%d)\n",i,seed);
+	printf("SEMILLA NUMERO = %d (%d)\n",random_semilla,seed);
       }
-      free_tablero(*tablero);
-      *tablero = mejor;      
+      TABLERO *elimina = *tablero;
+      *tablero = mejor;
+      agrega_basura(elimina);     
+      if(i == 1) {
+	srand(semilla_l);
+	ABC(tablero, size_colonia, distancia, true);
+	break;
+      }       
     }
   }
   end_visual_main();
@@ -241,10 +333,35 @@ int main(int argc, char** argv)
   // Constantes de experimentacion.
   int SIZE_COLONIA;
   int DISTANCIA;
-  // Constantes de semillas.
-  //int SEMILLA;
-  char *UBICACION_SEMILLA;
-
+  char *UBICACION_CFG;
+  bool interfaz;
+  // Revisamos los argumentos
+  if(argc == 1) {
+    interfaz = true;
+    UBICACION_CFG = "./etc/config.cfg";
+  }
+  else if(argc == 2) {     
+    if(strcmp(argv[1],"-i") == 0) {
+      interfaz = false;
+      UBICACION_CFG = "./etc/config.cfg";
+    } else {
+      UBICACION_CFG = argv[1];
+    }
+  }
+  else {
+    if(strcmp(argv[1],"-i") == 0) {
+      interfaz = false;
+	UBICACION_CFG = argv[2];
+    }
+    else if(strcmp(argv[2],"-i") == 0) {
+      interfaz = false;
+      UBICACION_CFG = argv[2];
+    }
+    else {
+      interfaz = true;
+      UBICACION_CFG = argv[1];
+    }
+  }
   // Variables para obtener las variables de configuracion.
   GKeyFile *keyfile;
   GKeyFileFlags flags;
@@ -253,12 +370,13 @@ int main(int argc, char** argv)
   keyfile = g_key_file_new();
   flags = G_KEY_FILE_NONE;
   if (!g_key_file_load_from_file (keyfile,
-				  "./etc/config.cfg",
+				  UBICACION_CFG,
 				  flags, &error))
     {
       printf("Error al cargar archivo de configuracion. LINEA= %d",__LINE__);
       return 1;
     }
+  
   // 1. Los parametros de la GUI.
   ANCHO               = g_key_file_get_integer(keyfile,"GUI",
 					       "ANCHO",NULL);
@@ -271,22 +389,17 @@ int main(int argc, char** argv)
 					       "SIZE",NULL);
   DISTANCIA           = g_key_file_get_integer(keyfile,"COLONIA",
 					       "DISTANCIA",NULL);  
-
+  
   //Ahora asignamos a cada una de las variables sus valores del .cfg:
   // 3. Las semillas, numero elegida y la ubicacion del semillero:
+  SEMILLA_ITERA     = g_key_file_get_integer(keyfile,"SEMILLA",
+					     "SEMILLA_ITERA",NULL);    
   SEMILLA           = g_key_file_get_integer(keyfile,"SEMILLA",
-					       "SEMILLA",NULL);    
+					     "SEMILLA",NULL);    
   UBICACION_SEMILLA = g_key_file_get_string(keyfile,"SEMILLA",
 					    "UBICACION",NULL);
-
-  // Lo primero que hacemos es inicializamos
-  // el generador de num aleatorios:
-  int seed = get_semilla(UBICACION_SEMILLA,SEMILLA);
-  //Inicializamos la semilla "aleatoria".
-  //srand(seed);
-  //srand(time(NULL));
   
-  pthread_t threads[2];
+  pthread_t threads[3];
   size_x = ANCHO;
   size_y = ALTO;
   double zoom_param = ZOOM;
@@ -301,14 +414,32 @@ int main(int argc, char** argv)
   param->size_colonia = SIZE_COLONIA;
   param->distancia = DISTANCIA; 
 
+  //Inicializamos el botadero:
+  basurero = NULL;
+  
+  // Este es el lock del tablero.
+  if (pthread_mutex_init(&lock, NULL) != 0 ||
+      pthread_mutex_init(&lock_pieza, NULL) != 0 ||
+      pthread_mutex_init(&lock_basura, NULL) != 0)
+    {
+      printf("\n mutex init failed\n");
+      return 1;
+    }
   pthread_create(&threads[0],NULL,heuristica_abejas,(void*)param);
-  visual_main(argc,argv,tablero,zoom_param);
-
+  pthread_create(&threads[1],NULL,basura,(void*)param);
+  if(interfaz)
+    visual_main(argc,argv,tablero,zoom_param);
+  while(1);
   //Contamos el tiempo:
   clock_t toc = clock();
   double segundos = (double)(toc - tic) / CLOCKS_PER_SEC;
   printf("Transcurrieron: %f segundos o %f minutos.\n",segundos,segundos/60);
-  pthread_exit(NULL);  
+  //pthread_join(threads[0],NULL);
+  //pthread_join(threads[1],NULL);
+  pthread_exit(NULL);
+  pthread_mutex_destroy(&lock);
+  pthread_mutex_destroy(&lock_pieza);
+  pthread_mutex_destroy(&lock_basura);
   return 0; 
 } //Fin de main.c
 
