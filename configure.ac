@@ -15,7 +15,32 @@ AC_PROG_RANLIB
 AC_PROG_INSTALL
 PKG_CHECK_MODULES(GLIB, glib-2.0)
 AC_CHECK_LIB([glut], [glutInit])
+AC_CHECK_LIB([freeglut], [glutInit])
+AC_CHECK_LIB(GLEW, glewInit, have_glew=yes, have_glew=no, $GLUT_LIBS)
 # Checks for header files.
+
+AC_CHECK_HEADER([GL/glew.h], [], have_glew=no)
+
+if test "x$have_glew" = "xyes"; then
+	GLEW_LIBS="-lGLEW $GL_LIBS"
+	AC_DEFINE(HAVE_GLEW, 1, [defined if the GL Extension Wrangler GLEW library is available])
+else
+	GLEW_LIBS="$GL_LIBS"
+	AC_MSG_WARN([GL Extension Wrangler library not found.  Get it from http://glew.sourceforge.net])
+fi
+AC_SUBST(GLEW_LIBS)
+
+if test "x$no_gl" != "xyes"; then
+	AC_DEFINE(HAVE_GL, 1, [defined if OpenGL is available])
+fi
+
+if test x$have_glew = xyes -a x$no_glut != xyes; then
+	HAVE_FULLGL="yes"
+else
+	HAVE_FULLGL="no"
+fi
+
+
 case "$host" in
         *-*-mingw*|*-*-cygwin*)
                 AC_DEFINE(PLATFORM_WIN32, 1, [Platform is Win32])

@@ -276,6 +276,9 @@ void* heuristica_abejas(void *thread_param)
   if(SEMILLA > 0) {
     srand(get_semilla(UBICACION_SEMILLA,SEMILLA));
     ABC(tablero, size_colonia,distancia,true);
+    printf("# Tetris que se hizo = %d\n",(*tablero)->num_tetris);
+    usleep(5000000);
+    exit(0);
   }
   // Si el usuario no espeficia nada:  
   else {

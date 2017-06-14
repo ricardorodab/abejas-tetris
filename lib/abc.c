@@ -142,7 +142,7 @@ void ABC(TABLERO **tablero_pointer,
 	set_tablero_abeja(copy_tablero(tablero),abejas_empleadas[i]);
     }
     if(lag) 
-      usleep(50000);
+      usleep(1000000);
   }
   for(i = 0; i < empleadas; i++)
     free_abeja(abejas_empleadas[i]);

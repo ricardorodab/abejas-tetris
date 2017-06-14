@@ -1,5 +1,5 @@
 AUTOMAKE_OPTIONS =  subdir-objects
-AM_CFLAGS = -g -O3 -I$(top_srcdir)/lib $(GLIB_CFLAGS) $(GLIB_LIBS) $(opengl_LIBS)
+AM_CFLAGS = -g -O3 -I$(top_srcdir)/lib $(GLIB_CFLAGS) $(GLIB_LIBS) $(opengl_LIBS) $(GLEW_LIBS) -lpthread -lm
 noinst_LIBRARIES = lib/libutils.a
 
 END_LIST =
