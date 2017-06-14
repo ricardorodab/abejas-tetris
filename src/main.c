@@ -302,6 +302,7 @@ void* heuristica_abejas(void *thread_param)
       if(i == 1) {
 	srand(semilla_l);
 	ABC(tablero, size_colonia, distancia, true);
+	exit(0);
 	break;
       }       
     }
