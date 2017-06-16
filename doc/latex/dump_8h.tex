@@ -1,0 +1,77 @@
+\hypertarget{dump_8h}{}\section{lib/dump.h File Reference}
+\label{dump_8h}\index{lib/dump.\+h@{lib/dump.\+h}}
+
+
+File containing the struct and funtions to simulate Tetris board for the \char`\"{}\+Combinatorial Optimization Heuristics\char`\"{} class.  
+
+
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$glib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}tablero.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{dump_8h_a41ba974bdbd47fd57b505fc0a5fc477c}{agrega\+\_\+basura} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero})
+\begin{DoxyCompactList}\small\item\em Agregamos basura a la \char`\"{}pila\char`\"{}. \end{DoxyCompactList}\item 
+void \hyperlink{dump_8h_a1a6296efdb884b3cc610a2dbc3e1f641}{limpia} (void)
+\begin{DoxyCompactList}\small\item\em Limpia la \char`\"{}pila\char`\"{} de basura. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+G\+List $\ast$ \hyperlink{dump_8h_a901eb86385754fd1ce29970842797eea}{basurero}
+\begin{DoxyCompactList}\small\item\em Basurero. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File containing the struct and funtions to simulate Tetris board for the \char`\"{}\+Combinatorial Optimization Heuristics\char`\"{} class. 
+
+\begin{DoxyAuthor}{Author}
+Jose Ricardo Rodriguez Abreu 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+13 Jun 2017 Aqui se guardara todo lo que queremos vaciar.
+\end{DoxyDate}
+El programa usa el estandar de documentacion que define el uso de doxygen.
+
+\begin{DoxySeeAlso}{See also}
+\href{http://www.stack.nl/~dimitri/doxygen/manual/index.html}{\tt http\+://www.\+stack.\+nl/$\sim$dimitri/doxygen/manual/index.\+html} 
+
+\href{https://github.com/ricardorodab/AceptacionUmbral}{\tt https\+://github.\+com/ricardorodab/\+Aceptacion\+Umbral} 
+\end{DoxySeeAlso}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{dump_8h_a41ba974bdbd47fd57b505fc0a5fc477c}\label{dump_8h_a41ba974bdbd47fd57b505fc0a5fc477c}} 
+\index{dump.\+h@{dump.\+h}!agrega\+\_\+basura@{agrega\+\_\+basura}}
+\index{agrega\+\_\+basura@{agrega\+\_\+basura}!dump.\+h@{dump.\+h}}
+\subsubsection{\texorpdfstring{agrega\+\_\+basura()}{agrega\_basura()}}
+{\footnotesize\ttfamily void agrega\+\_\+basura (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero }\end{DoxyParamCaption})}
+
+
+
+Agregamos basura a la \char`\"{}pila\char`\"{}. 
+
+Con esta funcion agregamos basura a una lista para que eventualmente sea liberado el tablero que se guardo. @ param tablero -\/ Es el tablero que queremos eliminar. \mbox{\Hypertarget{dump_8h_a1a6296efdb884b3cc610a2dbc3e1f641}\label{dump_8h_a1a6296efdb884b3cc610a2dbc3e1f641}} 
+\index{dump.\+h@{dump.\+h}!limpia@{limpia}}
+\index{limpia@{limpia}!dump.\+h@{dump.\+h}}
+\subsubsection{\texorpdfstring{limpia()}{limpia()}}
+{\footnotesize\ttfamily void limpia (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Limpia la \char`\"{}pila\char`\"{} de basura. 
+
+Se ejecuta un  para todos los elementos actuales de la lista . 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{dump_8h_a901eb86385754fd1ce29970842797eea}\label{dump_8h_a901eb86385754fd1ce29970842797eea}} 
+\index{dump.\+h@{dump.\+h}!basurero@{basurero}}
+\index{basurero@{basurero}!dump.\+h@{dump.\+h}}
+\subsubsection{\texorpdfstring{basurero}{basurero}}
+{\footnotesize\ttfamily G\+List $\ast$ basurero}
+
+
+
+Basurero. 
+
+Es un objeto lista que evita acumular basura Con el proposito de liberar memoria, hacemos uso de este objeto para no tener Segmentation fault. 

@@ -1,0 +1,55 @@
+\hypertarget{funcion_8h}{}\section{lib/funcion.h File Reference}
+\label{funcion_8h}\index{lib/funcion.\+h@{lib/funcion.\+h}}
+
+
+File containing the Artificial bee colony algorithm for a final project for the \char`\"{}\+Combinatorial Optimization 
+\+Heuristics\char`\"{} class.  
+
+
+{\ttfamily \#include \char`\"{}tablero.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{funcion_8h_ab73ef13042612e2ca0335b0bbd2e8caf}{waggle\+\_\+dance} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero})
+\begin{DoxyCompactList}\small\item\em Waggle dance es es baile de las abejas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File containing the Artificial bee colony algorithm for a final project for the \char`\"{}\+Combinatorial Optimization 
+\+Heuristics\char`\"{} class. 
+
+\begin{DoxyAuthor}{Author}
+Jose Ricardo Rodriguez Abreu 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+14 May 2017 En este archivo se define los criterios que deben tener las buenas rutas que una  tenga. El baile que realiza o tambien llamado  nos devuelve un valor que entre mayor sea, mas atractiva es el polen.
+\end{DoxyDate}
+El programa usa el estandar de documentacion que define el uso de doxygen.
+
+\begin{DoxySeeAlso}{See also}
+\href{http://www.stack.nl/~dimitri/doxygen/manual/index.html}{\tt http\+://www.\+stack.\+nl/$\sim$dimitri/doxygen/manual/index.\+html} 
+
+\href{https://github.com/ricardorodab/abejas-tetris}{\tt https\+://github.\+com/ricardorodab/abejas-\/tetris} 
+\end{DoxySeeAlso}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{funcion_8h_ab73ef13042612e2ca0335b0bbd2e8caf}\label{funcion_8h_ab73ef13042612e2ca0335b0bbd2e8caf}} 
+\index{funcion.\+h@{funcion.\+h}!waggle\+\_\+dance@{waggle\+\_\+dance}}
+\index{waggle\+\_\+dance@{waggle\+\_\+dance}!funcion.\+h@{funcion.\+h}}
+\subsubsection{\texorpdfstring{waggle\+\_\+dance()}{waggle\_dance()}}
+{\footnotesize\ttfamily double waggle\+\_\+dance (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero }\end{DoxyParamCaption})}
+
+
+
+Waggle dance es es baile de las abejas. 
+
+Esta es la funcion que nos regresa un numero que representa la abundancia de polen que contiene la ruta de una abeja en particular. 
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ Es el tablero que la abeja debe tener. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un numero que entre mayor sea, mas abundancia habra.
+\end{DoxyReturn}
+Regresa un numero que entre mayor sea mejor. Utiliza las funciones con las siguientes condiciones\+: Le resta los  por cierta constante -\/50. Le resta los  por cierta constante -\/10 Le suma los numero de tetris realizado por constante 1000 Le suma la  que pronto se haga. 

@@ -1,0 +1,207 @@
+%% LyX 2.1.4 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{amstext}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\fancyhf{}               % Clear fancy header/footer
+\fancyfoot[L]{Jos\'{e} Ricardo Rodr\'{\i}guez Abreu}   % My name in Left footer
+\fancyfoot[R]{\thepage}  % Page number in Right footer
+\makeatletter
+\let\ps@plain\ps@fancy   % Plain page style = fancy page style
+\makeatother
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+\begin{titlepage}
+	\centering
+	
+	{\scshape\LARGE Universidad Nacional Aut\'{o}noma de M\'{e}xico \par}
+	\vspace{1cm}
+	{\scshape\Large Proyecto final de Heur\'{\i}sticas de optimizaci\'{o}n combinatoria\par}
+	\vspace{1.5cm}
+	{\huge\bfseries Algoritmo colonia de abejas artificiales aplicado al juego de Tetris\par}
+	\vspace{2cm}
+	{\Large\itshape Jos\'{e} Ricardo Rodr\'{\i}guez Abreu\par}
+	\vfill
+	dirigido por\par
+	Dr. Canek Pel\'{a}ez Vald\'{e}s
+	\vfill
+% Bottom of the page
+	{\large \today\par}
+\end{titlepage}
+
+
+\section*{1. Enunciado del problema }
+
+Muchos de los problemas \textit{interesantes} que podemos observar
+en el universo, al quererlos resolver con una computadora caen en
+el conjunto de aquellos la categoría de aquellos problemas que pueden
+ser resueltos en tiempo polinomial por una máquina de Turing no determinista,
+también conocida como la \textsf{\textit{clase NP}}. 
+
+Al ser las máquinas de Turing no deterministas difícil de conseguir
+en la tienda de la esquina, nos limitamos a tratar de dar un aproximado
+a la solución de problemas pertenecientes a la clase NP con algoritmos
+heurísticos\footnote{Con un algoritmo heurístico (o simplemente heurística), nos limitaremos
+a hablar de aquellos algoritmos que tienen una característica probabilistica
+o aleatoria.}. 
+
+Para este proyecto, nos enfocamos en estudiar un solo problema y una
+heurística por cuestiones de tiempos y alcances.
+
+
+\subsection*{1.2 Tetris}
+
+El problema que se estudió partió de la siguiente pregunta: ¿Puedes
+hacer que una computadora juegue infinitamente el juego de Tetris?
+y resulta que no así que la siguiente pregunta que nos debemos de
+hacer como computólogos es: Dado un conjunto aleatorio de piezas,
+¿qué tan bien puedo hacer jugar a la computadora? ¿Cuále es el mayor
+número de Tetris que puedo hacer que realize antes que la computadora
+pierda? 
+
+Se decidió realizar la versión on-line\marginpar{\textsf{\textit{\footnotesize{}Versión on-line: La única información
+que posees es el tablero actual y la pieza actual.}}\protect \\
+} sobre la versión off-line \marginpar{\textsf{\textit{\footnotesize{}Versión off-line: Además del tablero
+y la pieza actual, puedes observar la secuencia de piezas que siguen.}}} debido al manejo de memoria que debe realizar la memoria off-line.
+Existe la demostración\footnote{Es mencionada en el artículo adjunto a este documento.}
+que ambas versiones son equivalentes y son \textsf{\textit{NP-Completos}}. 
+
+Para poder atacar el problema se tuvo que investigar y observar que
+existen 7 posibles piezas con al menos cuatro posibles orientaciones.
+Para cada pieza, suponiendo un tablero de ancho·alto y $n\text{·}m$
+cuadros, existen $\frac{n}{4}$ posibilidades para la siguiente pieza.
+Para la siguiente pieza se tienen aproximadamente $\frac{n}{4}\text{·}cm$
+donde $c$ representa la cantidad de piezas que se encuentran en algún
+nivel de m. Podemos ver que una cota aproximada de un juego de tetris
+de $t$ cantidad de piezas es:
+
+\begin{center}
+$(\frac{n\text{·}c\text{·}m}{4}){}^{t}$ 
+\par\end{center}
+
+que ciertamente es n número bastante grande. 
+
+
+\subsection*{1.2 Abejas}
+
+El algoritmo que se decidió utilizar fue un modelo modificado de la
+heurística de colonia de abejas artificiales. Esta heurística consiste
+en lo siguiente: 
+
+Se usaron dos tipos de abejas: La abeja waggle (una especie de abeja
+reina) y las abejas exploradoras. 
+
+En la versión original se usan tres tipos de abejas: la empleada,
+la abeja en espera y las abejas exploradoras. En mi modelo podemos
+ver que una abeja exploradora en descanso (o no realizando ninguna
+acción) es automáticamente transformada en una abeja en espera mientras
+que todas tienen que realizar el trabajo de empleada para explorar
+su fuente de alimento. El algoritmo original tiene la siguiente estructura:
+\begin{itemize}
+\item Se producen fuentes de alimentos iniciales por cada abeja empleada.
+\item REPETIR
+
+\begin{itemize}
+\item Cada abeja empleada va a una fuente de alimento en su memoria y determina
+una fuente vecina, entonces evalúa su cantidad de néctar y danza en
+la colmena.
+\item Cada abeja en espera observa el baile de cada abeja empleada y escoge
+una de sus fuentes dependiendo de las danzas, y entonces va a esa
+fuente. Después de escoger un vecino alrededor, evalúa su cantidad
+de néctar.
+\item Son determinadas las fuentes de alimentos a abandonar y reemplazadas
+por las nuevas fuentes de alimentos descubiertas por las exploradoras.
+La mejor fuente de alimentos encontrada es registrada. 
+\end{itemize}
+\item HASTA QUE (los requisitos se cumplan)
+\end{itemize}
+
+\section*{2. Integración de heurística al problema}
+
+
+\subsection*{2.1 Problema de On-line Vs Off-line}
+
+Al comenzar el modelado de este problema se obervó que al realizar
+el problema de al buscar solución al problema on-line, teníamos un
+tipo de abeja que no eran necesarias ya que su función lo realizaban
+al mismo tiempo otras. Las abejas exploradoras realizan el trabajo
+de las abejas empleadas ya que no podemos revisar ``vecinos siguientes''
+a éstas porque el vecino puede ser cualquiera de las 7 piezas dentro
+de todas las posibilidades del tablero, lo cual también es un número
+bastante grande. 
+
+En el modelo también se contempló que el objetivo de las abejas empleadas
+era confirmar que la dirección de una solución tuviera mucho ``polem'',
+que es el indicador de que tan buena es una solución, así que se decidió
+que al encontrar una solución se jugara una cantidad predefinida de
+partidas (que llamaremos ``distancia'') para estimar que el tablero
+de tetris no se hiciera ``malo'' repentinamente con la decisión
+de la abeja exploradora. 
+
+
+\subsection*{2.2 Abejas empleadas}
+
+El programa comienza con un número predefinido de abejas empleadas
+que se dedican a explorar su tablero. Cada uno de las abejas realiza
+una copia del tablero original y mueve la pieza actual hasta obtener
+una solución, esto quiere decir que la pieza actual no pueda seguir
+cayendo en el espacio. 
+
+Una vez que se decidió donde colocarla, la abeja empleada mueve un
+par de veces la pieza hacia la izquierda o derecha hasta que la pieza
+quede fija en todos los posibles sentidos.
+
+Al tener un tablero con una posible solución, una abeja va hacia las
+abejas ``observadoras'' que se traduce a una función de costo que
+se calcula con una función. A este paso se llama el Waggle dance de
+la abeja.
+
+Si la abeja resultó ser la mejor local o la mejor global, se le concede
+el ``honor'' de ser coronada como la ``Waggle bee''. Un equivalente
+a lo que sería la abeja reina.
+
+
+\subsection*{2.3 Waggle bee}
+
+La ``Waggle bee'' o la abeja Waggle o la abeja reina es aquella
+que después de cada iteración, copia el tablero que obtuvo la mayor
+cantidad de puntos ``waggle'', o sea la mayor cantidad de puntos
+durante la evaluación de su tablero.
+
+La Waggle Bee también es la encargada de comunicar a sus abejas empleadas
+cual es el tablero que todas deben tener antes de comenzar la siguiente
+iteración.
+
+
+\subsection*{2.4 Waggle dance}
+
+Es la función más importante que da la relación directa entre las
+abejas y el tablero. Esta función revisa muchos factores como la cantidad
+de tetrominós en el tablero, el número de tetris que se han realizado,
+el número de bloques sobre un mismo nivel y que tan horizontal es
+la línea que dibujan todos los bloques superiores.
+
+
+\subsection*{2.4 El tablero y las fichas}
+
+El tablero de tetris es definido para cada entrada del programa sin
+embargo las fichas son las que siempre hemos conocido. Siete tetrominós
+que consisten en todas sus posibles combinaciones sin repeticiones. 
+
+Las reglas del tablero consisten en las mismas que en un tablero de
+tetris normal: Si se llegara a realizar una linea horizontal llena
+de bloques de tetrominós se dice que se realizó un ``tetris'' y
+esa linea es eliminada.
+
+
+\part*{3. Documentación del código:}
+\end{document}

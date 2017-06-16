@@ -1,0 +1,69 @@
+\hypertarget{lock_8h}{}\section{lib/lock.h File Reference}
+\label{lock_8h}\index{lib/lock.\+h@{lib/lock.\+h}}
+
+
+File containing the struct and funtions to simulate Tetris board for the \char`\"{}\+Combinatorial Optimization Heuristics\char`\"{} class.  
+
+
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+pthread\+\_\+mutex\+\_\+t \hyperlink{lock_8h_a0abaf4b5d42c4e5d19190035fade3599}{lock}
+\begin{DoxyCompactList}\small\item\em Lock. \end{DoxyCompactList}\item 
+pthread\+\_\+mutex\+\_\+t \hyperlink{lock_8h_a915df0d4887fb1a6ee96396e92783bfb}{lock\+\_\+pieza}
+\begin{DoxyCompactList}\small\item\em Lock de las piezas. \end{DoxyCompactList}\item 
+pthread\+\_\+mutex\+\_\+t \hyperlink{lock_8h_a604d37b90926f68ad27bc03733c1f19d}{lock\+\_\+basura}
+\begin{DoxyCompactList}\small\item\em Lock de la lista basura. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File containing the struct and funtions to simulate Tetris board for the \char`\"{}\+Combinatorial Optimization Heuristics\char`\"{} class. 
+
+\begin{DoxyAuthor}{Author}
+Jose Ricardo Rodriguez Abreu 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+13 Jun 2017 Definimos un objeto mutex para evitar modificar un objeto N\+U\+LL.
+\end{DoxyDate}
+El programa usa el estandar de documentacion que define el uso de doxygen.
+
+\begin{DoxySeeAlso}{See also}
+\href{http://www.stack.nl/~dimitri/doxygen/manual/index.html}{\tt http\+://www.\+stack.\+nl/$\sim$dimitri/doxygen/manual/index.\+html} 
+
+\href{https://github.com/ricardorodab/AceptacionUmbral}{\tt https\+://github.\+com/ricardorodab/\+Aceptacion\+Umbral} 
+\end{DoxySeeAlso}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{lock_8h_a0abaf4b5d42c4e5d19190035fade3599}\label{lock_8h_a0abaf4b5d42c4e5d19190035fade3599}} 
+\index{lock.\+h@{lock.\+h}!lock@{lock}}
+\index{lock@{lock}!lock.\+h@{lock.\+h}}
+\subsubsection{\texorpdfstring{lock}{lock}}
+{\footnotesize\ttfamily pthread\+\_\+mutex\+\_\+t lock}
+
+
+
+Lock. 
+
+Es un objeto mutex que evita continuar la ejecucion. Con el proposito de liberar memoria y dibujar la interfaz, hacemos uso de este objeto para no tener Segmentation fault. \mbox{\Hypertarget{lock_8h_a604d37b90926f68ad27bc03733c1f19d}\label{lock_8h_a604d37b90926f68ad27bc03733c1f19d}} 
+\index{lock.\+h@{lock.\+h}!lock\+\_\+basura@{lock\+\_\+basura}}
+\index{lock\+\_\+basura@{lock\+\_\+basura}!lock.\+h@{lock.\+h}}
+\subsubsection{\texorpdfstring{lock\+\_\+basura}{lock\_basura}}
+{\footnotesize\ttfamily pthread\+\_\+mutex\+\_\+t lock\+\_\+basura}
+
+
+
+Lock de la lista basura. 
+
+Es un objeto mutex que evita continuar la ejecucion. Con el proposito de liberar memoria y dibujar la interfaz, hacemos uso de este objeto para no tener Segmentation fault. \mbox{\Hypertarget{lock_8h_a915df0d4887fb1a6ee96396e92783bfb}\label{lock_8h_a915df0d4887fb1a6ee96396e92783bfb}} 
+\index{lock.\+h@{lock.\+h}!lock\+\_\+pieza@{lock\+\_\+pieza}}
+\index{lock\+\_\+pieza@{lock\+\_\+pieza}!lock.\+h@{lock.\+h}}
+\subsubsection{\texorpdfstring{lock\+\_\+pieza}{lock\_pieza}}
+{\footnotesize\ttfamily pthread\+\_\+mutex\+\_\+t lock\+\_\+pieza}
+
+
+
+Lock de las piezas. 
+
+Es un objeto mutex que evita continuar la ejecucion. Con el proposito de liberar memoria y dibujar la interfaz, hacemos uso de este objeto para no tener Segmentation fault. 

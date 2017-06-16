@@ -1,0 +1,255 @@
+\hypertarget{funcion_8c}{}\section{lib/funcion.c File Reference}
+\label{funcion_8c}\index{lib/funcion.\+c@{lib/funcion.\+c}}
+
+
+File containing the Artificial bee colony algorithm for a final project for the \char`\"{}\+Combinatorial Optimization 
+\+Heuristics\char`\"{} class.  
+
+
+{\ttfamily \#include \char`\"{}funcion.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}math.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{funcion_8c_af076440f216f5a40a11563e489f04932}{I\+N\+F\+I\+N\+I\+TO}~-\/1$\ast$I\+N\+F\+I\+N\+I\+TY
+\item 
+\#define \hyperlink{funcion_8c_aa1121f797750b9f74f56b152d4245ec0}{degrees\+To\+Radians}(angle\+Degrees)~(angle\+Degrees $\ast$ M\+\_\+\+PI / 180.\+0)
+\item 
+\#define \hyperlink{funcion_8c_aa101e273d8dae96156403a869e2f3b18}{radians\+To\+Degrees}(angle\+Radians)~(angle\+Radians $\ast$ 180.\+0 / M\+\_\+\+PI)
+\item 
+\#define \hyperlink{funcion_8c_a4b0013dff29e363721dec1c9c9362ea0}{pitagoras}(x,  y)~(sqrt(pow(x,2)+pow(y,2)))
+\item 
+\#define \hyperlink{funcion_8c_a4df328a7899cf85b5d74c8cfe0e8ab55}{valor\+\_\+abs}(x,  y)~(x $>$ y ? (x-\/y) \+: (y-\/x))
+\item 
+\#define \hyperlink{funcion_8c_ad88207a20700fffcbd9b6c47d3824f48}{mi\+\_\+max}(x,  y)~(x $>$ y ? x \+: y)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{funcion_8c_a276d6675d173d2acb557598820602863}{revisa\+\_\+horizontal} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero}, int columna)
+\begin{DoxyCompactList}\small\item\em Entrega un numero que representa la horizontalidad. \end{DoxyCompactList}\item 
+double \hyperlink{funcion_8c_ae196a0898ca8b515925335bf63104b95}{horizontalidad} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero})
+\begin{DoxyCompactList}\small\item\em Regresa un numero representativo para un dato del tablero. \end{DoxyCompactList}\item 
+double \hyperlink{funcion_8c_ae3e896eab642ba206e5d1b4c1cf17dbc}{atrapado} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero}, int x, int y)
+\begin{DoxyCompactList}\small\item\em Regresa 1 si el cuadrito se encuentra atrapado. \end{DoxyCompactList}\item 
+double \hyperlink{funcion_8c_af8732a94417a559ad52765e7b2a4616a}{cuenta\+\_\+atrapados} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero})
+\begin{DoxyCompactList}\small\item\em Revisa cuantos cuadrados atrapados hay en el tablero. \end{DoxyCompactList}\item 
+int \hyperlink{funcion_8c_a9e41ba1aa994bfbaa513483a77488ca4}{cuenta\+\_\+cubierta} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero}, int x, int y)
+\begin{DoxyCompactList}\small\item\em Nos dice si existe un bloque ocupado encima. \end{DoxyCompactList}\item 
+double \hyperlink{funcion_8c_a8cdd897140cc91606e1243458f171162}{cuenta\+\_\+cubiertas\+\_\+total} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero})
+\begin{DoxyCompactList}\small\item\em Cuenta los bloques tapados. \end{DoxyCompactList}\item 
+double \hyperlink{funcion_8c_aaa0f70f44a64259a2d2f23c989eeef2c}{probabilidad\+\_\+tetris} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero}, int j)
+\begin{DoxyCompactList}\small\item\em Un estimado de que pronto se haga un tetris. \end{DoxyCompactList}\item 
+double \hyperlink{funcion_8c_ab73ef13042612e2ca0335b0bbd2e8caf}{waggle\+\_\+dance} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero})
+\begin{DoxyCompactList}\small\item\em Waggle dance es es baile de las abejas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File containing the Artificial bee colony algorithm for a final project for the \char`\"{}\+Combinatorial Optimization 
+\+Heuristics\char`\"{} class. 
+
+\begin{DoxyAuthor}{Author}
+Jose Ricardo Rodriguez Abreu 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+14 May 2017 En este archivo se implementan los criterios que deben tener las buenas rutas que una  tenga. El baile que realiza o tambien llamado  nos devuelve un valor que entre mayor sea, mas atractiva es el polen.
+\end{DoxyDate}
+El programa usa el estandar de documentacion que define el uso de doxygen.
+
+\begin{DoxySeeAlso}{See also}
+\href{http://www.stack.nl/~dimitri/doxygen/manual/index.html}{\tt http\+://www.\+stack.\+nl/$\sim$dimitri/doxygen/manual/index.\+html} 
+
+\href{https://github.com/ricardorodab/abejas-tetris}{\tt https\+://github.\+com/ricardorodab/abejas-\/tetris} 
+\end{DoxySeeAlso}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{funcion_8c_aa1121f797750b9f74f56b152d4245ec0}\label{funcion_8c_aa1121f797750b9f74f56b152d4245ec0}} 
+\index{funcion.\+c@{funcion.\+c}!degrees\+To\+Radians@{degrees\+To\+Radians}}
+\index{degrees\+To\+Radians@{degrees\+To\+Radians}!funcion.\+c@{funcion.\+c}}
+\subsubsection{\texorpdfstring{degrees\+To\+Radians}{degreesToRadians}}
+{\footnotesize\ttfamily \#define degrees\+To\+Radians(\begin{DoxyParamCaption}\item[{}]{angle\+Degrees }\end{DoxyParamCaption})~(angle\+Degrees $\ast$ M\+\_\+\+PI / 180.\+0)}
+
+Convierte de grados a radiales. \mbox{\Hypertarget{funcion_8c_af076440f216f5a40a11563e489f04932}\label{funcion_8c_af076440f216f5a40a11563e489f04932}} 
+\index{funcion.\+c@{funcion.\+c}!I\+N\+F\+I\+N\+I\+TO@{I\+N\+F\+I\+N\+I\+TO}}
+\index{I\+N\+F\+I\+N\+I\+TO@{I\+N\+F\+I\+N\+I\+TO}!funcion.\+c@{funcion.\+c}}
+\subsubsection{\texorpdfstring{I\+N\+F\+I\+N\+I\+TO}{INFINITO}}
+{\footnotesize\ttfamily \#define I\+N\+F\+I\+N\+I\+TO~-\/1$\ast$I\+N\+F\+I\+N\+I\+TY}
+
+Redefine el infinito para usarlo negativo. \mbox{\Hypertarget{funcion_8c_ad88207a20700fffcbd9b6c47d3824f48}\label{funcion_8c_ad88207a20700fffcbd9b6c47d3824f48}} 
+\index{funcion.\+c@{funcion.\+c}!mi\+\_\+max@{mi\+\_\+max}}
+\index{mi\+\_\+max@{mi\+\_\+max}!funcion.\+c@{funcion.\+c}}
+\subsubsection{\texorpdfstring{mi\+\_\+max}{mi\_max}}
+{\footnotesize\ttfamily \#define mi\+\_\+max(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~(x $>$ y ? x \+: y)}
+
+Nos regresa el maximo de dos numeros. \mbox{\Hypertarget{funcion_8c_a4b0013dff29e363721dec1c9c9362ea0}\label{funcion_8c_a4b0013dff29e363721dec1c9c9362ea0}} 
+\index{funcion.\+c@{funcion.\+c}!pitagoras@{pitagoras}}
+\index{pitagoras@{pitagoras}!funcion.\+c@{funcion.\+c}}
+\subsubsection{\texorpdfstring{pitagoras}{pitagoras}}
+{\footnotesize\ttfamily \#define pitagoras(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~(sqrt(pow(x,2)+pow(y,2)))}
+
+Obtenemos la raiz del cuadrado de dos numeros. \mbox{\Hypertarget{funcion_8c_aa101e273d8dae96156403a869e2f3b18}\label{funcion_8c_aa101e273d8dae96156403a869e2f3b18}} 
+\index{funcion.\+c@{funcion.\+c}!radians\+To\+Degrees@{radians\+To\+Degrees}}
+\index{radians\+To\+Degrees@{radians\+To\+Degrees}!funcion.\+c@{funcion.\+c}}
+\subsubsection{\texorpdfstring{radians\+To\+Degrees}{radiansToDegrees}}
+{\footnotesize\ttfamily \#define radians\+To\+Degrees(\begin{DoxyParamCaption}\item[{}]{angle\+Radians }\end{DoxyParamCaption})~(angle\+Radians $\ast$ 180.\+0 / M\+\_\+\+PI)}
+
+Convierte de radianes a grados. \mbox{\Hypertarget{funcion_8c_a4df328a7899cf85b5d74c8cfe0e8ab55}\label{funcion_8c_a4df328a7899cf85b5d74c8cfe0e8ab55}} 
+\index{funcion.\+c@{funcion.\+c}!valor\+\_\+abs@{valor\+\_\+abs}}
+\index{valor\+\_\+abs@{valor\+\_\+abs}!funcion.\+c@{funcion.\+c}}
+\subsubsection{\texorpdfstring{valor\+\_\+abs}{valor\_abs}}
+{\footnotesize\ttfamily \#define valor\+\_\+abs(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})~(x $>$ y ? (x-\/y) \+: (y-\/x))}
+
+Nos regresa la diferencia entre dos numeros en positivo. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{funcion_8c_ae3e896eab642ba206e5d1b4c1cf17dbc}\label{funcion_8c_ae3e896eab642ba206e5d1b4c1cf17dbc}} 
+\index{funcion.\+c@{funcion.\+c}!atrapado@{atrapado}}
+\index{atrapado@{atrapado}!funcion.\+c@{funcion.\+c}}
+\subsubsection{\texorpdfstring{atrapado()}{atrapado()}}
+{\footnotesize\ttfamily double atrapado (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Regresa 1 si el cuadrito se encuentra atrapado. 
+
+Revisa que un cuadro no se encuentre atrapado en el tablero, en otras palabras, revisa que exista un vecino diferente a un bloque ocupado. 
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ Es el tablero que queremos observar. \\
+\hline
+{\em x} & -\/ Es la posicion x del cuadrito. \\
+\hline
+{\em y} & -\/ Es la posicion y del cuadrito. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si se encuentra atrapado y 0 en caso contrario. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{funcion_8c_af8732a94417a559ad52765e7b2a4616a}\label{funcion_8c_af8732a94417a559ad52765e7b2a4616a}} 
+\index{funcion.\+c@{funcion.\+c}!cuenta\+\_\+atrapados@{cuenta\+\_\+atrapados}}
+\index{cuenta\+\_\+atrapados@{cuenta\+\_\+atrapados}!funcion.\+c@{funcion.\+c}}
+\subsubsection{\texorpdfstring{cuenta\+\_\+atrapados()}{cuenta\_atrapados()}}
+{\footnotesize\ttfamily double cuenta\+\_\+atrapados (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero }\end{DoxyParamCaption})}
+
+
+
+Revisa cuantos cuadrados atrapados hay en el tablero. 
+
+Cuenta la cantidad de cuadritos que poseen a todos sus vecinos ocupados de bloques pero el no esta ocupado. 
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ Es el tablero que queremos evaluar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+El numero de cuadritos de 1x1 atrapados. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{funcion_8c_a9e41ba1aa994bfbaa513483a77488ca4}\label{funcion_8c_a9e41ba1aa994bfbaa513483a77488ca4}} 
+\index{funcion.\+c@{funcion.\+c}!cuenta\+\_\+cubierta@{cuenta\+\_\+cubierta}}
+\index{cuenta\+\_\+cubierta@{cuenta\+\_\+cubierta}!funcion.\+c@{funcion.\+c}}
+\subsubsection{\texorpdfstring{cuenta\+\_\+cubierta()}{cuenta\_cubierta()}}
+{\footnotesize\ttfamily int cuenta\+\_\+cubierta (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Nos dice si existe un bloque ocupado encima. 
+
+Con el proposito de conocer si es posible acceder a bloque, revisamos todos los bloques a partir de . 
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ Es el tablero en que trabajamos. \\
+\hline
+{\em x} & -\/ Es la posicion del ancho del bloque. \\
+\hline
+{\em y} & -\/ Es la altura del bloque. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 si esta libre y 1 en caso contrario. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{funcion_8c_a8cdd897140cc91606e1243458f171162}\label{funcion_8c_a8cdd897140cc91606e1243458f171162}} 
+\index{funcion.\+c@{funcion.\+c}!cuenta\+\_\+cubiertas\+\_\+total@{cuenta\+\_\+cubiertas\+\_\+total}}
+\index{cuenta\+\_\+cubiertas\+\_\+total@{cuenta\+\_\+cubiertas\+\_\+total}!funcion.\+c@{funcion.\+c}}
+\subsubsection{\texorpdfstring{cuenta\+\_\+cubiertas\+\_\+total()}{cuenta\_cubiertas\_total()}}
+{\footnotesize\ttfamily double cuenta\+\_\+cubiertas\+\_\+total (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero }\end{DoxyParamCaption})}
+
+
+
+Cuenta los bloques tapados. 
+
+Cuenta cuantos bloques es imposible acceder ya que tienen algo encima. 
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ Es el tablero que observamos. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+El numero de bloques tapados o cubiertos. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{funcion_8c_ae196a0898ca8b515925335bf63104b95}\label{funcion_8c_ae196a0898ca8b515925335bf63104b95}} 
+\index{funcion.\+c@{funcion.\+c}!horizontalidad@{horizontalidad}}
+\index{horizontalidad@{horizontalidad}!funcion.\+c@{funcion.\+c}}
+\subsubsection{\texorpdfstring{horizontalidad()}{horizontalidad()}}
+{\footnotesize\ttfamily double horizontalidad (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero }\end{DoxyParamCaption})}
+
+
+
+Regresa un numero representativo para un dato del tablero. 
+
+Regresa un entero mayor igual a cero para representar todos los posibles caminos que puede tomar la linea skyline. 
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ Es el tablero a revisar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Regresa un numero mayor igual a cero. Entre mas horizontal este la linea superior menor sera el numero. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{funcion_8c_aaa0f70f44a64259a2d2f23c989eeef2c}\label{funcion_8c_aaa0f70f44a64259a2d2f23c989eeef2c}} 
+\index{funcion.\+c@{funcion.\+c}!probabilidad\+\_\+tetris@{probabilidad\+\_\+tetris}}
+\index{probabilidad\+\_\+tetris@{probabilidad\+\_\+tetris}!funcion.\+c@{funcion.\+c}}
+\subsubsection{\texorpdfstring{probabilidad\+\_\+tetris()}{probabilidad\_tetris()}}
+{\footnotesize\ttfamily double probabilidad\+\_\+tetris (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero,  }\item[{int}]{j }\end{DoxyParamCaption})}
+
+
+
+Un estimado de que pronto se haga un tetris. 
+
+Revisa cuantos cuadrados hay ocupados por bloques en este nivel. El nivel debe no tener cuadros atrapados y ser el mas alto posible. 
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ Es el tablero que queremos evaluar. \\
+\hline
+{\em j} & -\/ Es el nivel actual que estamos analizando. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un numero mayor igual a cero. Entre mas grande mejor. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{funcion_8c_a276d6675d173d2acb557598820602863}\label{funcion_8c_a276d6675d173d2acb557598820602863}} 
+\index{funcion.\+c@{funcion.\+c}!revisa\+\_\+horizontal@{revisa\+\_\+horizontal}}
+\index{revisa\+\_\+horizontal@{revisa\+\_\+horizontal}!funcion.\+c@{funcion.\+c}}
+\subsubsection{\texorpdfstring{revisa\+\_\+horizontal()}{revisa\_horizontal()}}
+{\footnotesize\ttfamily double revisa\+\_\+horizontal (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero,  }\item[{int}]{columna }\end{DoxyParamCaption})}
+
+
+
+Entrega un numero que representa la horizontalidad. 
+
+Revisa para cada columna cuanta distancia hay de entre el ultimo nivel horizontal hasta el primer bloque o tetrominoide que encuentre. 
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ Es el tablero a revisar. \\
+\hline
+{\em columna} & -\/ Es la columna particular a revisar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Regresa la diferencia con la columna y el techo. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{funcion_8c_ab73ef13042612e2ca0335b0bbd2e8caf}\label{funcion_8c_ab73ef13042612e2ca0335b0bbd2e8caf}} 
+\index{funcion.\+c@{funcion.\+c}!waggle\+\_\+dance@{waggle\+\_\+dance}}
+\index{waggle\+\_\+dance@{waggle\+\_\+dance}!funcion.\+c@{funcion.\+c}}
+\subsubsection{\texorpdfstring{waggle\+\_\+dance()}{waggle\_dance()}}
+{\footnotesize\ttfamily double waggle\+\_\+dance (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero }\end{DoxyParamCaption})}
+
+
+
+Waggle dance es es baile de las abejas. 
+
+Regresa un numero que entre mayor sea mejor. Utiliza las funciones con las siguientes condiciones\+: Le resta los  por cierta constante -\/50. Le resta los  por cierta constante -\/10 Le suma los numero de tetris realizado por constante 1000 Le suma la  que pronto se haga. 

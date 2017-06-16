@@ -1,0 +1,83 @@
+\hypertarget{abc_8h}{}\section{lib/abc.h File Reference}
+\label{abc_8h}\index{lib/abc.\+h@{lib/abc.\+h}}
+
+
+File containing the Artificial bee colony algorithm for a final project for the \char`\"{}\+Combinatorial Optimization 
+\+Heuristics\char`\"{} class.  
+
+
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}abejas.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}dump.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}funcion.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tablero.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{abc_8h_a3d57b1c3c7f7e0f397fff4b6ccc51ba5}{A\+BC} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$$\ast$tablero\+\_\+pointer, int empleadas, int distancia, bool lag)
+\begin{DoxyCompactList}\small\item\em 
+\begin{DoxyItemize}
+\item Artificial bee colony algorithm. 
+\end{DoxyItemize}\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File containing the Artificial bee colony algorithm for a final project for the \char`\"{}\+Combinatorial Optimization 
+\+Heuristics\char`\"{} class. 
+
+\begin{DoxyAuthor}{Author}
+Jose Ricardo Rodriguez Abreu 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+14 May 2017 En este archivo se define la unica funcion que dara vida al algoritmo de la colonia de abejas.
+\end{DoxyDate}
+El programa usa el estandar de documentacion que define el uso de doxygen.
+
+\begin{DoxySeeAlso}{See also}
+\href{http://www.stack.nl/~dimitri/doxygen/manual/index.html}{\tt http\+://www.\+stack.\+nl/$\sim$dimitri/doxygen/manual/index.\+html} 
+
+\href{https://github.com/ricardorodab/abejas-tetris}{\tt https\+://github.\+com/ricardorodab/abejas-\/tetris} 
+\end{DoxySeeAlso}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{abc_8h_a3d57b1c3c7f7e0f397fff4b6ccc51ba5}\label{abc_8h_a3d57b1c3c7f7e0f397fff4b6ccc51ba5}} 
+\index{abc.\+h@{abc.\+h}!A\+BC@{A\+BC}}
+\index{A\+BC@{A\+BC}!abc.\+h@{abc.\+h}}
+\subsubsection{\texorpdfstring{A\+B\+C()}{ABC()}}
+{\footnotesize\ttfamily void A\+BC (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$$\ast$}]{tablero\+\_\+pointer,  }\item[{int}]{empleadas,  }\item[{int}]{distancia,  }\item[{bool}]{lag }\end{DoxyParamCaption})}
+
+
+
+
+\begin{DoxyItemize}
+\item Artificial bee colony algorithm. 
+\end{DoxyItemize}
+
+Artificial bee colony algorithm o colonia de abejas. Esta funcion ejecuta un set del juego completo de tetris, teniendo como objetivo la optimizacion de ganar la mayoria de puntos evitando perder y mantendiendo el tablero lo mas limpio posible. 
+\begin{DoxyParams}{Parameters}
+{\em tablero\+\_\+pointer} & -\/ Es la posicion se encuentra el tablero. \\
+\hline
+{\em empleadas} & -\/ Es el numero de abejas que viviran. \\
+\hline
+{\em distancia} & -\/ Es la \char`\"{}distancia\char`\"{} en tiempo que recorreran. \\
+\hline
+{\em lag} & -\/ Para ver si lo ejecuta lento o no.\\
+\hline
+\end{DoxyParams}
+El algoritmo funciona de la siguiente manera\+:
+\begin{DoxyEnumerate}
+\item Inicializamos a nuestras abejas con nuestro tablero.
+\item Cada abeja tendra un clon de nuestro tablero inicial.
+\item Mientras que no hayamos perdido ejecutamos los 4,5,6,7,8 y 9.
+\item Cada abeja empleada sale a una  propuesta.
+\item Busca soluciones a tu clon de tablero y sus juegos.
+\item Regresa y hace el baile \char`\"{}waggle dance\char`\"{} para ver si ella es la \char`\"{}waggle bee\char`\"{} que guiara el tablero.
+\item Si su nectar (funcion) es mejor, avisa a la colmena.
+\item Al final la mejor \char`\"{}waggle bee\char`\"{} marca el camino y todas las abejas deben copiar su camino.
+\item Revisamos que no hayamos perdido en el siguiente turno.
+\item Terminamos. 
+\end{DoxyEnumerate}

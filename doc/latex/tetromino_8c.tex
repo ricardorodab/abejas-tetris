@@ -1,0 +1,121 @@
+\hypertarget{tetromino_8c}{}\section{src/tetromino.c File Reference}
+\label{tetromino_8c}\index{src/tetromino.\+c@{src/tetromino.\+c}}
+
+
+File containing the open\+GL G\+UI for a final project for the \char`\"{}\+Combinatorial Optimization Heuristics\char`\"{} class.  
+
+
+{\ttfamily \#include \char`\"{}tetromino.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$G\+L/glew.\+h$>$}\newline
+{\ttfamily \#include $<$G\+L/gl.\+h$>$}\newline
+{\ttfamily \#include $<$G\+L/freeglut.\+h$>$}\newline
+{\ttfamily \#include $<$G\+L/glut.\+h$>$}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{tetromino_8c_afe567d378136992a8e76a2ff00e0119a}{dibuja\+\_\+cuadrado} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza}, int dif\+\_\+x, int dif\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Dibuja un cuadrado en la interfaz. \end{DoxyCompactList}\item 
+void \hyperlink{tetromino_8c_aaa2309b859b3785d10b0643823fa1518}{dibuja\+\_\+left\+\_\+gun} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza}, int dif\+\_\+x, int dif\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Dibuja una pistola izquierda en la interfaz. \end{DoxyCompactList}\item 
+void \hyperlink{tetromino_8c_a4b4a6ec55118e8bb9fe0da99b8ee05e2}{dibuja\+\_\+right\+\_\+gun} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza}, int dif\+\_\+x, int dif\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Dibuja una pistola derecha en la interfaz. \end{DoxyCompactList}\item 
+void \hyperlink{tetromino_8c_a03866bdba217d9ab5685b66d4df91e78}{dibuja\+\_\+left\+\_\+snake} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza}, int dif\+\_\+x, int dif\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Dibuja una serpiente izquierda en la interfaz. \end{DoxyCompactList}\item 
+void \hyperlink{tetromino_8c_a75bcf8e2884a5efa270d41c838ca3a12}{dibuja\+\_\+right\+\_\+snake} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza}, int dif\+\_\+x, int dif\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Dibuja una serpiente derecha en la interfaz. \end{DoxyCompactList}\item 
+void \hyperlink{tetromino_8c_a2a6fb4810efb17b6d0d588c8f1fd11fe}{dibuja\+\_\+i} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza}, int dif\+\_\+x, int dif\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Dibuja una \char`\"{}\+I\char`\"{} en la interfaz. \end{DoxyCompactList}\item 
+void \hyperlink{tetromino_8c_a1e0e219961b9db7a031f43f5ae13b323}{dibuja\+\_\+t} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza}, int dif\+\_\+x, int dif\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Dibuja una \char`\"{}\+T\char`\"{} en la interfaz. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File containing the open\+GL G\+UI for a final project for the \char`\"{}\+Combinatorial Optimization Heuristics\char`\"{} class. 
+
+\begin{DoxyAuthor}{Author}
+Jose Ricardo Rodriguez Abreu 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+14 May 2017 Este archivo implementa las funciones que necesitan para observar las fichas del juego de tetris que la heuristica de abejas juega.
+\end{DoxyDate}
+El programa usa el estandar de documentacion que define el uso de doxygen.
+
+\begin{DoxySeeAlso}{See also}
+\href{http://www.stack.nl/~dimitri/doxygen/manual/index.html}{\tt http\+://www.\+stack.\+nl/$\sim$dimitri/doxygen/manual/index.\+html} 
+
+\href{https://github.com/ricardorodab/abejas-tetris}{\tt https\+://github.\+com/ricardorodab/abejas-\/tetris} 
+\end{DoxySeeAlso}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{tetromino_8c_afe567d378136992a8e76a2ff00e0119a}\label{tetromino_8c_afe567d378136992a8e76a2ff00e0119a}} 
+\index{tetromino.\+c@{tetromino.\+c}!dibuja\+\_\+cuadrado@{dibuja\+\_\+cuadrado}}
+\index{dibuja\+\_\+cuadrado@{dibuja\+\_\+cuadrado}!tetromino.\+c@{tetromino.\+c}}
+\subsubsection{\texorpdfstring{dibuja\+\_\+cuadrado()}{dibuja\_cuadrado()}}
+{\footnotesize\ttfamily void dibuja\+\_\+cuadrado (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza,  }\item[{int}]{dif\+\_\+x,  }\item[{int}]{dif\+\_\+y }\end{DoxyParamCaption})}
+
+
+
+Dibuja un cuadrado en la interfaz. 
+
+Para cada caso de las figura (grados, posicion de cada bloque, existencia de este mismo y si se encuentra activo o no) se pinta una posicion (x,y) en el mapa. \mbox{\Hypertarget{tetromino_8c_a2a6fb4810efb17b6d0d588c8f1fd11fe}\label{tetromino_8c_a2a6fb4810efb17b6d0d588c8f1fd11fe}} 
+\index{tetromino.\+c@{tetromino.\+c}!dibuja\+\_\+i@{dibuja\+\_\+i}}
+\index{dibuja\+\_\+i@{dibuja\+\_\+i}!tetromino.\+c@{tetromino.\+c}}
+\subsubsection{\texorpdfstring{dibuja\+\_\+i()}{dibuja\_i()}}
+{\footnotesize\ttfamily void dibuja\+\_\+i (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza,  }\item[{int}]{dif\+\_\+x,  }\item[{int}]{dif\+\_\+y }\end{DoxyParamCaption})}
+
+
+
+Dibuja una \char`\"{}\+I\char`\"{} en la interfaz. 
+
+Para cada caso de las figura (grados, posicion de cada bloque, existencia de este mismo y si se encuentra activo o no) se pinta una posicion (x,y) en el mapa. \mbox{\Hypertarget{tetromino_8c_aaa2309b859b3785d10b0643823fa1518}\label{tetromino_8c_aaa2309b859b3785d10b0643823fa1518}} 
+\index{tetromino.\+c@{tetromino.\+c}!dibuja\+\_\+left\+\_\+gun@{dibuja\+\_\+left\+\_\+gun}}
+\index{dibuja\+\_\+left\+\_\+gun@{dibuja\+\_\+left\+\_\+gun}!tetromino.\+c@{tetromino.\+c}}
+\subsubsection{\texorpdfstring{dibuja\+\_\+left\+\_\+gun()}{dibuja\_left\_gun()}}
+{\footnotesize\ttfamily void dibuja\+\_\+left\+\_\+gun (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza,  }\item[{int}]{dif\+\_\+x,  }\item[{int}]{dif\+\_\+y }\end{DoxyParamCaption})}
+
+
+
+Dibuja una pistola izquierda en la interfaz. 
+
+Para cada caso de las figura (grados, posicion de cada bloque, existencia de este mismo y si se encuentra activo o no) se pinta una posicion (x,y) en el mapa. \mbox{\Hypertarget{tetromino_8c_a03866bdba217d9ab5685b66d4df91e78}\label{tetromino_8c_a03866bdba217d9ab5685b66d4df91e78}} 
+\index{tetromino.\+c@{tetromino.\+c}!dibuja\+\_\+left\+\_\+snake@{dibuja\+\_\+left\+\_\+snake}}
+\index{dibuja\+\_\+left\+\_\+snake@{dibuja\+\_\+left\+\_\+snake}!tetromino.\+c@{tetromino.\+c}}
+\subsubsection{\texorpdfstring{dibuja\+\_\+left\+\_\+snake()}{dibuja\_left\_snake()}}
+{\footnotesize\ttfamily void dibuja\+\_\+left\+\_\+snake (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza,  }\item[{int}]{dif\+\_\+x,  }\item[{int}]{dif\+\_\+y }\end{DoxyParamCaption})}
+
+
+
+Dibuja una serpiente izquierda en la interfaz. 
+
+Para cada caso de las figura (grados, posicion de cada bloque, existencia de este mismo y si se encuentra activo o no) se pinta una posicion (x,y) en el mapa. \mbox{\Hypertarget{tetromino_8c_a4b4a6ec55118e8bb9fe0da99b8ee05e2}\label{tetromino_8c_a4b4a6ec55118e8bb9fe0da99b8ee05e2}} 
+\index{tetromino.\+c@{tetromino.\+c}!dibuja\+\_\+right\+\_\+gun@{dibuja\+\_\+right\+\_\+gun}}
+\index{dibuja\+\_\+right\+\_\+gun@{dibuja\+\_\+right\+\_\+gun}!tetromino.\+c@{tetromino.\+c}}
+\subsubsection{\texorpdfstring{dibuja\+\_\+right\+\_\+gun()}{dibuja\_right\_gun()}}
+{\footnotesize\ttfamily void dibuja\+\_\+right\+\_\+gun (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza,  }\item[{int}]{dif\+\_\+x,  }\item[{int}]{dif\+\_\+y }\end{DoxyParamCaption})}
+
+
+
+Dibuja una pistola derecha en la interfaz. 
+
+Para cada caso de las figura (grados, posicion de cada bloque, existencia de este mismo y si se encuentra activo o no) se pinta una posicion (x,y) en el mapa. \mbox{\Hypertarget{tetromino_8c_a75bcf8e2884a5efa270d41c838ca3a12}\label{tetromino_8c_a75bcf8e2884a5efa270d41c838ca3a12}} 
+\index{tetromino.\+c@{tetromino.\+c}!dibuja\+\_\+right\+\_\+snake@{dibuja\+\_\+right\+\_\+snake}}
+\index{dibuja\+\_\+right\+\_\+snake@{dibuja\+\_\+right\+\_\+snake}!tetromino.\+c@{tetromino.\+c}}
+\subsubsection{\texorpdfstring{dibuja\+\_\+right\+\_\+snake()}{dibuja\_right\_snake()}}
+{\footnotesize\ttfamily void dibuja\+\_\+right\+\_\+snake (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza,  }\item[{int}]{dif\+\_\+x,  }\item[{int}]{dif\+\_\+y }\end{DoxyParamCaption})}
+
+
+
+Dibuja una serpiente derecha en la interfaz. 
+
+Para cada caso de las figura (grados, posicion de cada bloque, existencia de este mismo y si se encuentra activo o no) se pinta una posicion (x,y) en el mapa. \mbox{\Hypertarget{tetromino_8c_a1e0e219961b9db7a031f43f5ae13b323}\label{tetromino_8c_a1e0e219961b9db7a031f43f5ae13b323}} 
+\index{tetromino.\+c@{tetromino.\+c}!dibuja\+\_\+t@{dibuja\+\_\+t}}
+\index{dibuja\+\_\+t@{dibuja\+\_\+t}!tetromino.\+c@{tetromino.\+c}}
+\subsubsection{\texorpdfstring{dibuja\+\_\+t()}{dibuja\_t()}}
+{\footnotesize\ttfamily void dibuja\+\_\+t (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza,  }\item[{int}]{dif\+\_\+x,  }\item[{int}]{dif\+\_\+y }\end{DoxyParamCaption})}
+
+
+
+Dibuja una \char`\"{}\+T\char`\"{} en la interfaz. 
+
+Para cada caso de las figura (grados, posicion de cada bloque, existencia de este mismo y si se encuentra activo o no) se pinta una posicion (x,y) en el mapa. 

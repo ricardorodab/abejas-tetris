@@ -1,0 +1,254 @@
+\hypertarget{interfaz-grafica_8h}{}\section{src/interfaz-\/grafica.h File Reference}
+\label{interfaz-grafica_8h}\index{src/interfaz-\/grafica.\+h@{src/interfaz-\/grafica.\+h}}
+
+
+File containing the open\+GL G\+UI for a final project for the \char`\"{}\+Combinatorial Optimization Heuristics\char`\"{} class.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$G\+L/glew.\+h$>$}\newline
+{\ttfamily \#include $<$G\+L/gl.\+h$>$}\newline
+{\ttfamily \#include $<$G\+L/freeglut.\+h$>$}\newline
+{\ttfamily \#include $<$G\+L/glut.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}lock.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tablero.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tetromino.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{interfaz-grafica_8h_a2db9d4ba828a33f3d95cb840b12aa58d}{my\+Init} (char $\ast$progname)
+\begin{DoxyCompactList}\small\item\em Inicializa la interfaz grafica. \end{DoxyCompactList}\item 
+void \hyperlink{interfaz-grafica_8h_aa50584771327fb90979684f968197158}{print} (double x, double y, double z, char $\ast$string)
+\begin{DoxyCompactList}\small\item\em Pinta texto cuando sea necesario. \end{DoxyCompactList}\item 
+void \hyperlink{interfaz-grafica_8h_a8fd3d45fd23b25badf76731599983fc7}{my\+Reshape} (int width, int height)
+\begin{DoxyCompactList}\small\item\em Vuelve a pintar el espacio visual. \end{DoxyCompactList}\item 
+void \hyperlink{interfaz-grafica_8h_ac158bfc1571fb83c31d7035c8497a5a3}{my\+Display} (void)
+\begin{DoxyCompactList}\small\item\em Dibuja el espacio de busqueda. \end{DoxyCompactList}\item 
+void \hyperlink{interfaz-grafica_8h_a723d4409337490d7963ce39bc9a6ec61}{my\+Keyboard} (unsigned char key, int x, int y)
+\begin{DoxyCompactList}\small\item\em Le da comportamiento a la entrada. \end{DoxyCompactList}\item 
+void \hyperlink{interfaz-grafica_8h_a343542b85d5e7ca60f02b99f0231f526}{end\+\_\+visual\+\_\+main} (void)
+\begin{DoxyCompactList}\small\item\em Termina la ventana. \end{DoxyCompactList}\item 
+void \hyperlink{interfaz-grafica_8h_a75a94e8110ac0ab4efe7bb0a9a1f0772}{visual\+\_\+main} (int argc, char $\ast$$\ast$argv, \hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$$\ast$\hyperlink{structtablero}{tablero}, double zoom\+\_\+p)
+\begin{DoxyCompactList}\small\item\em Metodo visual principal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$ \hyperlink{interfaz-grafica_8h_ad41c796ca99fa8aceaba2191d381080b}{tablero\+\_\+principal}
+\begin{DoxyCompactList}\small\item\em Tablero principal. \end{DoxyCompactList}\item 
+\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$$\ast$ \hyperlink{interfaz-grafica_8h_a49c95bc75b43151a9098a1d2485b7f25}{tablero\+\_\+principal\+\_\+pointer}
+\begin{DoxyCompactList}\small\item\em El apuntador al . \end{DoxyCompactList}\item 
+double \hyperlink{interfaz-grafica_8h_a6f7bd0b1489ba2a87aa2ecab43bd5b15}{ancho}
+\begin{DoxyCompactList}\small\item\em Ancho. \end{DoxyCompactList}\item 
+double \hyperlink{interfaz-grafica_8h_a5fe56f9822f9be12ca5e80ddf9c8cb00}{alto}
+\begin{DoxyCompactList}\small\item\em Alto. \end{DoxyCompactList}\item 
+double \hyperlink{interfaz-grafica_8h_a9c59ed4a7b6bdc2b1207e39fabf379a4}{zoom}
+\begin{DoxyCompactList}\small\item\em Zoom. \end{DoxyCompactList}\item 
+bool \hyperlink{interfaz-grafica_8h_a217b738e11033b8ebfb179f8c7e72e1f}{game\+\_\+over}
+\begin{DoxyCompactList}\small\item\em Estatus del juego. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File containing the open\+GL G\+UI for a final project for the \char`\"{}\+Combinatorial Optimization Heuristics\char`\"{} class. 
+
+\begin{DoxyAuthor}{Author}
+Jose Ricardo Rodriguez Abreu 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+14 May 2017 Este archivo define las funciones que necesitamos para observar las el juego de tetris que la heuristica de abejas juegs.
+\end{DoxyDate}
+El programa usa el estandar de documentacion que define el uso de doxygen.
+
+\begin{DoxySeeAlso}{See also}
+\href{http://www.stack.nl/~dimitri/doxygen/manual/index.html}{\tt http\+://www.\+stack.\+nl/$\sim$dimitri/doxygen/manual/index.\+html} 
+
+\href{https://github.com/ricardorodab/abejas-tetris}{\tt https\+://github.\+com/ricardorodab/abejas-\/tetris} 
+\end{DoxySeeAlso}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{interfaz-grafica_8h_a343542b85d5e7ca60f02b99f0231f526}\label{interfaz-grafica_8h_a343542b85d5e7ca60f02b99f0231f526}} 
+\index{interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}!end\+\_\+visual\+\_\+main@{end\+\_\+visual\+\_\+main}}
+\index{end\+\_\+visual\+\_\+main@{end\+\_\+visual\+\_\+main}!interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}}
+\subsubsection{\texorpdfstring{end\+\_\+visual\+\_\+main()}{end\_visual\_main()}}
+{\footnotesize\ttfamily void end\+\_\+visual\+\_\+main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Termina la ventana. 
+
+Metodo para terminar la ejecucion del programa visual.
+
+Modifica la variable de . \mbox{\Hypertarget{interfaz-grafica_8h_ac158bfc1571fb83c31d7035c8497a5a3}\label{interfaz-grafica_8h_ac158bfc1571fb83c31d7035c8497a5a3}} 
+\index{interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}!my\+Display@{my\+Display}}
+\index{my\+Display@{my\+Display}!interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}}
+\subsubsection{\texorpdfstring{my\+Display()}{myDisplay()}}
+{\footnotesize\ttfamily void my\+Display (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Dibuja el espacio de busqueda. 
+
+Dibuja y muestra la interfaz grafica. \mbox{\Hypertarget{interfaz-grafica_8h_a2db9d4ba828a33f3d95cb840b12aa58d}\label{interfaz-grafica_8h_a2db9d4ba828a33f3d95cb840b12aa58d}} 
+\index{interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}!my\+Init@{my\+Init}}
+\index{my\+Init@{my\+Init}!interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}}
+\subsubsection{\texorpdfstring{my\+Init()}{myInit()}}
+{\footnotesize\ttfamily void my\+Init (\begin{DoxyParamCaption}\item[{char $\ast$}]{progname }\end{DoxyParamCaption})}
+
+
+
+Inicializa la interfaz grafica. 
+
+Inicia los valores que debe tener un G\+UI en Open\+GL y glut. 
+\begin{DoxyParams}{Parameters}
+{\em progname} & -\/ Es el nombre del programa a ejecutar.\\
+\hline
+\end{DoxyParams}
+Inicializa el modo de diplay mientras que le da tamanio a la ventana y su posicion en la pantalla. \mbox{\Hypertarget{interfaz-grafica_8h_a723d4409337490d7963ce39bc9a6ec61}\label{interfaz-grafica_8h_a723d4409337490d7963ce39bc9a6ec61}} 
+\index{interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}!my\+Keyboard@{my\+Keyboard}}
+\index{my\+Keyboard@{my\+Keyboard}!interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}}
+\subsubsection{\texorpdfstring{my\+Keyboard()}{myKeyboard()}}
+{\footnotesize\ttfamily void my\+Keyboard (\begin{DoxyParamCaption}\item[{unsigned char}]{key,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Le da comportamiento a la entrada. 
+
+Cada que se presiona una tecla ocurre un evento. 
+\begin{DoxyParams}{Parameters}
+{\em key} & -\/ Es la tecla que es presionada. \\
+\hline
+{\em x} & -\/ Es la tecla x que corresponde a la posicion del evento. \\
+\hline
+{\em y} & -\/ Es la tecla y que corresponde a la posicion del evento.\\
+\hline
+\end{DoxyParams}
+Revisamos los casos Exit -\/ salimos. Espacio -\/ Dejar caer la pieza. \mbox{\Hypertarget{interfaz-grafica_8h_a8fd3d45fd23b25badf76731599983fc7}\label{interfaz-grafica_8h_a8fd3d45fd23b25badf76731599983fc7}} 
+\index{interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}!my\+Reshape@{my\+Reshape}}
+\index{my\+Reshape@{my\+Reshape}!interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}}
+\subsubsection{\texorpdfstring{my\+Reshape()}{myReshape()}}
+{\footnotesize\ttfamily void my\+Reshape (\begin{DoxyParamCaption}\item[{int}]{width,  }\item[{int}]{height }\end{DoxyParamCaption})}
+
+
+
+Vuelve a pintar el espacio visual. 
+
+Cada que se ejecute una actualizacion del espacio se debe llamar. 
+\begin{DoxyParams}{Parameters}
+{\em width} & -\/ Es el ancho del espacio visual. \\
+\hline
+{\em height} & -\/ Es el largo del espacio visual. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{interfaz-grafica_8h_aa50584771327fb90979684f968197158}\label{interfaz-grafica_8h_aa50584771327fb90979684f968197158}} 
+\index{interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}!print@{print}}
+\index{print@{print}!interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}}
+\subsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily void print (\begin{DoxyParamCaption}\item[{double}]{x,  }\item[{double}]{y,  }\item[{double}]{z,  }\item[{char $\ast$}]{string }\end{DoxyParamCaption})}
+
+
+
+Pinta texto cuando sea necesario. 
+
+Dado coordenadas, pintar el texto en el espacio. 
+\begin{DoxyParams}{Parameters}
+{\em x} & -\/ Es la coordenada x del espacio de Open\+GL. \\
+\hline
+{\em y} & -\/ Es la coordenada y del espacio de Open\+GL. \\
+\hline
+{\em z} & -\/ Es la coordenada z del espacio de Open\+GL. \\
+\hline
+{\em string} & -\/ Es la cadena que queremos mostrar.\\
+\hline
+\end{DoxyParams}
+Codigo de para imprimir texto\+: \begin{DoxySeeAlso}{See also}
+\href{https://www.opengl.org/discussion_boards/showthread.php/169189-Printing-Text}{\tt https\+://www.\+opengl.\+org/discussion\+\_\+boards/showthread.\+php/169189-\/\+Printing-\/\+Text} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{interfaz-grafica_8h_a75a94e8110ac0ab4efe7bb0a9a1f0772}\label{interfaz-grafica_8h_a75a94e8110ac0ab4efe7bb0a9a1f0772}} 
+\index{interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}!visual\+\_\+main@{visual\+\_\+main}}
+\index{visual\+\_\+main@{visual\+\_\+main}!interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}}
+\subsubsection{\texorpdfstring{visual\+\_\+main()}{visual\_main()}}
+{\footnotesize\ttfamily void visual\+\_\+main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv,  }\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$$\ast$}]{tablero,  }\item[{double}]{zoom\+\_\+p }\end{DoxyParamCaption})}
+
+
+
+Metodo visual principal. 
+
+Este metodo se encarga de decirle al thread visual que debe hacer. 
+\begin{DoxyParams}{Parameters}
+{\em argc} & -\/ Es el numero de parametros que el usuario paso. \\
+\hline
+{\em argv} & -\/ Son los parametros del usuario. \\
+\hline
+{\em tablero} & -\/ Es el apuntador a la ubicacion del tablero. \\
+\hline
+{\em zoom\+\_\+p} & -\/ Es el zoom que el usuario desea ver su tablero.\\
+\hline
+\end{DoxyParams}
+Instanciamos a las variablesp principales como  o  para despues entrar en un ciclo potencialmente infinito para seguir dibujando el tablero. 
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{interfaz-grafica_8h_a5fe56f9822f9be12ca5e80ddf9c8cb00}\label{interfaz-grafica_8h_a5fe56f9822f9be12ca5e80ddf9c8cb00}} 
+\index{interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}!alto@{alto}}
+\index{alto@{alto}!interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}}
+\subsubsection{\texorpdfstring{alto}{alto}}
+{\footnotesize\ttfamily double alto}
+
+
+
+Alto. 
+
+Es la altura que nuestra cuadricula de Open\+GL tendra. \mbox{\Hypertarget{interfaz-grafica_8h_a6f7bd0b1489ba2a87aa2ecab43bd5b15}\label{interfaz-grafica_8h_a6f7bd0b1489ba2a87aa2ecab43bd5b15}} 
+\index{interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}!ancho@{ancho}}
+\index{ancho@{ancho}!interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}}
+\subsubsection{\texorpdfstring{ancho}{ancho}}
+{\footnotesize\ttfamily double ancho}
+
+
+
+Ancho. 
+
+Es el ancho que nuestra cuadricula de Open\+GL tendra. \mbox{\Hypertarget{interfaz-grafica_8h_a217b738e11033b8ebfb179f8c7e72e1f}\label{interfaz-grafica_8h_a217b738e11033b8ebfb179f8c7e72e1f}} 
+\index{interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}!game\+\_\+over@{game\+\_\+over}}
+\index{game\+\_\+over@{game\+\_\+over}!interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}}
+\subsubsection{\texorpdfstring{game\+\_\+over}{game\_over}}
+{\footnotesize\ttfamily bool game\+\_\+over}
+
+
+
+Estatus del juego. 
+
+Es el estado actual del algoritmo y tablero. \mbox{\Hypertarget{interfaz-grafica_8h_ad41c796ca99fa8aceaba2191d381080b}\label{interfaz-grafica_8h_ad41c796ca99fa8aceaba2191d381080b}} 
+\index{interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}!tablero\+\_\+principal@{tablero\+\_\+principal}}
+\index{tablero\+\_\+principal@{tablero\+\_\+principal}!interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}}
+\subsubsection{\texorpdfstring{tablero\+\_\+principal}{tablero\_principal}}
+{\footnotesize\ttfamily \hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$ tablero\+\_\+principal}
+
+
+
+Tablero principal. 
+
+Contiene la informacion principal del tablero que debemos ver. \mbox{\Hypertarget{interfaz-grafica_8h_a49c95bc75b43151a9098a1d2485b7f25}\label{interfaz-grafica_8h_a49c95bc75b43151a9098a1d2485b7f25}} 
+\index{interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}!tablero\+\_\+principal\+\_\+pointer@{tablero\+\_\+principal\+\_\+pointer}}
+\index{tablero\+\_\+principal\+\_\+pointer@{tablero\+\_\+principal\+\_\+pointer}!interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}}
+\subsubsection{\texorpdfstring{tablero\+\_\+principal\+\_\+pointer}{tablero\_principal\_pointer}}
+{\footnotesize\ttfamily \hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$$\ast$ tablero\+\_\+principal\+\_\+pointer}
+
+
+
+El apuntador al . 
+
+Como la informacion del tablero cambia, necesitamos una variable para conocer la ubicacion del nuevo tablero. \mbox{\Hypertarget{interfaz-grafica_8h_a9c59ed4a7b6bdc2b1207e39fabf379a4}\label{interfaz-grafica_8h_a9c59ed4a7b6bdc2b1207e39fabf379a4}} 
+\index{interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}!zoom@{zoom}}
+\index{zoom@{zoom}!interfaz-\/grafica.\+h@{interfaz-\/grafica.\+h}}
+\subsubsection{\texorpdfstring{zoom}{zoom}}
+{\footnotesize\ttfamily double zoom}
+
+
+
+Zoom. 
+
+Es el tamanio con el que cada cuadro de la cuadricula tendra. 

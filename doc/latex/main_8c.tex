@@ -1,0 +1,276 @@
+\hypertarget{main_8c}{}\section{src/main.c File Reference}
+\label{main_8c}\index{src/main.\+c@{src/main.\+c}}
+
+
+File containing the final project for the \char`\"{}\+Combinatorial Optimization Heuristics\char`\"{} class.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$glib.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}tablero.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}funcion.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}abc.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}interfaz-\/grafica.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}lock.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structparam}{param}
+\begin{DoxyCompactList}\small\item\em Parametros de threads. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{main_8c_aecf2e1f677876da4397423d9d2bd08e2}{L\+I\+N\+EA}~\+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structparam}{param} \hyperlink{main_8c_ae255c12ad5b348e5b746dad237e2e208}{P\+A\+R\+AM}
+\begin{DoxyCompactList}\small\item\em Parametros de threads. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{main_8c_a047689e14258df7b4b3c8bb48bb714f6}{main\+\_\+imprime\+\_\+error} (char $\ast$msg, int linea)
+\begin{DoxyCompactList}\small\item\em Una funcion simple para imprimir que hubo un error y en que linea. \end{DoxyCompactList}\item 
+int \hyperlink{main_8c_ab9bc0b271d2c1d3cd6ed596344dfe2c5}{get\+\_\+tamanio\+\_\+semillero} (char $\ast$ubicacion\+\_\+semillas)
+\begin{DoxyCompactList}\small\item\em Regresa el numero de semillas disponible. \end{DoxyCompactList}\item 
+int \hyperlink{main_8c_a57d68402cb360550df82125dc538ad2f}{get\+\_\+semilla} (char $\ast$ubicacion\+\_\+semilla, int num\+\_\+semilla)
+\begin{DoxyCompactList}\small\item\em Buscador de un numero del archivo donde viene las semillas. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{main_8c_acab90ac1b4ceee754a5f073b16589710}{basura} (void $\ast$thread\+\_\+param)
+\begin{DoxyCompactList}\small\item\em Ejecuta un pequenio recolector de basura. \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{main_8c_ab53507b4ce241ea09af697f7031fd4a4}{heuristica\+\_\+abejas} (void $\ast$thread\+\_\+param)
+\begin{DoxyCompactList}\small\item\em Ejecuta el solucionador del tetris. \end{DoxyCompactList}\item 
+int \hyperlink{main_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Metodo principal del programa. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8c_aec1dee03c858e0d3910c40c209890ab0}{size\+\_\+x}
+\begin{DoxyCompactList}\small\item\em Anchura. \end{DoxyCompactList}\item 
+int \hyperlink{main_8c_a22aeb82e7a98517be5f90c810e423af0}{size\+\_\+y}
+\begin{DoxyCompactList}\small\item\em Altura. \end{DoxyCompactList}\item 
+int \hyperlink{main_8c_a59902cbbaff65b4bb85a63546ab4e52f}{E\+R\+R\+OR} = 0
+\begin{DoxyCompactList}\small\item\em Variable de marcardo de error. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8c_a8359e978616d4f0a8602444e27213569}\label{main_8c_a8359e978616d4f0a8602444e27213569}} 
+char $\ast$ {\bfseries U\+B\+I\+C\+A\+C\+I\+O\+N\+\_\+\+S\+E\+M\+I\+L\+LA}
+\item 
+int \hyperlink{main_8c_a5826a1c0c61b86f7b27095d589226d7e}{S\+E\+M\+I\+L\+LA}
+\begin{DoxyCompactList}\small\item\em Es la semilla que el usuario desea usar. \end{DoxyCompactList}\item 
+int \hyperlink{main_8c_aff407438dc594feaab056a2a5060864f}{S\+E\+M\+I\+L\+L\+A\+\_\+\+I\+T\+E\+RA}
+\begin{DoxyCompactList}\small\item\em Es el numero de busquedas de semillas. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File containing the final project for the \char`\"{}\+Combinatorial Optimization Heuristics\char`\"{} class. 
+
+\begin{DoxyAuthor}{Author}
+Jose Ricardo Rodriguez Abreu 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+14 May 2017 Este programa utiliza una heuristica conocida por \char`\"{}\+Abejas\char`\"{} sobre el famoso problema tetris. Donde buscamos la manera de acomodar fichas de tetris dado un tablero.
+\end{DoxyDate}
+El programa usa el estandar de documentacion que define el uso de doxygen.
+
+\begin{DoxySeeAlso}{See also}
+\href{http://www.stack.nl/~dimitri/doxygen/manual/index.html}{\tt http\+://www.\+stack.\+nl/$\sim$dimitri/doxygen/manual/index.\+html} 
+
+\href{https://github.com/ricardorodab/abejas-tetris}{\tt https\+://github.\+com/ricardorodab/abejas-\/tetris} 
+\end{DoxySeeAlso}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{main_8c_aecf2e1f677876da4397423d9d2bd08e2}\label{main_8c_aecf2e1f677876da4397423d9d2bd08e2}} 
+\index{main.\+c@{main.\+c}!L\+I\+N\+EA@{L\+I\+N\+EA}}
+\index{L\+I\+N\+EA@{L\+I\+N\+EA}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{L\+I\+N\+EA}{LINEA}}
+{\footnotesize\ttfamily \#define L\+I\+N\+EA~\+\_\+\+\_\+\+L\+I\+N\+E\+\_\+\+\_\+}
+
+Re-\/definimos la constante de linea que viene por default en C. 
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{main_8c_ae255c12ad5b348e5b746dad237e2e208}\label{main_8c_ae255c12ad5b348e5b746dad237e2e208}} 
+\index{main.\+c@{main.\+c}!P\+A\+R\+AM@{P\+A\+R\+AM}}
+\index{P\+A\+R\+AM@{P\+A\+R\+AM}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{P\+A\+R\+AM}{PARAM}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structparam}{param}  \hyperlink{main_8c_ae255c12ad5b348e5b746dad237e2e208}{P\+A\+R\+AM}}
+
+
+
+Parametros de threads. 
+
+Usamos esta estructura para mantener unidos los datos que contiene el programa y necesitamos para correr la heuristica. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{main_8c_acab90ac1b4ceee754a5f073b16589710}\label{main_8c_acab90ac1b4ceee754a5f073b16589710}} 
+\index{main.\+c@{main.\+c}!basura@{basura}}
+\index{basura@{basura}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{basura()}{basura()}}
+{\footnotesize\ttfamily void$\ast$ basura (\begin{DoxyParamCaption}\item[{void $\ast$}]{thread\+\_\+param }\end{DoxyParamCaption})}
+
+
+
+Ejecuta un pequenio recolector de basura. 
+
+Para quitarle carga a el algoritmo, ejecutamos un hilo que se encargue de liberar memoria. 
+\begin{DoxyParams}{Parameters}
+{\em thread\+\_\+param} & -\/ Son los argumentos como apuntador $<$\+T$>$. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{main_8c_a57d68402cb360550df82125dc538ad2f}\label{main_8c_a57d68402cb360550df82125dc538ad2f}} 
+\index{main.\+c@{main.\+c}!get\+\_\+semilla@{get\+\_\+semilla}}
+\index{get\+\_\+semilla@{get\+\_\+semilla}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{get\+\_\+semilla()}{get\_semilla()}}
+{\footnotesize\ttfamily int get\+\_\+semilla (\begin{DoxyParamCaption}\item[{char $\ast$}]{ubicacion\+\_\+semilla,  }\item[{int}]{num\+\_\+semilla }\end{DoxyParamCaption})}
+
+
+
+Buscador de un numero del archivo donde viene las semillas. 
+
+Como nuestro programa funciona con alta probabilidad y queremos que los resultados sean repetibles, usamos un semillero para reproducir el procedimiento de experimentacion. 
+\begin{DoxyParams}{Parameters}
+{\em ubicacion\+\_\+semilla} & -\/\+Es el nombre del archivo donde viene la semilla. \\
+\hline
+{\em num\+\_\+semilla} & -\/\+Es la posicion de nuestra semilla en el archivo. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+La semilla final que se usara. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{main_8c_ab9bc0b271d2c1d3cd6ed596344dfe2c5}\label{main_8c_ab9bc0b271d2c1d3cd6ed596344dfe2c5}} 
+\index{main.\+c@{main.\+c}!get\+\_\+tamanio\+\_\+semillero@{get\+\_\+tamanio\+\_\+semillero}}
+\index{get\+\_\+tamanio\+\_\+semillero@{get\+\_\+tamanio\+\_\+semillero}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{get\+\_\+tamanio\+\_\+semillero()}{get\_tamanio\_semillero()}}
+{\footnotesize\ttfamily int get\+\_\+tamanio\+\_\+semillero (\begin{DoxyParamCaption}\item[{char $\ast$}]{ubicacion\+\_\+semillas }\end{DoxyParamCaption})}
+
+
+
+Regresa el numero de semillas disponible. 
+
+Busca dentro del semillero el numero de \textquotesingle{},\textquotesingle{} que encuentre lo que se traduce a un numero x de semillas. 
+\begin{DoxyParams}{Parameters}
+{\em num\+\_\+semilla} & -\/\+Es la posicion de nuestra semilla en el archivo. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+El numero de semillas que podemos tomar del semillero. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{main_8c_ab53507b4ce241ea09af697f7031fd4a4}\label{main_8c_ab53507b4ce241ea09af697f7031fd4a4}} 
+\index{main.\+c@{main.\+c}!heuristica\+\_\+abejas@{heuristica\+\_\+abejas}}
+\index{heuristica\+\_\+abejas@{heuristica\+\_\+abejas}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{heuristica\+\_\+abejas()}{heuristica\_abejas()}}
+{\footnotesize\ttfamily void$\ast$ heuristica\+\_\+abejas (\begin{DoxyParamCaption}\item[{void $\ast$}]{thread\+\_\+param }\end{DoxyParamCaption})}
+
+
+
+Ejecuta el solucionador del tetris. 
+
+Ejecuta al thread que se va a encargar correr las abejas. 
+\begin{DoxyParams}{Parameters}
+{\em thread\+\_\+param} & -\/ Son los argumentos como apuntador $<$\+T$>$. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{main_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{main_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{main.\+c@{main.\+c}!main@{main}}
+\index{main@{main}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Metodo principal del programa. 
+
+Tratamos de encontrar soluciones factibles al problema tetris.. 
+\begin{DoxyParams}{Parameters}
+{\em argc} & -\/ Es el numero de parametros. En este caso se espera argc $>$ 2. \\
+\hline
+{\em argv} & -\/ Son los parametros N\+U\+LL. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un entero 0 si todo sale bien 1 en caso contrario.  Revisar parametros y si es mayor a uno e igual a R\+A\+N\+D\+OM inicializar semilla con time(\+N\+U\+L\+L). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{main_8c_a047689e14258df7b4b3c8bb48bb714f6}\label{main_8c_a047689e14258df7b4b3c8bb48bb714f6}} 
+\index{main.\+c@{main.\+c}!main\+\_\+imprime\+\_\+error@{main\+\_\+imprime\+\_\+error}}
+\index{main\+\_\+imprime\+\_\+error@{main\+\_\+imprime\+\_\+error}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{main\+\_\+imprime\+\_\+error()}{main\_imprime\_error()}}
+{\footnotesize\ttfamily void main\+\_\+imprime\+\_\+error (\begin{DoxyParamCaption}\item[{char $\ast$}]{msg,  }\item[{int}]{linea }\end{DoxyParamCaption})}
+
+
+
+Una funcion simple para imprimir que hubo un error y en que linea. 
+
+Si llega a ocurrir se debe anexar un mensaje de error que el usuario pueda ver para facilitar la facil busqueda de este.
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & -\/\+Es la cadena que se le mostrara al usuario. \\
+\hline
+{\em linea} & -\/\+Es la linea del codigo donde ocurrio este error. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{main_8c_a59902cbbaff65b4bb85a63546ab4e52f}{E\+R\+R\+OR} 
+\end{DoxySeeAlso}
+\begin{DoxyNote}{Note}
+Esta funcion termina la ejecucion del programa.  Termina el programa. 
+\end{DoxyNote}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{main_8c_a59902cbbaff65b4bb85a63546ab4e52f}\label{main_8c_a59902cbbaff65b4bb85a63546ab4e52f}} 
+\index{main.\+c@{main.\+c}!E\+R\+R\+OR@{E\+R\+R\+OR}}
+\index{E\+R\+R\+OR@{E\+R\+R\+OR}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{E\+R\+R\+OR}{ERROR}}
+{\footnotesize\ttfamily int E\+R\+R\+OR = 0}
+
+
+
+Variable de marcardo de error. 
+
+Si en algun momento de la ejecucion esta variable es != 0 terminamos. \mbox{\Hypertarget{main_8c_a5826a1c0c61b86f7b27095d589226d7e}\label{main_8c_a5826a1c0c61b86f7b27095d589226d7e}} 
+\index{main.\+c@{main.\+c}!S\+E\+M\+I\+L\+LA@{S\+E\+M\+I\+L\+LA}}
+\index{S\+E\+M\+I\+L\+LA@{S\+E\+M\+I\+L\+LA}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{S\+E\+M\+I\+L\+LA}{SEMILLA}}
+{\footnotesize\ttfamily int S\+E\+M\+I\+L\+LA}
+
+
+
+Es la semilla que el usuario desea usar. 
+
+Esto es para inicializar la funcion srand que le dice cual es el origen de la funcion pseudoaleatorio. \mbox{\Hypertarget{main_8c_aff407438dc594feaab056a2a5060864f}\label{main_8c_aff407438dc594feaab056a2a5060864f}} 
+\index{main.\+c@{main.\+c}!S\+E\+M\+I\+L\+L\+A\+\_\+\+I\+T\+E\+RA@{S\+E\+M\+I\+L\+L\+A\+\_\+\+I\+T\+E\+RA}}
+\index{S\+E\+M\+I\+L\+L\+A\+\_\+\+I\+T\+E\+RA@{S\+E\+M\+I\+L\+L\+A\+\_\+\+I\+T\+E\+RA}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{S\+E\+M\+I\+L\+L\+A\+\_\+\+I\+T\+E\+RA}{SEMILLA\_ITERA}}
+{\footnotesize\ttfamily int S\+E\+M\+I\+L\+L\+A\+\_\+\+I\+T\+E\+RA}
+
+
+
+Es el numero de busquedas de semillas. 
+
+Si deseamos buscar una buena semilla definimos la cota de iteraciones que deseamos hacer. \mbox{\Hypertarget{main_8c_aec1dee03c858e0d3910c40c209890ab0}\label{main_8c_aec1dee03c858e0d3910c40c209890ab0}} 
+\index{main.\+c@{main.\+c}!size\+\_\+x@{size\+\_\+x}}
+\index{size\+\_\+x@{size\+\_\+x}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{size\+\_\+x}{size\_x}}
+{\footnotesize\ttfamily int size\+\_\+x}
+
+
+
+Anchura. 
+
+Variable global para marcar el tamanio de la anchura del pg. \mbox{\Hypertarget{main_8c_a22aeb82e7a98517be5f90c810e423af0}\label{main_8c_a22aeb82e7a98517be5f90c810e423af0}} 
+\index{main.\+c@{main.\+c}!size\+\_\+y@{size\+\_\+y}}
+\index{size\+\_\+y@{size\+\_\+y}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{size\+\_\+y}{size\_y}}
+{\footnotesize\ttfamily int size\+\_\+y}
+
+
+
+Altura. 
+
+Variable global para marcar el tamanio de la altura del pg. 

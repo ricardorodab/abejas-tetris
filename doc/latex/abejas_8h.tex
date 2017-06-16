@@ -1,0 +1,155 @@
+\hypertarget{abejas_8h}{}\section{lib/abejas.h File Reference}
+\label{abejas_8h}\index{lib/abejas.\+h@{lib/abejas.\+h}}
+
+
+File containing the Artificial bee definitions for a final project for the \char`\"{}\+Combinatorial Optimization 
+\+Heuristics\char`\"{} class.  
+
+
+{\ttfamily \#include \char`\"{}tablero.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}dump.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structabeja}{abeja}
+\begin{DoxyCompactList}\small\item\em La estructura abeja. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structabeja}{abeja} \hyperlink{abejas_8h_a815cce09307f5cb2ddafc765490fba2b}{A\+B\+E\+JA}
+\begin{DoxyCompactList}\small\item\em La estructura abeja. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{abejas_8h_a815cce09307f5cb2ddafc765490fba2b}{A\+B\+E\+JA} $\ast$ \hyperlink{abejas_8h_a87286fec58c78f3df70f3b3281182ead}{init\+\_\+abeja} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero})
+\begin{DoxyCompactList}\small\item\em Inicia una nueva abeja. \end{DoxyCompactList}\item 
+void \hyperlink{abejas_8h_acfcc7ebe564576f3f9f6f54f1cd84676}{free\+\_\+abeja} (\hyperlink{abejas_8h_a815cce09307f5cb2ddafc765490fba2b}{A\+B\+E\+JA} $\ast$\hyperlink{structabeja}{abeja})
+\begin{DoxyCompactList}\small\item\em Libera de memoria una abeja. \end{DoxyCompactList}\item 
+void \hyperlink{abejas_8h_a76c47ec0a8aa91ae58f437551120f7f1}{busca\+\_\+fuente\+\_\+alimento} (\hyperlink{abejas_8h_a815cce09307f5cb2ddafc765490fba2b}{A\+B\+E\+JA} $\ast$\hyperlink{structabeja}{abeja})
+\begin{DoxyCompactList}\small\item\em Busca nuevos origenes de \char`\"{}polen\char`\"{}. \end{DoxyCompactList}\item 
+double \hyperlink{abejas_8h_afcc2b022099b68b4dc81ca9e6c0ade56}{do\+\_\+waggle\+\_\+dance} (\hyperlink{abejas_8h_a815cce09307f5cb2ddafc765490fba2b}{A\+B\+E\+JA} $\ast$\hyperlink{structabeja}{abeja})
+\begin{DoxyCompactList}\small\item\em Realiza el \char`\"{}waggle dance\char`\"{}. \end{DoxyCompactList}\item 
+void \hyperlink{abejas_8h_a9bd1b3c2df349416e84ea35002a22675}{set\+\_\+tablero\+\_\+abeja} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero}, \hyperlink{abejas_8h_a815cce09307f5cb2ddafc765490fba2b}{A\+B\+E\+JA} $\ast$\hyperlink{structabeja}{abeja})
+\begin{DoxyCompactList}\small\item\em Cambia el origen de la solucion de la abeja. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File containing the Artificial bee definitions for a final project for the \char`\"{}\+Combinatorial Optimization 
+\+Heuristics\char`\"{} class. 
+
+\begin{DoxyAuthor}{Author}
+Jose Ricardo Rodriguez Abreu 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+14 May 2017 En este archivo encabezado, definimos las estructuras y las funciones que tendran nuestras abjeas artificiales para la ejecucion del A\+BC.
+\end{DoxyDate}
+El programa usa el estandar de documentacion que define el uso de doxygen.
+
+\begin{DoxySeeAlso}{See also}
+\href{http://www.stack.nl/~dimitri/doxygen/manual/index.html}{\tt http\+://www.\+stack.\+nl/$\sim$dimitri/doxygen/manual/index.\+html} 
+
+\href{https://github.com/ricardorodab/abejas-tetris}{\tt https\+://github.\+com/ricardorodab/abejas-\/tetris} 
+\end{DoxySeeAlso}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{abejas_8h_a815cce09307f5cb2ddafc765490fba2b}\label{abejas_8h_a815cce09307f5cb2ddafc765490fba2b}} 
+\index{abejas.\+h@{abejas.\+h}!A\+B\+E\+JA@{A\+B\+E\+JA}}
+\index{A\+B\+E\+JA@{A\+B\+E\+JA}!abejas.\+h@{abejas.\+h}}
+\subsubsection{\texorpdfstring{A\+B\+E\+JA}{ABEJA}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structabeja}{abeja}  \hyperlink{abejas_8h_a815cce09307f5cb2ddafc765490fba2b}{A\+B\+E\+JA}}
+
+
+
+La estructura abeja. 
+
+Su funcion es mantener una ruta (tablero) y una cantidad a la que llamaremos \char`\"{}polen\char`\"{} que marca que tan buena es su ruta. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{abejas_8h_a76c47ec0a8aa91ae58f437551120f7f1}\label{abejas_8h_a76c47ec0a8aa91ae58f437551120f7f1}} 
+\index{abejas.\+h@{abejas.\+h}!busca\+\_\+fuente\+\_\+alimento@{busca\+\_\+fuente\+\_\+alimento}}
+\index{busca\+\_\+fuente\+\_\+alimento@{busca\+\_\+fuente\+\_\+alimento}!abejas.\+h@{abejas.\+h}}
+\subsubsection{\texorpdfstring{busca\+\_\+fuente\+\_\+alimento()}{busca\_fuente\_alimento()}}
+{\footnotesize\ttfamily void busca\+\_\+fuente\+\_\+alimento (\begin{DoxyParamCaption}\item[{\hyperlink{abejas_8h_a815cce09307f5cb2ddafc765490fba2b}{A\+B\+E\+JA} $\ast$}]{abeja }\end{DoxyParamCaption})}
+
+
+
+Busca nuevos origenes de \char`\"{}polen\char`\"{}. 
+
+Juega una partida dentro del tablero solucion que contiene, lo que puede hacerse la analogia de que \char`\"{}viaja por polen\char`\"{}. 
+\begin{DoxyParams}{Parameters}
+{\em abeja} & -\/ La abeja que queremos \char`\"{}viaje\char`\"{}.\\
+\hline
+\end{DoxyParams}
+La busqueda de caminos a polem es en realidad encontrar una solucion al tablero actual de la abeja. \begin{DoxySeeAlso}{See also}
+\hyperlink{tablero_8h_a2dedf36dd2bab3c66d2bcf8b4171c1ec}{busca\+\_\+solucion\+\_\+actual} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{abejas_8h_afcc2b022099b68b4dc81ca9e6c0ade56}\label{abejas_8h_afcc2b022099b68b4dc81ca9e6c0ade56}} 
+\index{abejas.\+h@{abejas.\+h}!do\+\_\+waggle\+\_\+dance@{do\+\_\+waggle\+\_\+dance}}
+\index{do\+\_\+waggle\+\_\+dance@{do\+\_\+waggle\+\_\+dance}!abejas.\+h@{abejas.\+h}}
+\subsubsection{\texorpdfstring{do\+\_\+waggle\+\_\+dance()}{do\_waggle\_dance()}}
+{\footnotesize\ttfamily double do\+\_\+waggle\+\_\+dance (\begin{DoxyParamCaption}\item[{\hyperlink{abejas_8h_a815cce09307f5cb2ddafc765490fba2b}{A\+B\+E\+JA} $\ast$}]{abeja }\end{DoxyParamCaption})}
+
+
+
+Realiza el \char`\"{}waggle dance\char`\"{}. 
+
+Esta funcion hace que la abeja realice el waggle dance para si misma, lo que implica que modifique su funcion de costo. 
+\begin{DoxyParams}{Parameters}
+{\em abeja} & -\/ Es la abeja que va a \char`\"{}bailar\char`\"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+El valor de la funcion que contiene el destino.
+\end{DoxyReturn}
+Manda a llamar a  dentro de el archivo  para ajustar sus datos. \mbox{\Hypertarget{abejas_8h_acfcc7ebe564576f3f9f6f54f1cd84676}\label{abejas_8h_acfcc7ebe564576f3f9f6f54f1cd84676}} 
+\index{abejas.\+h@{abejas.\+h}!free\+\_\+abeja@{free\+\_\+abeja}}
+\index{free\+\_\+abeja@{free\+\_\+abeja}!abejas.\+h@{abejas.\+h}}
+\subsubsection{\texorpdfstring{free\+\_\+abeja()}{free\_abeja()}}
+{\footnotesize\ttfamily void free\+\_\+abeja (\begin{DoxyParamCaption}\item[{\hyperlink{abejas_8h_a815cce09307f5cb2ddafc765490fba2b}{A\+B\+E\+JA} $\ast$}]{abeja }\end{DoxyParamCaption})}
+
+
+
+Libera de memoria una abeja. 
+
+Realiza la liberacion de memoria de la estructura abeja. 
+\begin{DoxyParams}{Parameters}
+{\em abeja} & -\/ La abeja a liberar.\\
+\hline
+\end{DoxyParams}
+Liberamos primero al tablero que contiene a la abeja. despues ya liberamos a la abeja de la memoria. \mbox{\Hypertarget{abejas_8h_a87286fec58c78f3df70f3b3281182ead}\label{abejas_8h_a87286fec58c78f3df70f3b3281182ead}} 
+\index{abejas.\+h@{abejas.\+h}!init\+\_\+abeja@{init\+\_\+abeja}}
+\index{init\+\_\+abeja@{init\+\_\+abeja}!abejas.\+h@{abejas.\+h}}
+\subsubsection{\texorpdfstring{init\+\_\+abeja()}{init\_abeja()}}
+{\footnotesize\ttfamily \hyperlink{abejas_8h_a815cce09307f5cb2ddafc765490fba2b}{A\+B\+E\+JA}$\ast$ init\+\_\+abeja (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero }\end{DoxyParamCaption})}
+
+
+
+Inicia una nueva abeja. 
+
+Inicializa los valores dentro de una estructura abeja. 
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ Es la ruta de la cual la abeja parte. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un apuntador a una estructura inicializada abeja.
+\end{DoxyReturn}
+Creamos en memoria una abeja nueva y iniciamos tu tablero y la funcion con el valor del . \mbox{\Hypertarget{abejas_8h_a9bd1b3c2df349416e84ea35002a22675}\label{abejas_8h_a9bd1b3c2df349416e84ea35002a22675}} 
+\index{abejas.\+h@{abejas.\+h}!set\+\_\+tablero\+\_\+abeja@{set\+\_\+tablero\+\_\+abeja}}
+\index{set\+\_\+tablero\+\_\+abeja@{set\+\_\+tablero\+\_\+abeja}!abejas.\+h@{abejas.\+h}}
+\subsubsection{\texorpdfstring{set\+\_\+tablero\+\_\+abeja()}{set\_tablero\_abeja()}}
+{\footnotesize\ttfamily void set\+\_\+tablero\+\_\+abeja (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero,  }\item[{\hyperlink{abejas_8h_a815cce09307f5cb2ddafc765490fba2b}{A\+B\+E\+JA} $\ast$}]{abeja }\end{DoxyParamCaption})}
+
+
+
+Cambia el origen de la solucion de la abeja. 
+
+Se le cambia el apuntador del tablero que la abeja tomara para partir a realizar una nueva ruta a una nueva solucion. 
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ Es el nuevo tablero de la abeja. \\
+\hline
+{\em abeja} & -\/ Es la abeja que deseamos modificar.\\
+\hline
+\end{DoxyParams}
+Al cambiar el  de la , tambien hay que realizar la nueva modificacion a la  de la abeja. 

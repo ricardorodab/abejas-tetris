@@ -1,0 +1,182 @@
+\hypertarget{interfaz-grafica_8c}{}\section{src/interfaz-\/grafica.c File Reference}
+\label{interfaz-grafica_8c}\index{src/interfaz-\/grafica.\+c@{src/interfaz-\/grafica.\+c}}
+
+
+File containing the body for open\+GL G\+UI functions for a final project for the \char`\"{}\+Combinatorial Optimization Heuristics\char`\"{} class.  
+
+
+{\ttfamily \#include \char`\"{}interfaz-\/grafica.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{interfaz-grafica_8c_a2db9d4ba828a33f3d95cb840b12aa58d}{my\+Init} (char $\ast$progname)
+\begin{DoxyCompactList}\small\item\em Inicializa la interfaz grafica. \end{DoxyCompactList}\item 
+void \hyperlink{interfaz-grafica_8c_aa50584771327fb90979684f968197158}{print} (double x, double y, double z, char $\ast$string)
+\begin{DoxyCompactList}\small\item\em Pinta texto cuando sea necesario. \end{DoxyCompactList}\item 
+void \hyperlink{interfaz-grafica_8c_aa120e3999a9d7ad9473f08f4b49e79c6}{dibuja\+\_\+cuadro} (double h, double w)
+\item 
+void \hyperlink{interfaz-grafica_8c_a5640fa261ed805f504d0bbffea24a1b7}{dibuja\+\_\+pieza} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza})
+\begin{DoxyCompactList}\small\item\em Funcion que dibuja cada pieza de tetris. \end{DoxyCompactList}\item 
+void \hyperlink{interfaz-grafica_8c_a5ba0624ca1f1a8027f803d6fe70f6838}{dibuja\+\_\+figuras} (void)
+\begin{DoxyCompactList}\small\item\em Funcion que dibuja todas las piezas de tetris. \end{DoxyCompactList}\item 
+void \hyperlink{interfaz-grafica_8c_a6819355374dd277347abd7c4235f0cd7}{reshape} (int width, int height)
+\item 
+void \hyperlink{interfaz-grafica_8c_a4ea013001a5fb47853d0fab8f8de35cd}{display} (void)
+\item 
+void \hyperlink{interfaz-grafica_8c_a0374c9d1b952aa94d93bb6cfd7ba0352}{deja\+\_\+caer} (void)
+\begin{DoxyCompactList}\small\item\em Dejamos caer a la pieza. \end{DoxyCompactList}\item 
+void \hyperlink{interfaz-grafica_8c_a723d4409337490d7963ce39bc9a6ec61}{my\+Keyboard} (unsigned char key, int x, int y)
+\begin{DoxyCompactList}\small\item\em Le da comportamiento a la entrada. \end{DoxyCompactList}\item 
+void \hyperlink{interfaz-grafica_8c_af3f54b3a1f56ec2bbffb19f34137f55e}{special\+Key\+Input} (int key, int x, int y)
+\begin{DoxyCompactList}\small\item\em Le da comportamiento a la entrada (flechas). \end{DoxyCompactList}\item 
+void \hyperlink{interfaz-grafica_8c_a343542b85d5e7ca60f02b99f0231f526}{end\+\_\+visual\+\_\+main} (void)
+\begin{DoxyCompactList}\small\item\em Termina la ventana. \end{DoxyCompactList}\item 
+void \hyperlink{interfaz-grafica_8c_a75a94e8110ac0ab4efe7bb0a9a1f0772}{visual\+\_\+main} (int argc, char $\ast$$\ast$argv, \hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$$\ast$\hyperlink{structtablero}{tablero}, double zoom\+\_\+p)
+\begin{DoxyCompactList}\small\item\em Metodo visual principal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File containing the body for open\+GL G\+UI functions for a final project for the \char`\"{}\+Combinatorial Optimization Heuristics\char`\"{} class. 
+
+\begin{DoxyAuthor}{Author}
+Jose Ricardo Rodriguez Abreu 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+14 May 2017 Este archivo implementa las funciones que necesitamos para observar las el juego de tetris que la heuristica de abejas juegs.
+\end{DoxyDate}
+El programa usa el estandar de documentacion que define el uso de doxygen.
+
+\begin{DoxySeeAlso}{See also}
+\href{http://www.stack.nl/~dimitri/doxygen/manual/index.html}{\tt http\+://www.\+stack.\+nl/$\sim$dimitri/doxygen/manual/index.\+html} 
+
+\href{https://github.com/ricardorodab/abejas-tetris}{\tt https\+://github.\+com/ricardorodab/abejas-\/tetris} 
+\end{DoxySeeAlso}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{interfaz-grafica_8c_a0374c9d1b952aa94d93bb6cfd7ba0352}\label{interfaz-grafica_8c_a0374c9d1b952aa94d93bb6cfd7ba0352}} 
+\index{interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}!deja\+\_\+caer@{deja\+\_\+caer}}
+\index{deja\+\_\+caer@{deja\+\_\+caer}!interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}}
+\subsubsection{\texorpdfstring{deja\+\_\+caer()}{deja\_caer()}}
+{\footnotesize\ttfamily void deja\+\_\+caer (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Dejamos caer a la pieza. 
+
+Para acelerar el juego dejamos caer la pieza donde queramos. \mbox{\Hypertarget{interfaz-grafica_8c_aa120e3999a9d7ad9473f08f4b49e79c6}\label{interfaz-grafica_8c_aa120e3999a9d7ad9473f08f4b49e79c6}} 
+\index{interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}!dibuja\+\_\+cuadro@{dibuja\+\_\+cuadro}}
+\index{dibuja\+\_\+cuadro@{dibuja\+\_\+cuadro}!interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}}
+\subsubsection{\texorpdfstring{dibuja\+\_\+cuadro()}{dibuja\_cuadro()}}
+{\footnotesize\ttfamily void dibuja\+\_\+cuadro (\begin{DoxyParamCaption}\item[{double}]{h,  }\item[{double}]{w }\end{DoxyParamCaption})}
+
+Esta funcion horrible dibuja la cuadricula como Turing nos da a entender. \mbox{\Hypertarget{interfaz-grafica_8c_a5ba0624ca1f1a8027f803d6fe70f6838}\label{interfaz-grafica_8c_a5ba0624ca1f1a8027f803d6fe70f6838}} 
+\index{interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}!dibuja\+\_\+figuras@{dibuja\+\_\+figuras}}
+\index{dibuja\+\_\+figuras@{dibuja\+\_\+figuras}!interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}}
+\subsubsection{\texorpdfstring{dibuja\+\_\+figuras()}{dibuja\_figuras()}}
+{\footnotesize\ttfamily void dibuja\+\_\+figuras (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Funcion que dibuja todas las piezas de tetris. 
+
+Dado el tablero actual global, dibujara todas las piezas que el tablero posee. \mbox{\Hypertarget{interfaz-grafica_8c_a5640fa261ed805f504d0bbffea24a1b7}\label{interfaz-grafica_8c_a5640fa261ed805f504d0bbffea24a1b7}} 
+\index{interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}!dibuja\+\_\+pieza@{dibuja\+\_\+pieza}}
+\index{dibuja\+\_\+pieza@{dibuja\+\_\+pieza}!interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}}
+\subsubsection{\texorpdfstring{dibuja\+\_\+pieza()}{dibuja\_pieza()}}
+{\footnotesize\ttfamily void dibuja\+\_\+pieza (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza }\end{DoxyParamCaption})}
+
+
+
+Funcion que dibuja cada pieza de tetris. 
+
+Depediendo del tipo de cada pieza de tetris dibuja cada pieza con sus coordenadas en el tablero actual global. 
+\begin{DoxyParams}{Parameters}
+{\em pieza} & -\/ Es la pieza actual que se desea dibujar. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{interfaz-grafica_8c_a4ea013001a5fb47853d0fab8f8de35cd}\label{interfaz-grafica_8c_a4ea013001a5fb47853d0fab8f8de35cd}} 
+\index{interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}!display@{display}}
+\index{display@{display}!interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}}
+\subsubsection{\texorpdfstring{display()}{display()}}
+{\footnotesize\ttfamily void display (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Limpiamos el buffer y cargamos la matriz identidad. Modificamos el zoom de la vista de la cuadricula. Dibujamos las figuras y cambiamos los buffers antes de repintar. \mbox{\Hypertarget{interfaz-grafica_8c_a343542b85d5e7ca60f02b99f0231f526}\label{interfaz-grafica_8c_a343542b85d5e7ca60f02b99f0231f526}} 
+\index{interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}!end\+\_\+visual\+\_\+main@{end\+\_\+visual\+\_\+main}}
+\index{end\+\_\+visual\+\_\+main@{end\+\_\+visual\+\_\+main}!interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}}
+\subsubsection{\texorpdfstring{end\+\_\+visual\+\_\+main()}{end\_visual\_main()}}
+{\footnotesize\ttfamily void end\+\_\+visual\+\_\+main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Termina la ventana. 
+
+Modifica la variable de . \mbox{\Hypertarget{interfaz-grafica_8c_a2db9d4ba828a33f3d95cb840b12aa58d}\label{interfaz-grafica_8c_a2db9d4ba828a33f3d95cb840b12aa58d}} 
+\index{interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}!my\+Init@{my\+Init}}
+\index{my\+Init@{my\+Init}!interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}}
+\subsubsection{\texorpdfstring{my\+Init()}{myInit()}}
+{\footnotesize\ttfamily void my\+Init (\begin{DoxyParamCaption}\item[{char $\ast$}]{progname }\end{DoxyParamCaption})}
+
+
+
+Inicializa la interfaz grafica. 
+
+Inicializa el modo de diplay mientras que le da tamanio a la ventana y su posicion en la pantalla. \mbox{\Hypertarget{interfaz-grafica_8c_a723d4409337490d7963ce39bc9a6ec61}\label{interfaz-grafica_8c_a723d4409337490d7963ce39bc9a6ec61}} 
+\index{interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}!my\+Keyboard@{my\+Keyboard}}
+\index{my\+Keyboard@{my\+Keyboard}!interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}}
+\subsubsection{\texorpdfstring{my\+Keyboard()}{myKeyboard()}}
+{\footnotesize\ttfamily void my\+Keyboard (\begin{DoxyParamCaption}\item[{unsigned char}]{key,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Le da comportamiento a la entrada. 
+
+Revisamos los casos Exit -\/ salimos. Espacio -\/ Dejar caer la pieza. \mbox{\Hypertarget{interfaz-grafica_8c_aa50584771327fb90979684f968197158}\label{interfaz-grafica_8c_aa50584771327fb90979684f968197158}} 
+\index{interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}!print@{print}}
+\index{print@{print}!interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}}
+\subsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily void print (\begin{DoxyParamCaption}\item[{double}]{x,  }\item[{double}]{y,  }\item[{double}]{z,  }\item[{char $\ast$}]{string }\end{DoxyParamCaption})}
+
+
+
+Pinta texto cuando sea necesario. 
+
+Codigo de para imprimir texto\+: \begin{DoxySeeAlso}{See also}
+\href{https://www.opengl.org/discussion_boards/showthread.php/169189-Printing-Text}{\tt https\+://www.\+opengl.\+org/discussion\+\_\+boards/showthread.\+php/169189-\/\+Printing-\/\+Text} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{interfaz-grafica_8c_a6819355374dd277347abd7c4235f0cd7}\label{interfaz-grafica_8c_a6819355374dd277347abd7c4235f0cd7}} 
+\index{interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}!reshape@{reshape}}
+\index{reshape@{reshape}!interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}}
+\subsubsection{\texorpdfstring{reshape()}{reshape()}}
+{\footnotesize\ttfamily void reshape (\begin{DoxyParamCaption}\item[{int}]{width,  }\item[{int}]{height }\end{DoxyParamCaption})}
+
+Solo debe cambiar la perspectiva dependiendo del tamanio. \mbox{\Hypertarget{interfaz-grafica_8c_af3f54b3a1f56ec2bbffb19f34137f55e}\label{interfaz-grafica_8c_af3f54b3a1f56ec2bbffb19f34137f55e}} 
+\index{interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}!special\+Key\+Input@{special\+Key\+Input}}
+\index{special\+Key\+Input@{special\+Key\+Input}!interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}}
+\subsubsection{\texorpdfstring{special\+Key\+Input()}{specialKeyInput()}}
+{\footnotesize\ttfamily void special\+Key\+Input (\begin{DoxyParamCaption}\item[{int}]{key,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+Le da comportamiento a la entrada (flechas). 
+
+Cada que se presiona una flecha ocurre un evento. 
+\begin{DoxyParams}{Parameters}
+{\em key} & -\/ Es la flecha que es presionada. \\
+\hline
+{\em x} & -\/ Es la tecla x que corresponde a la posicion del evento. \\
+\hline
+{\em y} & -\/ Es la tecla y que corresponde a la posicion del evento. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{interfaz-grafica_8c_a75a94e8110ac0ab4efe7bb0a9a1f0772}\label{interfaz-grafica_8c_a75a94e8110ac0ab4efe7bb0a9a1f0772}} 
+\index{interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}!visual\+\_\+main@{visual\+\_\+main}}
+\index{visual\+\_\+main@{visual\+\_\+main}!interfaz-\/grafica.\+c@{interfaz-\/grafica.\+c}}
+\subsubsection{\texorpdfstring{visual\+\_\+main()}{visual\_main()}}
+{\footnotesize\ttfamily void visual\+\_\+main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv,  }\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$$\ast$}]{tablero,  }\item[{double}]{zoom\+\_\+p }\end{DoxyParamCaption})}
+
+
+
+Metodo visual principal. 
+
+Instanciamos a las variablesp principales como  o  para despues entrar en un ciclo potencialmente infinito para seguir dibujando el tablero. 

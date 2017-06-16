@@ -1,0 +1,323 @@
+\hypertarget{tablero_8h}{}\section{lib/tablero.h File Reference}
+\label{tablero_8h}\index{lib/tablero.\+h@{lib/tablero.\+h}}
+
+
+File containing the struct and funtions to simulate Tetris board for the \char`\"{}\+Combinatorial Optimization Heuristics\char`\"{} class.  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}lock.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}pieza.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structtablero}{tablero}
+\begin{DoxyCompactList}\small\item\em La estructura T\+A\+B\+L\+E\+RO contiene datos basicos de el. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structtablero}{tablero} \hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO}
+\begin{DoxyCompactList}\small\item\em La estructura T\+A\+B\+L\+E\+RO contiene datos basicos de el. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$ \hyperlink{tablero_8h_a2b0faa1dabb13c42023cf847ca88fd9b}{init\+\_\+tablero} (int \hyperlink{interfaz-grafica_8h_a5fe56f9822f9be12ca5e80ddf9c8cb00}{alto}, int \hyperlink{interfaz-grafica_8h_a6f7bd0b1489ba2a87aa2ecab43bd5b15}{ancho})
+\item 
+\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$ \hyperlink{tablero_8h_a9ef7881d24b8d1694b5e4199a9b974ca}{copy\+\_\+tablero} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero})
+\item 
+void \hyperlink{tablero_8h_a0947efa4dabc3361f1bd20bddb013408}{free\+\_\+tablero} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero})
+\item 
+void \hyperlink{tablero_8h_a171858c9f1c7ceb0b83bc94f7b1002f1}{crear\+\_\+pieza\+\_\+tablero} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero})
+\item 
+void \hyperlink{tablero_8h_a1612818ec6ad3cb2a62a87d45912fc99}{agrega\+\_\+pieza\+\_\+tablero} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero}, \hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza})
+\item 
+void \hyperlink{tablero_8h_a89f6e07f5b992204cc42d94a904debee}{borra\+\_\+pieza\+\_\+tablero} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero}, \hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza})
+\item 
+bool \hyperlink{tablero_8h_a7c8e14a0a93171ee21d62d615aadc6b2}{mover\+\_\+pieza\+\_\+tablero} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero}, \hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza})
+\item 
+bool \hyperlink{tablero_8h_a221d1b3fef1a20b2267b226172b88a28}{rotar\+\_\+pieza\+\_\+tablero} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero}, \hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza})
+\item 
+bool \hyperlink{tablero_8h_adad383bc4c90eaa7491e8d2915b47a04}{mover\+\_\+izquierda\+\_\+tablero} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero}, \hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza})
+\item 
+bool \hyperlink{tablero_8h_afd0aa2fd8aea38d450eb1c3a64f676b2}{mover\+\_\+derecha\+\_\+tablero} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero}, \hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza})
+\item 
+void \hyperlink{tablero_8h_a2dedf36dd2bab3c66d2bcf8b4171c1ec}{busca\+\_\+solucion\+\_\+actual} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero})
+\item 
+void \hyperlink{tablero_8h_a96c4efe8838b46a994b7f1a801f13565}{tetris\+\_\+nivel} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero}, int l)
+\item 
+void \hyperlink{tablero_8h_ad9d0494eddb2078166b87cd9108828a6}{tetris} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero})
+\item 
+void \hyperlink{tablero_8h_a270dc70c34f9ce968fdfa10cb62fe6fc}{set\+\_\+pieza\+\_\+nueva} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero}, \hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza})
+\item 
+\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$ \hyperlink{tablero_8h_a4158a2e4d08f4b95a97e97e41acb87e0}{get\+\_\+pieza} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero}, int x, int y)
+\item 
+void \hyperlink{tablero_8h_a86b7c21d0601a17abdfc09ec298f93c3}{siguiente\+\_\+turno\+\_\+tablero} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero})
+\item 
+void \hyperlink{tablero_8h_a93f8d55127e76cf9780e5fbeecc87eb1}{imprime\+\_\+tablero} (\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$\hyperlink{structtablero}{tablero})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File containing the struct and funtions to simulate Tetris board for the \char`\"{}\+Combinatorial Optimization Heuristics\char`\"{} class. 
+
+\begin{DoxyAuthor}{Author}
+Jose Ricardo Rodriguez Abreu 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+14 May 2017 En este archivo definimos la estructura tablero y junto a la firma de funciones que se hacen uso de las estructuras y manejo de las estructuras definidas como T\+A\+B\+L\+E\+RO, su manejo en memoria y la de los atributos que constituye su estructura.
+\end{DoxyDate}
+El programa usa el estandar de documentacion que define el uso de doxygen.
+
+\begin{DoxySeeAlso}{See also}
+\href{http://www.stack.nl/~dimitri/doxygen/manual/index.html}{\tt http\+://www.\+stack.\+nl/$\sim$dimitri/doxygen/manual/index.\+html} 
+
+\href{https://github.com/ricardorodab/AceptacionUmbral}{\tt https\+://github.\+com/ricardorodab/\+Aceptacion\+Umbral} 
+\end{DoxySeeAlso}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}\label{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}} 
+\index{tablero.\+h@{tablero.\+h}!T\+A\+B\+L\+E\+RO@{T\+A\+B\+L\+E\+RO}}
+\index{T\+A\+B\+L\+E\+RO@{T\+A\+B\+L\+E\+RO}!tablero.\+h@{tablero.\+h}}
+\subsubsection{\texorpdfstring{T\+A\+B\+L\+E\+RO}{TABLERO}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structtablero}{tablero}  \hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO}}
+
+
+
+La estructura T\+A\+B\+L\+E\+RO contiene datos basicos de el. 
+
+Usamos esta estructura para mantener unidos los datos que contiene un juego como piezas, actual. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{tablero_8h_a1612818ec6ad3cb2a62a87d45912fc99}\label{tablero_8h_a1612818ec6ad3cb2a62a87d45912fc99}} 
+\index{tablero.\+h@{tablero.\+h}!agrega\+\_\+pieza\+\_\+tablero@{agrega\+\_\+pieza\+\_\+tablero}}
+\index{agrega\+\_\+pieza\+\_\+tablero@{agrega\+\_\+pieza\+\_\+tablero}!tablero.\+h@{tablero.\+h}}
+\subsubsection{\texorpdfstring{agrega\+\_\+pieza\+\_\+tablero()}{agrega\_pieza\_tablero()}}
+{\footnotesize\ttfamily void agrega\+\_\+pieza\+\_\+tablero (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero,  }\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ \\
+\hline
+{\em pieza} & -\/ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{tablero_8h_a89f6e07f5b992204cc42d94a904debee}\label{tablero_8h_a89f6e07f5b992204cc42d94a904debee}} 
+\index{tablero.\+h@{tablero.\+h}!borra\+\_\+pieza\+\_\+tablero@{borra\+\_\+pieza\+\_\+tablero}}
+\index{borra\+\_\+pieza\+\_\+tablero@{borra\+\_\+pieza\+\_\+tablero}!tablero.\+h@{tablero.\+h}}
+\subsubsection{\texorpdfstring{borra\+\_\+pieza\+\_\+tablero()}{borra\_pieza\_tablero()}}
+{\footnotesize\ttfamily void borra\+\_\+pieza\+\_\+tablero (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero,  }\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ \\
+\hline
+{\em pieza} & -\/ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{tablero_8h_a2dedf36dd2bab3c66d2bcf8b4171c1ec}\label{tablero_8h_a2dedf36dd2bab3c66d2bcf8b4171c1ec}} 
+\index{tablero.\+h@{tablero.\+h}!busca\+\_\+solucion\+\_\+actual@{busca\+\_\+solucion\+\_\+actual}}
+\index{busca\+\_\+solucion\+\_\+actual@{busca\+\_\+solucion\+\_\+actual}!tablero.\+h@{tablero.\+h}}
+\subsubsection{\texorpdfstring{busca\+\_\+solucion\+\_\+actual()}{busca\_solucion\_actual()}}
+{\footnotesize\ttfamily void busca\+\_\+solucion\+\_\+actual (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{tablero_8h_a9ef7881d24b8d1694b5e4199a9b974ca}\label{tablero_8h_a9ef7881d24b8d1694b5e4199a9b974ca}} 
+\index{tablero.\+h@{tablero.\+h}!copy\+\_\+tablero@{copy\+\_\+tablero}}
+\index{copy\+\_\+tablero@{copy\+\_\+tablero}!tablero.\+h@{tablero.\+h}}
+\subsubsection{\texorpdfstring{copy\+\_\+tablero()}{copy\_tablero()}}
+{\footnotesize\ttfamily \hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO}$\ast$ copy\+\_\+tablero (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{tablero_8h_a171858c9f1c7ceb0b83bc94f7b1002f1}\label{tablero_8h_a171858c9f1c7ceb0b83bc94f7b1002f1}} 
+\index{tablero.\+h@{tablero.\+h}!crear\+\_\+pieza\+\_\+tablero@{crear\+\_\+pieza\+\_\+tablero}}
+\index{crear\+\_\+pieza\+\_\+tablero@{crear\+\_\+pieza\+\_\+tablero}!tablero.\+h@{tablero.\+h}}
+\subsubsection{\texorpdfstring{crear\+\_\+pieza\+\_\+tablero()}{crear\_pieza\_tablero()}}
+{\footnotesize\ttfamily void crear\+\_\+pieza\+\_\+tablero (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{tablero_8h_a0947efa4dabc3361f1bd20bddb013408}\label{tablero_8h_a0947efa4dabc3361f1bd20bddb013408}} 
+\index{tablero.\+h@{tablero.\+h}!free\+\_\+tablero@{free\+\_\+tablero}}
+\index{free\+\_\+tablero@{free\+\_\+tablero}!tablero.\+h@{tablero.\+h}}
+\subsubsection{\texorpdfstring{free\+\_\+tablero()}{free\_tablero()}}
+{\footnotesize\ttfamily void free\+\_\+tablero (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{tablero_8h_a4158a2e4d08f4b95a97e97e41acb87e0}\label{tablero_8h_a4158a2e4d08f4b95a97e97e41acb87e0}} 
+\index{tablero.\+h@{tablero.\+h}!get\+\_\+pieza@{get\+\_\+pieza}}
+\index{get\+\_\+pieza@{get\+\_\+pieza}!tablero.\+h@{tablero.\+h}}
+\subsubsection{\texorpdfstring{get\+\_\+pieza()}{get\_pieza()}}
+{\footnotesize\ttfamily \hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA}$\ast$ get\+\_\+pieza (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ \\
+\hline
+{\em x} & -\/ \\
+\hline
+{\em y} & -\/ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{tablero_8h_a93f8d55127e76cf9780e5fbeecc87eb1}\label{tablero_8h_a93f8d55127e76cf9780e5fbeecc87eb1}} 
+\index{tablero.\+h@{tablero.\+h}!imprime\+\_\+tablero@{imprime\+\_\+tablero}}
+\index{imprime\+\_\+tablero@{imprime\+\_\+tablero}!tablero.\+h@{tablero.\+h}}
+\subsubsection{\texorpdfstring{imprime\+\_\+tablero()}{imprime\_tablero()}}
+{\footnotesize\ttfamily void imprime\+\_\+tablero (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{tablero_8h_a2b0faa1dabb13c42023cf847ca88fd9b}\label{tablero_8h_a2b0faa1dabb13c42023cf847ca88fd9b}} 
+\index{tablero.\+h@{tablero.\+h}!init\+\_\+tablero@{init\+\_\+tablero}}
+\index{init\+\_\+tablero@{init\+\_\+tablero}!tablero.\+h@{tablero.\+h}}
+\subsubsection{\texorpdfstring{init\+\_\+tablero()}{init\_tablero()}}
+{\footnotesize\ttfamily \hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO}$\ast$ init\+\_\+tablero (\begin{DoxyParamCaption}\item[{int}]{alto,  }\item[{int}]{ancho }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em alto} & -\/ \\
+\hline
+{\em ancho} & -\/ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{tablero_8h_afd0aa2fd8aea38d450eb1c3a64f676b2}\label{tablero_8h_afd0aa2fd8aea38d450eb1c3a64f676b2}} 
+\index{tablero.\+h@{tablero.\+h}!mover\+\_\+derecha\+\_\+tablero@{mover\+\_\+derecha\+\_\+tablero}}
+\index{mover\+\_\+derecha\+\_\+tablero@{mover\+\_\+derecha\+\_\+tablero}!tablero.\+h@{tablero.\+h}}
+\subsubsection{\texorpdfstring{mover\+\_\+derecha\+\_\+tablero()}{mover\_derecha\_tablero()}}
+{\footnotesize\ttfamily bool mover\+\_\+derecha\+\_\+tablero (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero,  }\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ \\
+\hline
+{\em pieza} & -\/ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{tablero_8h_adad383bc4c90eaa7491e8d2915b47a04}\label{tablero_8h_adad383bc4c90eaa7491e8d2915b47a04}} 
+\index{tablero.\+h@{tablero.\+h}!mover\+\_\+izquierda\+\_\+tablero@{mover\+\_\+izquierda\+\_\+tablero}}
+\index{mover\+\_\+izquierda\+\_\+tablero@{mover\+\_\+izquierda\+\_\+tablero}!tablero.\+h@{tablero.\+h}}
+\subsubsection{\texorpdfstring{mover\+\_\+izquierda\+\_\+tablero()}{mover\_izquierda\_tablero()}}
+{\footnotesize\ttfamily bool mover\+\_\+izquierda\+\_\+tablero (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero,  }\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ \\
+\hline
+{\em pieza} & -\/ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{tablero_8h_a7c8e14a0a93171ee21d62d615aadc6b2}\label{tablero_8h_a7c8e14a0a93171ee21d62d615aadc6b2}} 
+\index{tablero.\+h@{tablero.\+h}!mover\+\_\+pieza\+\_\+tablero@{mover\+\_\+pieza\+\_\+tablero}}
+\index{mover\+\_\+pieza\+\_\+tablero@{mover\+\_\+pieza\+\_\+tablero}!tablero.\+h@{tablero.\+h}}
+\subsubsection{\texorpdfstring{mover\+\_\+pieza\+\_\+tablero()}{mover\_pieza\_tablero()}}
+{\footnotesize\ttfamily bool mover\+\_\+pieza\+\_\+tablero (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero,  }\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ \\
+\hline
+{\em pieza} & -\/ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{tablero_8h_a221d1b3fef1a20b2267b226172b88a28}\label{tablero_8h_a221d1b3fef1a20b2267b226172b88a28}} 
+\index{tablero.\+h@{tablero.\+h}!rotar\+\_\+pieza\+\_\+tablero@{rotar\+\_\+pieza\+\_\+tablero}}
+\index{rotar\+\_\+pieza\+\_\+tablero@{rotar\+\_\+pieza\+\_\+tablero}!tablero.\+h@{tablero.\+h}}
+\subsubsection{\texorpdfstring{rotar\+\_\+pieza\+\_\+tablero()}{rotar\_pieza\_tablero()}}
+{\footnotesize\ttfamily bool rotar\+\_\+pieza\+\_\+tablero (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero,  }\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ \\
+\hline
+{\em pieza} & -\/ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{tablero_8h_a270dc70c34f9ce968fdfa10cb62fe6fc}\label{tablero_8h_a270dc70c34f9ce968fdfa10cb62fe6fc}} 
+\index{tablero.\+h@{tablero.\+h}!set\+\_\+pieza\+\_\+nueva@{set\+\_\+pieza\+\_\+nueva}}
+\index{set\+\_\+pieza\+\_\+nueva@{set\+\_\+pieza\+\_\+nueva}!tablero.\+h@{tablero.\+h}}
+\subsubsection{\texorpdfstring{set\+\_\+pieza\+\_\+nueva()}{set\_pieza\_nueva()}}
+{\footnotesize\ttfamily void set\+\_\+pieza\+\_\+nueva (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero,  }\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ \\
+\hline
+{\em pieza} & -\/ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{tablero_8h_a86b7c21d0601a17abdfc09ec298f93c3}\label{tablero_8h_a86b7c21d0601a17abdfc09ec298f93c3}} 
+\index{tablero.\+h@{tablero.\+h}!siguiente\+\_\+turno\+\_\+tablero@{siguiente\+\_\+turno\+\_\+tablero}}
+\index{siguiente\+\_\+turno\+\_\+tablero@{siguiente\+\_\+turno\+\_\+tablero}!tablero.\+h@{tablero.\+h}}
+\subsubsection{\texorpdfstring{siguiente\+\_\+turno\+\_\+tablero()}{siguiente\_turno\_tablero()}}
+{\footnotesize\ttfamily void siguiente\+\_\+turno\+\_\+tablero (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{tablero_8h_ad9d0494eddb2078166b87cd9108828a6}\label{tablero_8h_ad9d0494eddb2078166b87cd9108828a6}} 
+\index{tablero.\+h@{tablero.\+h}!tetris@{tetris}}
+\index{tetris@{tetris}!tablero.\+h@{tablero.\+h}}
+\subsubsection{\texorpdfstring{tetris()}{tetris()}}
+{\footnotesize\ttfamily void tetris (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{tablero_8h_a96c4efe8838b46a994b7f1a801f13565}\label{tablero_8h_a96c4efe8838b46a994b7f1a801f13565}} 
+\index{tablero.\+h@{tablero.\+h}!tetris\+\_\+nivel@{tetris\+\_\+nivel}}
+\index{tetris\+\_\+nivel@{tetris\+\_\+nivel}!tablero.\+h@{tablero.\+h}}
+\subsubsection{\texorpdfstring{tetris\+\_\+nivel()}{tetris\_nivel()}}
+{\footnotesize\ttfamily void tetris\+\_\+nivel (\begin{DoxyParamCaption}\item[{\hyperlink{tablero_8h_acbb1e9c862ccf810af77512ddb019a82}{T\+A\+B\+L\+E\+RO} $\ast$}]{tablero,  }\item[{int}]{l }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em tablero} & -\/ \\
+\hline
+{\em l} & -\/ \\
+\hline
+\end{DoxyParams}

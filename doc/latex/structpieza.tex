@@ -1,0 +1,91 @@
+\hypertarget{structpieza}{}\section{pieza Struct Reference}
+\label{structpieza}\index{pieza@{pieza}}
+
+
+La estructura P\+I\+E\+ZA contiene datos basicos de ella.  
+
+
+
+
+{\ttfamily \#include $<$pieza.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{structpieza_a0cc98244d594b50de5403ac3f7f5717b}{id}
+\item 
+\hyperlink{pieza_8h_adbcefcc94834b3c1042f11047ccd90ef}{F\+O\+R\+MA} \hyperlink{structpieza_a1633f17539310c67d0dcc8264891b051}{tipo}
+\item 
+int \hyperlink{structpieza_ae2a1a9d087e978703430788ceec169c1}{orientacion}
+\item 
+int \hyperlink{structpieza_a39b0a2d6772ef76714341486dadb0270}{x}
+\item 
+int \hyperlink{structpieza_a2cfe46c03638f670ad342054e680fc17}{y}
+\item 
+bool \hyperlink{structpieza_a07cee970ed403863a97c571019bf4fe9}{fija}
+\item 
+bool \hyperlink{structpieza_a6fef79792ec0ad2848d49d67fe87b7d1}{activo\+\_\+centro}
+\item 
+\hyperlink{pieza_8h_a3b9c719c4c783cb9f96e4491fc254368}{P\+U\+N\+TO} $\ast$$\ast$ \hyperlink{structpieza_a7571487b8b7378bdc9375be059264df3}{bloques}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+La estructura P\+I\+E\+ZA contiene datos basicos de ella. 
+
+Usamos esta estructura para mantener unidos los datos que contiene una pieza como tipo, orientacion, ..., y le asignamos un id para identificarla de manera univocua. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structpieza_a6fef79792ec0ad2848d49d67fe87b7d1}\label{structpieza_a6fef79792ec0ad2848d49d67fe87b7d1}} 
+\index{pieza@{pieza}!activo\+\_\+centro@{activo\+\_\+centro}}
+\index{activo\+\_\+centro@{activo\+\_\+centro}!pieza@{pieza}}
+\subsubsection{\texorpdfstring{activo\+\_\+centro}{activo\_centro}}
+{\footnotesize\ttfamily bool pieza\+::activo\+\_\+centro}
+
+Nos dice si el centro ya hizo tetris. \mbox{\Hypertarget{structpieza_a7571487b8b7378bdc9375be059264df3}\label{structpieza_a7571487b8b7378bdc9375be059264df3}} 
+\index{pieza@{pieza}!bloques@{bloques}}
+\index{bloques@{bloques}!pieza@{pieza}}
+\subsubsection{\texorpdfstring{bloques}{bloques}}
+{\footnotesize\ttfamily \hyperlink{pieza_8h_a3b9c719c4c783cb9f96e4491fc254368}{P\+U\+N\+TO}$\ast$$\ast$ pieza\+::bloques}
+
+Un arreglo de puntos para los bloques. \mbox{\Hypertarget{structpieza_a07cee970ed403863a97c571019bf4fe9}\label{structpieza_a07cee970ed403863a97c571019bf4fe9}} 
+\index{pieza@{pieza}!fija@{fija}}
+\index{fija@{fija}!pieza@{pieza}}
+\subsubsection{\texorpdfstring{fija}{fija}}
+{\footnotesize\ttfamily bool pieza\+::fija}
+
+Nos dice si la pieza se encuentra en juego ahora. \mbox{\Hypertarget{structpieza_a0cc98244d594b50de5403ac3f7f5717b}\label{structpieza_a0cc98244d594b50de5403ac3f7f5717b}} 
+\index{pieza@{pieza}!id@{id}}
+\index{id@{id}!pieza@{pieza}}
+\subsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily int pieza\+::id}
+
+Un id que la identifica de forma unica. \mbox{\Hypertarget{structpieza_ae2a1a9d087e978703430788ceec169c1}\label{structpieza_ae2a1a9d087e978703430788ceec169c1}} 
+\index{pieza@{pieza}!orientacion@{orientacion}}
+\index{orientacion@{orientacion}!pieza@{pieza}}
+\subsubsection{\texorpdfstring{orientacion}{orientacion}}
+{\footnotesize\ttfamily int pieza\+::orientacion}
+
+La orientacion de la pieza. Existen 4. \mbox{\Hypertarget{structpieza_a1633f17539310c67d0dcc8264891b051}\label{structpieza_a1633f17539310c67d0dcc8264891b051}} 
+\index{pieza@{pieza}!tipo@{tipo}}
+\index{tipo@{tipo}!pieza@{pieza}}
+\subsubsection{\texorpdfstring{tipo}{tipo}}
+{\footnotesize\ttfamily \hyperlink{pieza_8h_adbcefcc94834b3c1042f11047ccd90ef}{F\+O\+R\+MA} pieza\+::tipo}
+
+Cada pieza debe tener una de 7 formas. \mbox{\Hypertarget{structpieza_a39b0a2d6772ef76714341486dadb0270}\label{structpieza_a39b0a2d6772ef76714341486dadb0270}} 
+\index{pieza@{pieza}!x@{x}}
+\index{x@{x}!pieza@{pieza}}
+\subsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily int pieza\+::x}
+
+La posicion x del centro. \mbox{\Hypertarget{structpieza_a2cfe46c03638f670ad342054e680fc17}\label{structpieza_a2cfe46c03638f670ad342054e680fc17}} 
+\index{pieza@{pieza}!y@{y}}
+\index{y@{y}!pieza@{pieza}}
+\subsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily int pieza\+::y}
+
+La posicion y del centro. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{pieza_8h}{pieza.\+h}\end{DoxyCompactItemize}

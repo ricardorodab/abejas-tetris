@@ -1,0 +1,332 @@
+\hypertarget{pieza_8c}{}\section{lib/pieza.c File Reference}
+\label{pieza_8c}\index{lib/pieza.\+c@{lib/pieza.\+c}}
+
+
+File containing the struct and funtions to simulate Tetris pieces for the \char`\"{}\+Combinatorial Optimization Heuristics\char`\"{} class.  
+
+
+{\ttfamily \#include \char`\"{}pieza.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$ \hyperlink{pieza_8c_ae98922a79472064926ab3ba2eb05662a}{init\+\_\+pieza} (int id, \hyperlink{pieza_8h_adbcefcc94834b3c1042f11047ccd90ef}{F\+O\+R\+MA} tipo)
+\item 
+\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$ \hyperlink{pieza_8c_af606622a41c88c05b5360c32811bc803}{copy\+\_\+pieza} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza})
+\item 
+void \hyperlink{pieza_8c_a549549f61e48ea99a6b0c2bf300b9f65}{free\+\_\+pieza} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza})
+\item 
+void \hyperlink{pieza_8c_a1c003c92590131cbe75c699ff7eed473}{set\+\_\+x\+\_\+pieza} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza}, int x)
+\item 
+void \hyperlink{pieza_8c_ae3fd246cf1d7b4a6b780b443f177d0d7}{set\+\_\+y\+\_\+pieza} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza}, int y)
+\item 
+void \hyperlink{pieza_8c_a00a70d7d25396e8cbfd623a097ff42a6}{actualiza\+\_\+cuadrado} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza})
+\item 
+void \hyperlink{pieza_8c_a8b0996667ea74a5813661d3b80ef47fd}{actualiza\+\_\+left\+\_\+gun} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza})
+\item 
+void \hyperlink{pieza_8c_acb6818aee94256ce6575e4550a66ebab}{actualiza\+\_\+right\+\_\+gun} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza})
+\item 
+void \hyperlink{pieza_8c_ac2d7789e0c6150ec6df5c6f7e735e47e}{actualiza\+\_\+left\+\_\+snake} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza})
+\item 
+void \hyperlink{pieza_8c_a2e3814137df0cfb0024f982f572a0149}{actualiza\+\_\+right\+\_\+snake} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza})
+\item 
+void \hyperlink{pieza_8c_a5ae4d709b2d423180c6ec3f33ce56505}{actualiza\+\_\+i} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza})
+\item 
+void \hyperlink{pieza_8c_a247b311b6538ca8b6405b754e3d3e054}{actualiza\+\_\+t} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza})
+\item 
+void \hyperlink{pieza_8c_ac055dde9df5a4953f2fccecc30ad911b}{actualiza\+\_\+bloques} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza})
+\item 
+void \hyperlink{pieza_8c_a4773a22aa1c4b445e6d3ee25b9a4580e}{set\+\_\+punto\+\_\+pieza} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza}, int x, int y)
+\item 
+void \hyperlink{pieza_8c_a11a6e687afeb80844f4088f1bf4a1b3c}{rotar\+\_\+pieza} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza})
+\item 
+void \hyperlink{pieza_8c_aa5351e3f6fb8968c01d3c99ce3fbeae0}{rota\+\_\+pieza} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza}, int grado)
+\item 
+void \hyperlink{pieza_8c_a0025fe53625f3555ac673c8cc786fee8}{actualiza\+\_\+posicion\+\_\+pieza} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza}, int x, int y)
+\item 
+void \hyperlink{pieza_8c_a9f3b60226601f984d0b0c8e093f55945}{deja\+\_\+caer\+\_\+pieza} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza})
+\item 
+void \hyperlink{pieza_8c_afbd2ba4124aeea7d55a3515be3f95479}{levanta\+\_\+pieza} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza})
+\item 
+bool \hyperlink{pieza_8c_addcc22f4a7bd18e3b9bd54ecde21184d}{borra\+\_\+bloque\+\_\+pieza} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza}, int x, int y)
+\item 
+void \hyperlink{pieza_8c_ace145da7f739baf541c26b3531ba1f7c}{bajar\+\_\+bloque\+\_\+pieza} (\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$\hyperlink{structpieza}{pieza}, int x, int y)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File containing the struct and funtions to simulate Tetris pieces for the \char`\"{}\+Combinatorial Optimization Heuristics\char`\"{} class. 
+
+\begin{DoxyAuthor}{Author}
+Jose Ricardo Rodriguez Abreu 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+14 May 2017 En este archivo implementamos las funciones pieza y junto a la firma de funciones que se hacen uso de las estructuras y manejo de las estructuras definidas como P\+I\+E\+ZA, su manejo en memoria y la de los atributos que constituye su estructura.
+\end{DoxyDate}
+El programa usa el estandar de documentacion que define el uso de doxygen.
+
+\begin{DoxySeeAlso}{See also}
+\href{http://www.stack.nl/~dimitri/doxygen/manual/index.html}{\tt http\+://www.\+stack.\+nl/$\sim$dimitri/doxygen/manual/index.\+html} 
+
+\href{https://github.com/ricardorodab/AceptacionUmbral}{\tt https\+://github.\+com/ricardorodab/\+Aceptacion\+Umbral} 
+\end{DoxySeeAlso}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{pieza_8c_ac055dde9df5a4953f2fccecc30ad911b}\label{pieza_8c_ac055dde9df5a4953f2fccecc30ad911b}} 
+\index{pieza.\+c@{pieza.\+c}!actualiza\+\_\+bloques@{actualiza\+\_\+bloques}}
+\index{actualiza\+\_\+bloques@{actualiza\+\_\+bloques}!pieza.\+c@{pieza.\+c}}
+\subsubsection{\texorpdfstring{actualiza\+\_\+bloques()}{actualiza\_bloques()}}
+{\footnotesize\ttfamily void actualiza\+\_\+bloques (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pieza} & -\/ Es la pieza que deseamos modificar. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pieza_8c_a00a70d7d25396e8cbfd623a097ff42a6}\label{pieza_8c_a00a70d7d25396e8cbfd623a097ff42a6}} 
+\index{pieza.\+c@{pieza.\+c}!actualiza\+\_\+cuadrado@{actualiza\+\_\+cuadrado}}
+\index{actualiza\+\_\+cuadrado@{actualiza\+\_\+cuadrado}!pieza.\+c@{pieza.\+c}}
+\subsubsection{\texorpdfstring{actualiza\+\_\+cuadrado()}{actualiza\_cuadrado()}}
+{\footnotesize\ttfamily void actualiza\+\_\+cuadrado (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pieza} & -\/ Es la pieza que deseamos modificar. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pieza_8c_a5ae4d709b2d423180c6ec3f33ce56505}\label{pieza_8c_a5ae4d709b2d423180c6ec3f33ce56505}} 
+\index{pieza.\+c@{pieza.\+c}!actualiza\+\_\+i@{actualiza\+\_\+i}}
+\index{actualiza\+\_\+i@{actualiza\+\_\+i}!pieza.\+c@{pieza.\+c}}
+\subsubsection{\texorpdfstring{actualiza\+\_\+i()}{actualiza\_i()}}
+{\footnotesize\ttfamily void actualiza\+\_\+i (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pieza} & -\/ Es la pieza que deseamos modificar. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pieza_8c_a8b0996667ea74a5813661d3b80ef47fd}\label{pieza_8c_a8b0996667ea74a5813661d3b80ef47fd}} 
+\index{pieza.\+c@{pieza.\+c}!actualiza\+\_\+left\+\_\+gun@{actualiza\+\_\+left\+\_\+gun}}
+\index{actualiza\+\_\+left\+\_\+gun@{actualiza\+\_\+left\+\_\+gun}!pieza.\+c@{pieza.\+c}}
+\subsubsection{\texorpdfstring{actualiza\+\_\+left\+\_\+gun()}{actualiza\_left\_gun()}}
+{\footnotesize\ttfamily void actualiza\+\_\+left\+\_\+gun (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pieza} & -\/ Es la pieza que deseamos modificar. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pieza_8c_ac2d7789e0c6150ec6df5c6f7e735e47e}\label{pieza_8c_ac2d7789e0c6150ec6df5c6f7e735e47e}} 
+\index{pieza.\+c@{pieza.\+c}!actualiza\+\_\+left\+\_\+snake@{actualiza\+\_\+left\+\_\+snake}}
+\index{actualiza\+\_\+left\+\_\+snake@{actualiza\+\_\+left\+\_\+snake}!pieza.\+c@{pieza.\+c}}
+\subsubsection{\texorpdfstring{actualiza\+\_\+left\+\_\+snake()}{actualiza\_left\_snake()}}
+{\footnotesize\ttfamily void actualiza\+\_\+left\+\_\+snake (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pieza} & -\/ Es la pieza que deseamos modificar. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pieza_8c_a0025fe53625f3555ac673c8cc786fee8}\label{pieza_8c_a0025fe53625f3555ac673c8cc786fee8}} 
+\index{pieza.\+c@{pieza.\+c}!actualiza\+\_\+posicion\+\_\+pieza@{actualiza\+\_\+posicion\+\_\+pieza}}
+\index{actualiza\+\_\+posicion\+\_\+pieza@{actualiza\+\_\+posicion\+\_\+pieza}!pieza.\+c@{pieza.\+c}}
+\subsubsection{\texorpdfstring{actualiza\+\_\+posicion\+\_\+pieza()}{actualiza\_posicion\_pieza()}}
+{\footnotesize\ttfamily void actualiza\+\_\+posicion\+\_\+pieza (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pieza} & -\/ \\
+\hline
+{\em x} & -\/ \\
+\hline
+{\em y} & -\/ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pieza_8c_acb6818aee94256ce6575e4550a66ebab}\label{pieza_8c_acb6818aee94256ce6575e4550a66ebab}} 
+\index{pieza.\+c@{pieza.\+c}!actualiza\+\_\+right\+\_\+gun@{actualiza\+\_\+right\+\_\+gun}}
+\index{actualiza\+\_\+right\+\_\+gun@{actualiza\+\_\+right\+\_\+gun}!pieza.\+c@{pieza.\+c}}
+\subsubsection{\texorpdfstring{actualiza\+\_\+right\+\_\+gun()}{actualiza\_right\_gun()}}
+{\footnotesize\ttfamily void actualiza\+\_\+right\+\_\+gun (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pieza} & -\/ Es la pieza que deseamos modificar. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pieza_8c_a2e3814137df0cfb0024f982f572a0149}\label{pieza_8c_a2e3814137df0cfb0024f982f572a0149}} 
+\index{pieza.\+c@{pieza.\+c}!actualiza\+\_\+right\+\_\+snake@{actualiza\+\_\+right\+\_\+snake}}
+\index{actualiza\+\_\+right\+\_\+snake@{actualiza\+\_\+right\+\_\+snake}!pieza.\+c@{pieza.\+c}}
+\subsubsection{\texorpdfstring{actualiza\+\_\+right\+\_\+snake()}{actualiza\_right\_snake()}}
+{\footnotesize\ttfamily void actualiza\+\_\+right\+\_\+snake (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pieza} & -\/ Es la pieza que deseamos modificar. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pieza_8c_a247b311b6538ca8b6405b754e3d3e054}\label{pieza_8c_a247b311b6538ca8b6405b754e3d3e054}} 
+\index{pieza.\+c@{pieza.\+c}!actualiza\+\_\+t@{actualiza\+\_\+t}}
+\index{actualiza\+\_\+t@{actualiza\+\_\+t}!pieza.\+c@{pieza.\+c}}
+\subsubsection{\texorpdfstring{actualiza\+\_\+t()}{actualiza\_t()}}
+{\footnotesize\ttfamily void actualiza\+\_\+t (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pieza} & -\/ Es la pieza que deseamos modificar. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pieza_8c_ace145da7f739baf541c26b3531ba1f7c}\label{pieza_8c_ace145da7f739baf541c26b3531ba1f7c}} 
+\index{pieza.\+c@{pieza.\+c}!bajar\+\_\+bloque\+\_\+pieza@{bajar\+\_\+bloque\+\_\+pieza}}
+\index{bajar\+\_\+bloque\+\_\+pieza@{bajar\+\_\+bloque\+\_\+pieza}!pieza.\+c@{pieza.\+c}}
+\subsubsection{\texorpdfstring{bajar\+\_\+bloque\+\_\+pieza()}{bajar\_bloque\_pieza()}}
+{\footnotesize\ttfamily void bajar\+\_\+bloque\+\_\+pieza (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pieza} & -\/ \\
+\hline
+{\em x} & -\/ \\
+\hline
+{\em y} & -\/ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pieza_8c_addcc22f4a7bd18e3b9bd54ecde21184d}\label{pieza_8c_addcc22f4a7bd18e3b9bd54ecde21184d}} 
+\index{pieza.\+c@{pieza.\+c}!borra\+\_\+bloque\+\_\+pieza@{borra\+\_\+bloque\+\_\+pieza}}
+\index{borra\+\_\+bloque\+\_\+pieza@{borra\+\_\+bloque\+\_\+pieza}!pieza.\+c@{pieza.\+c}}
+\subsubsection{\texorpdfstring{borra\+\_\+bloque\+\_\+pieza()}{borra\_bloque\_pieza()}}
+{\footnotesize\ttfamily bool borra\+\_\+bloque\+\_\+pieza (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pieza} & -\/ \\
+\hline
+{\em x} & -\/ \\
+\hline
+{\em y} & -\/ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pieza_8c_af606622a41c88c05b5360c32811bc803}\label{pieza_8c_af606622a41c88c05b5360c32811bc803}} 
+\index{pieza.\+c@{pieza.\+c}!copy\+\_\+pieza@{copy\+\_\+pieza}}
+\index{copy\+\_\+pieza@{copy\+\_\+pieza}!pieza.\+c@{pieza.\+c}}
+\subsubsection{\texorpdfstring{copy\+\_\+pieza()}{copy\_pieza()}}
+{\footnotesize\ttfamily \hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA}$\ast$ copy\+\_\+pieza (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pieza} & -\/ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{pieza_8c_a9f3b60226601f984d0b0c8e093f55945}\label{pieza_8c_a9f3b60226601f984d0b0c8e093f55945}} 
+\index{pieza.\+c@{pieza.\+c}!deja\+\_\+caer\+\_\+pieza@{deja\+\_\+caer\+\_\+pieza}}
+\index{deja\+\_\+caer\+\_\+pieza@{deja\+\_\+caer\+\_\+pieza}!pieza.\+c@{pieza.\+c}}
+\subsubsection{\texorpdfstring{deja\+\_\+caer\+\_\+pieza()}{deja\_caer\_pieza()}}
+{\footnotesize\ttfamily void deja\+\_\+caer\+\_\+pieza (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pieza} & -\/ Es la pieza que deseamos modificar. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pieza_8c_a549549f61e48ea99a6b0c2bf300b9f65}\label{pieza_8c_a549549f61e48ea99a6b0c2bf300b9f65}} 
+\index{pieza.\+c@{pieza.\+c}!free\+\_\+pieza@{free\+\_\+pieza}}
+\index{free\+\_\+pieza@{free\+\_\+pieza}!pieza.\+c@{pieza.\+c}}
+\subsubsection{\texorpdfstring{free\+\_\+pieza()}{free\_pieza()}}
+{\footnotesize\ttfamily void free\+\_\+pieza (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pieza} & -\/ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pieza_8c_ae98922a79472064926ab3ba2eb05662a}\label{pieza_8c_ae98922a79472064926ab3ba2eb05662a}} 
+\index{pieza.\+c@{pieza.\+c}!init\+\_\+pieza@{init\+\_\+pieza}}
+\index{init\+\_\+pieza@{init\+\_\+pieza}!pieza.\+c@{pieza.\+c}}
+\subsubsection{\texorpdfstring{init\+\_\+pieza()}{init\_pieza()}}
+{\footnotesize\ttfamily \hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA}$\ast$ init\+\_\+pieza (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{\hyperlink{pieza_8h_adbcefcc94834b3c1042f11047ccd90ef}{F\+O\+R\+MA}}]{tipo }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & -\/ \\
+\hline
+{\em tipo} & -\/ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pieza_8c_afbd2ba4124aeea7d55a3515be3f95479}\label{pieza_8c_afbd2ba4124aeea7d55a3515be3f95479}} 
+\index{pieza.\+c@{pieza.\+c}!levanta\+\_\+pieza@{levanta\+\_\+pieza}}
+\index{levanta\+\_\+pieza@{levanta\+\_\+pieza}!pieza.\+c@{pieza.\+c}}
+\subsubsection{\texorpdfstring{levanta\+\_\+pieza()}{levanta\_pieza()}}
+{\footnotesize\ttfamily void levanta\+\_\+pieza (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pieza} & -\/ Es la pieza que deseamos modificar. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pieza_8c_aa5351e3f6fb8968c01d3c99ce3fbeae0}\label{pieza_8c_aa5351e3f6fb8968c01d3c99ce3fbeae0}} 
+\index{pieza.\+c@{pieza.\+c}!rota\+\_\+pieza@{rota\+\_\+pieza}}
+\index{rota\+\_\+pieza@{rota\+\_\+pieza}!pieza.\+c@{pieza.\+c}}
+\subsubsection{\texorpdfstring{rota\+\_\+pieza()}{rota\_pieza()}}
+{\footnotesize\ttfamily void rota\+\_\+pieza (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza,  }\item[{int}]{grado }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pieza} & -\/ \\
+\hline
+{\em grado} & -\/ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pieza_8c_a11a6e687afeb80844f4088f1bf4a1b3c}\label{pieza_8c_a11a6e687afeb80844f4088f1bf4a1b3c}} 
+\index{pieza.\+c@{pieza.\+c}!rotar\+\_\+pieza@{rotar\+\_\+pieza}}
+\index{rotar\+\_\+pieza@{rotar\+\_\+pieza}!pieza.\+c@{pieza.\+c}}
+\subsubsection{\texorpdfstring{rotar\+\_\+pieza()}{rotar\_pieza()}}
+{\footnotesize\ttfamily void rotar\+\_\+pieza (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pieza} & -\/ Es la pieza que deseamos modificar. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pieza_8c_a4773a22aa1c4b445e6d3ee25b9a4580e}\label{pieza_8c_a4773a22aa1c4b445e6d3ee25b9a4580e}} 
+\index{pieza.\+c@{pieza.\+c}!set\+\_\+punto\+\_\+pieza@{set\+\_\+punto\+\_\+pieza}}
+\index{set\+\_\+punto\+\_\+pieza@{set\+\_\+punto\+\_\+pieza}!pieza.\+c@{pieza.\+c}}
+\subsubsection{\texorpdfstring{set\+\_\+punto\+\_\+pieza()}{set\_punto\_pieza()}}
+{\footnotesize\ttfamily void set\+\_\+punto\+\_\+pieza (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pieza} & -\/ \\
+\hline
+{\em x} & -\/ \\
+\hline
+{\em y} & -\/ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pieza_8c_a1c003c92590131cbe75c699ff7eed473}\label{pieza_8c_a1c003c92590131cbe75c699ff7eed473}} 
+\index{pieza.\+c@{pieza.\+c}!set\+\_\+x\+\_\+pieza@{set\+\_\+x\+\_\+pieza}}
+\index{set\+\_\+x\+\_\+pieza@{set\+\_\+x\+\_\+pieza}!pieza.\+c@{pieza.\+c}}
+\subsubsection{\texorpdfstring{set\+\_\+x\+\_\+pieza()}{set\_x\_pieza()}}
+{\footnotesize\ttfamily void set\+\_\+x\+\_\+pieza (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza,  }\item[{int}]{x }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pieza} & -\/ \\
+\hline
+{\em x} & -\/ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pieza_8c_ae3fd246cf1d7b4a6b780b443f177d0d7}\label{pieza_8c_ae3fd246cf1d7b4a6b780b443f177d0d7}} 
+\index{pieza.\+c@{pieza.\+c}!set\+\_\+y\+\_\+pieza@{set\+\_\+y\+\_\+pieza}}
+\index{set\+\_\+y\+\_\+pieza@{set\+\_\+y\+\_\+pieza}!pieza.\+c@{pieza.\+c}}
+\subsubsection{\texorpdfstring{set\+\_\+y\+\_\+pieza()}{set\_y\_pieza()}}
+{\footnotesize\ttfamily void set\+\_\+y\+\_\+pieza (\begin{DoxyParamCaption}\item[{\hyperlink{pieza_8h_aac4b603fd85c8ae53529fc00a88de8ae}{P\+I\+E\+ZA} $\ast$}]{pieza,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em pieza} & -\/ \\
+\hline
+{\em y} & -\/ \\
+\hline
+\end{DoxyParams}
