@@ -6,8 +6,15 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \usepackage{amstext}
+\usepackage{graphicx}
 
 \makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% A simple dot to overcome graphicx limitations
+\newcommand{\lyxdot}{.}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
 \fancyhf{}               % Clear fancy header/footer
 \fancyfoot[L]{Jos\'{e} Ricardo Rodr\'{\i}guez Abreu}   % My name in Left footer
@@ -45,7 +52,7 @@ Muchos de los problemas \textit{interesantes} que podemos observar
 en el universo, al quererlos resolver con una computadora caen en
 el conjunto de aquellos la categoría de aquellos problemas que pueden
 ser resueltos en tiempo polinomial por una máquina de Turing no determinista,
-también conocida como la \textsf{\textit{clase NP}}. 
+también conocida como la \textsf{\textit{clase NP}}. \cite{Arora}
 
 Al ser las máquinas de Turing no deterministas difícil de conseguir
 en la tienda de la esquina, nos limitamos a tratar de dar un aproximado
@@ -73,10 +80,11 @@ que posees es el tablero actual y la pieza actual.}}\protect \\
 } sobre la versión off-line \marginpar{\textsf{\textit{\footnotesize{}Versión off-line: Además del tablero
 y la pieza actual, puedes observar la secuencia de piezas que siguen.}}} debido al manejo de memoria que debe realizar la memoria off-line.
 Existe la demostración\footnote{Es mencionada en el artículo adjunto a este documento.}
-que ambas versiones son equivalentes y son \textsf{\textit{NP-Completos}}. 
+que ambas versiones son equivalentes y son \textsf{\textit{NP-Completos}}.
+\cite{Tetris}
 
 Para poder atacar el problema se tuvo que investigar y observar que
-existen 7 posibles piezas con al menos cuatro posibles orientaciones.
+existen 7 posibles piezas con al menos cuatro posibles orientaciones\footnote{Ver imagen 1.1}.
 Para cada pieza, suponiendo un tablero de ancho·alto y $n\text{·}m$
 cuadros, existen $\frac{n}{4}$ posibilidades para la siguiente pieza.
 Para la siguiente pieza se tienen aproximadamente $\frac{n}{4}\text{·}cm$
@@ -89,6 +97,14 @@ $(\frac{n\text{·}c\text{·}m}{4}){}^{t}$
 \par\end{center}
 
 que ciertamente es n número bastante grande. 
+
+\begin{center}
+\includegraphics[width=8cm,height=4cm]{\string"Captura de pantalla 2017-06-19 a la(s) 2.51.46 p.m.\string".png}
+\par\end{center}
+
+\begin{center}
+Imagen 1.1 Las piezas originales de tetris con sus posibles combinaciones.
+\par\end{center}
 
 
 \subsection*{1.2 Abejas}
@@ -106,6 +122,7 @@ ver que una abeja exploradora en descanso (o no realizando ninguna
 acción) es automáticamente transformada en una abeja en espera mientras
 que todas tienen que realizar el trabajo de empleada para explorar
 su fuente de alimento. El algoritmo original tiene la siguiente estructura:
+\cite{Abejas}
 \begin{itemize}
 \item Se producen fuentes de alimentos iniciales por cada abeja empleada.
 \item REPETIR
@@ -122,8 +139,17 @@ de néctar.
 por las nuevas fuentes de alimentos descubiertas por las exploradoras.
 La mejor fuente de alimentos encontrada es registrada. 
 \end{itemize}
-\item HASTA QUE (los requisitos se cumplan)
+\item HASTA QUE (los requisitos se cumplan) 
 \end{itemize}
+\begin{center}
+\includegraphics[width=13cm,height=8cm]{The-flowchart-of-the-artificial-bee-colony-algorithm}
+\par\end{center}
+
+\begin{center}
+Imagen 1.2 Diagrama de flujo del algoritmo que sigue la heurística
+de colonia de abejas.
+\par\end{center}
+
 
 \section*{2. Integración de heurística al problema}
 
@@ -145,7 +171,7 @@ que es el indicador de que tan buena es una solución, así que se decidió
 que al encontrar una solución se jugara una cantidad predefinida de
 partidas (que llamaremos ``distancia'') para estimar que el tablero
 de tetris no se hiciera ``malo'' repentinamente con la decisión
-de la abeja exploradora. 
+de la abeja exploradora. \cite{Tetris}
 
 
 \subsection*{2.2 Abejas empleadas}
@@ -167,7 +193,7 @@ la abeja.
 
 Si la abeja resultó ser la mejor local o la mejor global, se le concede
 el ``honor'' de ser coronada como la ``Waggle bee''. Un equivalente
-a lo que sería la abeja reina.
+a lo que sería la abeja reina. \cite{Colonia}
 
 
 \subsection*{2.3 Waggle bee}
@@ -179,7 +205,7 @@ durante la evaluación de su tablero.
 
 La Waggle Bee también es la encargada de comunicar a sus abejas empleadas
 cual es el tablero que todas deben tener antes de comenzar la siguiente
-iteración.
+iteración. 
 
 
 \subsection*{2.4 Waggle dance}
@@ -202,6 +228,73 @@ tetris normal: Si se llegara a realizar una linea horizontal llena
 de bloques de tetrominós se dice que se realizó un ``tetris'' y
 esa linea es eliminada.
 
+Como nos hemos apegado a un juego completamente ``on-line'' podemos
+comparar las reglas con las que existieron para el juego original.
 
-\part*{3. Documentación del código:}
+\begin{center}
+\includegraphics[width=5cm,height=3cm]{Tetris-VeryFirstVersion}
+\par\end{center}
+
+\begin{center}
+Imagen 2.1. La primera versión de Tetris, lanzado en 1984, corriendo
+en un emulador de una computadora DVK-2 de la ex Unión Soviética.
+\par\end{center}
+
+
+\part*{3. Experimentación}
+
+Se realizó experimentación buscando la semilla que contuviera la mayor
+cantidad de ``Tetris'' dado una secuencia pseudoaleatoria de piezas
+y la función de costo. 
+
+Durante la experimentación se notó la necesidad de llevar el conteo
+de la cantidad de epacios vacíos que se iban dejando en el transcurso
+de un juego como un factor negativo. Como el objetivo era realizar
+la mayor cantidad de Tetris en el juego, se consideró como principal
+mantener una ``horizontalidad'' entre las piezas y una función que
+dijera que tan probable era realizar un tetris en el siguiente turno. 
+
+De todas las semillas que se probaron, la que mayor cantidad de Tetris
+obtuvo fue la semilla 5117 con la función generadora de numeros aleatorios
+de MacOS y la semilla 915 con la función del sistema linux. 
+
+\begin{center}
+\includegraphics[width=10cm,height=8cm]{Experimentacion}
+\par\end{center}
+
+\begin{center}
+Imagen 3.1 Fin de la mejor partida obtenida con la semilla 5117 en
+el sistema MacOS. 42 Tetris. 
+\par\end{center}
+
+
+\part*{4. Resultados preliminares:}
+
+Aunque la heurística ayude a encontrar soluciones inmediatas a ciertas
+secuencias de piezas, el problema de ver ``hacia el futuro'' de
+las piezas se mantiene y es básicamente imposible resolver con una
+lista lo suficientemente grande. 
+
+Convertir el problema a un problema ``off-line'' posiblemente incrementará
+el número de tetris pero al ser un juego en el que eventualemnte perderás,
+ambos problemas convergen al mismo punto por las mismas limitantes:
+¿Qué me conviene al futuro después de n piezas? 
+
+
+\part*{5. Documentación del código:}
+\begin{thebibliography}{1}
+\bibitem[1]{Abejas} Maurtua, I. et al., 2006. Ambient Intelligence
+in Manufacturing,
+
+\bibitem[2]{Colonia} B. Akay and D. Karaboga. Arti cial bee colony
+algorithm for large-scale problems and engineering design optimization.
+Journal of Intelligent Manufacturing, 23(4):1001 1014, 2012.
+
+\bibitem[3]{Tetris} Demaine, E.D., Hohenberger, S. \& Liben-Nowell,
+D., 2002. Tetris is Hard, Even to Approximate. , pp.1\textendash 56.
+Available at: http://arxiv.org/abs/cs/0210020.
+
+\bibitem[4]{Arora}Arora, S. \& Barak, B., 2007. Computational Complexity:
+A Modern Approach. Computational Complexity, (January).\end{thebibliography}
+
 \end{document}
